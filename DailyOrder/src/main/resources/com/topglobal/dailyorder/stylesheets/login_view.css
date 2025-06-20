@@ -1,0 +1,9 @@
+.borderPane-login {
+    -fx-background-image: url("../assets/dailyOrderLogin.jpg");
+    -fx-background-size: cover;
+}
+.gridPane-login {
+    -fx-background-color: #F2EEE0;
+    -fx-max-height: 300px;
+    -fx-max-width: 300px;
+}

@@ -13,10 +13,13 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/topglobal/dailyorder/views/login_view.fxml"));
         Image image = new Image(getClass().getResourceAsStream("/com/topglobal/dailyorder/icons/Logo.png"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login");
         stage.getIcons().add(image);
         stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.setMinWidth(800);
+        stage.setMinHeight(500);
         stage.show();
     }
 

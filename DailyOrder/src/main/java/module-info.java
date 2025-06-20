@@ -4,6 +4,7 @@ module com.topglobal.dailyorder {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.topglobal.dailyorder to javafx.fxml;
     exports com.topglobal.dailyorder;
