@@ -1,4 +1,10 @@
 package com.topglobal.dailyorder.controllers.admin;
 
-public class AdminController {
+import com.topglobal.dailyorder.controllers.UserController;
+
+public class AdminController extends UserController {
+    @Override
+    public void setInfo() {
+        //Lógica para mostrar la información del administrador
+    }
 }

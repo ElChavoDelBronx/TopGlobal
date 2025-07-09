@@ -25,16 +25,21 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void changeScene(String fxmlPath) {
+    public static <T> T changeScene(String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlPath));
             Scene newScene = new Scene(loader.load());
+            primaryStage.setTitle(title);
             primaryStage.setScene(newScene);
             primaryStage.setMaximized(true);
             primaryStage.setMinWidth(800);
             primaryStage.setMinHeight(500);
+            primaryStage.show();
+            //Obtiene el controlador de la vista cargada
+            return loader.getController();
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 

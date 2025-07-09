@@ -3,33 +3,17 @@ package com.topglobal.dailyorder.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class DatabaseConfig {
-    private static final String PROPERTIES_FILE = "/db.properties";
+    private static final String URL      = "jdbc:oracle:thin:@enzf2jb6hhpupolo_low";
+    private static final String USER     = "ADMIN";
+    private static final String PASSWORD = "!@Victor1993";
 
-    private static String url;
-    private static String user;
-    private static String password;
-    private static String driver;
-
-    static {
-        try {
-            Properties props = new Properties();
-            props.load(DatabaseConfig.class.getResourceAsStream(PROPERTIES_FILE));
-
-            url = props.getProperty("db.url");
-            user = props.getProperty("db.username");
-            password = props.getProperty("db.password");
-            driver = props.getProperty("db.driver");
-
-            Class.forName(driver);  // Carga el driver JDBC
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    // Obtiene una conexión nueva
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+        //Nota: Modificar la ruta del wallet según tu sistema de archivos
+        System.setProperty("oracle.net.tns_admin", "C:\\Users\\USER\\Downloads\\Wallet_ENZF2JB6HHPUPOLO");
+        //Obtiene la conexión usando alias, usuario y contraseña
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
