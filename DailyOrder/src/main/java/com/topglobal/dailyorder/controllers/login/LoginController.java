@@ -26,13 +26,13 @@ public class LoginController {
                 String newFxmlPath;
                 String title;
                 if(employee instanceof Admin){
-                    newFxmlPath = "/com/topglobal/dailyorder/views/admin_view.fxml";
+                    newFxmlPath = "/com/topglobal/dailyorder/views/admin/admin_view.fxml";
                     title = "Administrador";
                 }else if(employee instanceof WaiterLeader){
-                    newFxmlPath = "/com/topglobal/dailyorder/views/waiterLeader_view.fxml";
+                    newFxmlPath = "/com/topglobal/dailyorder/views/leader/waiterLeader_view.fxml";
                     title = "Líder De Meseros";
                 }else{
-                    newFxmlPath = "/com/topglobal/dailyorder/views/waiter_view.fxml";
+                    newFxmlPath = "/com/topglobal/dailyorder/views/waiter/waiter_view.fxml";
                     title = "Mesero";
                 }
                 //Cambia la escena a la vista correspondiente

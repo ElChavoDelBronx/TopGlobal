@@ -3,7 +3,7 @@ package com.topglobal.dailyorder.controllers;
 import com.topglobal.dailyorder.models.users.Employee;
 
 public abstract class UserController {
-    private Employee user;
+    protected Employee user;
 
     public Employee getUser() {
         return user;
