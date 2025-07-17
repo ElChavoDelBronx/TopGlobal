@@ -1,13 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.topglobal.dailyorder.controllers.leader.LeaderController">
+            fx:controller="com.topglobal.dailyorder.controllers.leader.LeaderController"
+            style="-fx-background-color: #F4F8FC;">
 
-</AnchorPane>
+    <center>
+        <HBox spacing="40" alignment="TOP_LEFT" BorderPane.alignment="CENTER">
+
+            <!--  BOTONES LATERAL IZQUIERDO-->
+            <VBox spacing="50" alignment="TOP_CENTER"
+                  prefWidth="150"
+                  style="-fx-padding:20 0 0 20;">
+                <Button text="🏠"
+                        style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;"/>
+                <Button text="📄"
+                        style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;"/>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Button text="⋯"
+                        style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;"/>
+            </VBox>
+
+            <!-- DATOS DE USUARIO -->
+            <VBox spacing="20" alignment="TOP_LEFT"
+                  prefWidth="300"
+                  style="-fx-padding:20 0 0 0;">
+                <Label text="Menú principal"
+                       style="-fx-font-size:40px; -fx-font-weight:bold;"/>
+                <Label text="Hola, Bienvenido!"
+                       style="-fx-font-size:36px;"/>
+                <Label text="Jose Madero"
+                       style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+                <Label text="Líder de Meseros"
+                       style="-fx-font-size:20px;"/>
+
+                <Region prefHeight="20"/>
+
+                <Label text="Usuario:"
+                       style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+                <Label text="Lider12Mesas"
+                       style="-fx-font-size:20px;"/>
+
+                <Label text="Teléfono:"
+                       style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+                <Label text="777‑882‑4646"
+                       style="-fx-font-size:20px;"/>
+
+                <Label text="Correo Electrónico:"
+                       style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+                <Label text="jose.madero@gmail.com"
+                       style="-fx-font-size:20px;"/>
+
+                <Label text="Turno Actual:"
+                       style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+                <Label text="Matutino"
+                       style="-fx-font-size:20px;"/>
+            </VBox>
+
+            <StackPane>
+                <VBox
+                        translateX="100"
+                        style="-fx-background-color: white;
+                   -fx-padding: 50 70 50 70;
+                   -fx-border-radius: 20;
+                   -fx-background-radius: 20;
+                   -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 0);"
+                        spacing="50"
+                        alignment="CENTER"
+                        maxWidth="850"
+                        maxHeight="750"
+                        prefWidth="800"
+                        prefHeight="750">
+
+                    <Label text="Checador" alignment="TOP_LEFT" style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+
+                    <Button text="Marcar Entrada"
+                            style="-fx-font-size: 24px; -fx-pref-width: 450;  -fx-pref-height: 50;"/>
+                    <Button text="Marcar Descanso"
+                            style="-fx-font-size: 24px; -fx-pref-width: 450; -fx-pref-height: 50;"/>
+                    <Button text="Marcar Salida"
+                            style="-fx-font-size: 24px; -fx-pref-width: 450; -fx-pref-height: 50;"/>
+
+                    <Label text="Accesos Rápidos" style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+
+                    <Button text="Crear Planificación"
+                            style="-fx-font-size: 24px; -fx-pref-width: 450; -fx-pref-height: 50;"/>
+                </VBox>
+            </StackPane>
+
+        </HBox>
+    </center>
+</BorderPane>
