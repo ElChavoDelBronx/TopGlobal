@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.topglobal.dailyorder.controllers.admin.AdminController">
+    <!--HEADER-->
+    <top>
+        <HBox style="-fx-border-color: black; -fx-border-width: 1px;" alignment="CENTER_LEFT" spacing="20">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <Button text="🏠" onAction="#setInfo"/>
+            <GridPane>
+                <Label text="Menú Principal" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Hola, Bienvenido!" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold"/>
+            </GridPane>
+        </HBox>
+    </top>
+    <!--SIDEBAR-->
+    <left>
+        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-border-color: black; -fx-border-width: 1px;">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <Button text="👤"/>
+            <Button text="🍽"/>
+            <Button text="..."/>
+        </VBox>
+    </left>
+    <!--MAIN CONTENT-->
+    <center>
+        <AnchorPane fx:id="contentPane"/>
+    </center>
+</BorderPane>
