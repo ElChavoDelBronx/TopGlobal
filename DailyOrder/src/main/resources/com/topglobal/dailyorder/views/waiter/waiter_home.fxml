@@ -6,11 +6,67 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.topglobal.dailyorder.views.waiter.WaiterHome"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHomeController"
+          prefHeight="400.0" prefWidth="600.0" >
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+    <!--ADMIN INFO-->
+
+    <VBox>
+
+            <Label text="Menú Principal"  />
+            <Label text="Hola, Bienvenido!"  style="-fx-font-weight: bold"/>
 
 
 
-</AnchorPane>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+            <Label fx:id="lblFullName" text="Oscar Mendoza" style="-fx-font-weight: bold"/>
+            <Label text="Mesero"/>
+            <Label text="Nombre de Usuario" style="-fx-font-weight: bold"/>
+            <Label fx:id="lblUsername" text="MeseroChespi88"/>
+            <Label text="Telefono:" style="-fx-font-weight: bold"/>
+            <Label fx:id="lblPhoneNumber" text="777-123-4567"/>
+            <Label text="Correo Electrónico:" style="-fx-font-weight: bold"/>
+            <Label fx:id="lblEmail" text="elizabeth.castillo@empresa.com"/>
+            <Label text="Turno Actual" style="-fx-font-weight: bold"/>
+            <Label fx:id="lblShift" text="Matutino"/>
+        </VBox>
+
+    </VBox>
+
+    <!--ADMIN ACTIONS-->
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <GridPane vgap="10">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
+            </columnConstraints>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+            <Label text="Checador" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Button text="Entrada" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" onAction="#marcarEntrada"/>
+            <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity" onAction="#marcarDescanso"/>
+            <Button text="Salida" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity" onAction="#marcarSalida"/>
+        </GridPane>
+    </VBox>
+
+
+
+</GridPane>
