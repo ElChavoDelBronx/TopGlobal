@@ -1,0 +1,49 @@
+package com.topglobal.dailyorder;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class Main extends Application {
+    private static Stage primaryStage;
+    @Override
+    public void start(Stage stage) throws IOException {
+        primaryStage = stage;
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/topglobal/dailyorder/views/login_view.fxml"));
+        Image image = new Image(getClass().getResourceAsStream("/com/topglobal/dailyorder/icons/Logo.png"));
+        Scene scene = new Scene(fxmlLoader.load());
+        primaryStage.setTitle("Login");
+        primaryStage.getIcons().add(image);
+        primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(500);
+        primaryStage.show();
+    }
+
+    public static <T> T changeScene(String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlPath));
+            Scene newScene = new Scene(loader.load());
+            primaryStage.setTitle(title);
+            primaryStage.setScene(newScene);
+            primaryStage.setMaximized(true);
+            primaryStage.setMinWidth(800);
+            primaryStage.setMinHeight(500);
+            primaryStage.show();
+            //Obtiene el controlador de la vista cargada
+            return loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
