@@ -3,10 +3,14 @@ package com.topglobal.dailyorder.controllers.admin;
 import com.topglobal.dailyorder.controllers.UserController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import java.io.IOException;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
-import java.io.IOException;
 
 public class AdminController extends UserController {
     @FXML private AnchorPane contentPane;
@@ -21,7 +25,7 @@ public class AdminController extends UserController {
     private <T> T loadView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            GridPane view = loader.load();
+            Parent view = loader.load();
             contentPane.getChildren().setAll(view);
             AnchorPane.setTopAnchor(view, 0.0);
             AnchorPane.setBottomAnchor(view, 0.0);
@@ -32,5 +36,10 @@ public class AdminController extends UserController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @FXML
+    private void onPersonal(ActionEvent event) {
+        loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml");
     }
 }
