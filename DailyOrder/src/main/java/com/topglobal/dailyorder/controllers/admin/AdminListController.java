@@ -5,12 +5,18 @@ import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Employee;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +37,12 @@ public class AdminListController implements Initializable {
     @FXML private TableColumn<Employee, String> colAcciones;
 
     private final EmployeeDAO employeeDAO = new EmployeeDAO();
+
+    private AnchorPane contentPane;
+
+    public void setContentPane(AnchorPane contentPane) {
+        this.contentPane = contentPane;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,16 +66,22 @@ public class AdminListController implements Initializable {
         colApellidoM.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().getMotherLastname())
         );
-
-        colCorreo.setCellValueFactory(data ->
-                new ReadOnlyStringWrapper(data.getValue().getEmail())
+        colUsuario.setCellValueFactory(data ->
+                new ReadOnlyStringWrapper(data.getValue().getUser())
         );
         colTelefono.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().getPhoneNumber())
         );
+        colCorreo.setCellValueFactory(data ->
+                new ReadOnlyStringWrapper(data.getValue().getEmail())
+        );
         colCargo.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().getRole())
         );
+        colEstatus.setCellValueFactory(data ->
+                new ReadOnlyStringWrapper(String.valueOf(data.getValue().getStatus()))
+        );
+
 
 
         // Carga Datos
@@ -78,6 +96,31 @@ public class AdminListController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void onCreateEmployee(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/com/topglobal/dailyorder/views/admin/admin_form.fxml"));
+            GridPane view = loader.load();
+
+            // Aquí obtienes el controlador
+            AdminListController controller = loader.getController();
+
+            // Le pasas el contentPane para que él pueda usarlo también
+            controller.setContentPane(contentPane);
+
+            // Muestras la vista en el centro
+            contentPane.getChildren().setAll(view);
+            AnchorPane.setTopAnchor(view, 0.0);
+            AnchorPane.setBottomAnchor(view, 0.0);
+            AnchorPane.setLeftAnchor(view, 0.0);
+            AnchorPane.setRightAnchor(view, 0.0);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -9,19 +9,19 @@ import javafx.scene.control.*;
 
 public class LoginController {
     @FXML
-    private TextField tfEmail;
+    private TextField tfUser;
     @FXML
     private PasswordField pwfLogin;
 
     @FXML
     protected void onLoginButtonClick() {
         //Obtiene los valores de los campos de texto
-        String email = tfEmail.getText().trim();
+        String user = tfUser.getText().trim();
         String password = pwfLogin.getText().trim();
         //Valida que los campos no estén vacíos
-        if (!email.isEmpty() && !password.isEmpty()) {
+        if (!user.isEmpty() && !password.isEmpty()) {
             //Obtiene el empleado por sus credenciales
-            Employee employee = EmployeeDAO.fetchEmployeeByCredentials(email, password);
+            Employee employee = EmployeeDAO.fetchEmployeeByCredentials(user, password);
             if(employee != null && employee.getStatus() == 1) {
                 String newFxmlPath;
                 String title;

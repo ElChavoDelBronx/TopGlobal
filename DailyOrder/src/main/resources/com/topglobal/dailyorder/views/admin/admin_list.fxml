@@ -7,7 +7,7 @@
     <center>
         <VBox prefHeight="624.0" prefWidth="989.0">
             <HBox>
-                <Button fx:id="btnCreate" text="Registrar Empleado"/>
+                <Button fx:id="btnCreate" text="Registrar Empleado" onAction="#onCreateEmployee"/>
                 <Button fx:id="btnFiltrar" text="Filtrar" />
                 <TextField fx:id="txtBuscar" promptText="Buscar" />
             </HBox>

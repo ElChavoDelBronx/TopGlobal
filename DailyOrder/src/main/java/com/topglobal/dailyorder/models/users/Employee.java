@@ -1,15 +1,21 @@
 package com.topglobal.dailyorder.models.users;
 
+import java.time.LocalDate;
+
 public class Employee {
     private int id;
     private String name;
     private String fatherLastname;
     private String motherLastname;
     private String email;
+    private String user;
     private String password;
     private String phoneNumber;
     private String role;
     private String shift;
+    private String gender;
+    private String curp;
+    private LocalDate birthday;
     private int status;
 
     public Employee() {}
@@ -49,6 +55,14 @@ public class Employee {
         this.email = email;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -82,5 +96,29 @@ public class Employee {
     }
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
