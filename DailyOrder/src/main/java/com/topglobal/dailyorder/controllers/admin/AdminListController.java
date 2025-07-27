@@ -1,6 +1,5 @@
 package com.topglobal.dailyorder.controllers.admin;
 
-import com.topglobal.dailyorder.controllers.UserController;
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Employee;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -9,12 +8,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +35,7 @@ public class AdminListController implements Initializable {
     @FXML private TableColumn<Employee, String> colCorreo;
     @FXML private TableColumn<Employee, String> colCargo;
     @FXML private TableColumn<Employee, String> colEstatus;
-    @FXML private TableColumn<Employee, String> colAcciones;
+    @FXML private TableColumn<Employee, Void> colAcciones;
 
     private final EmployeeDAO employeeDAO = new EmployeeDAO();
 
@@ -81,6 +82,22 @@ public class AdminListController implements Initializable {
         colEstatus.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(String.valueOf(data.getValue().getStatus()))
         );
+        // Column “Acciones”
+        colAcciones.setCellFactory(col -> new TableCell<>() {
+            private final Button btnVer    = new Button("Ver");
+            private final Button btnEditar = new Button("Editar");
+            private final Button btnCambiarEstatus = new Button("Cambiar Estatus");
+            private final HBox pane = new HBox(5, btnVer, btnEditar, btnCambiarEstatus);
+            {
+                pane.setAlignment(Pos.CENTER);
+                pane.getChildren().forEach(b -> b.getStyleClass().add("action-btn"));
+            }
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : pane);
+            }
+        });
 
 
 

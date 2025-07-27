@@ -42,4 +42,9 @@ public class AdminController extends UserController {
     private void onPersonal(ActionEvent event) {
         loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml");
     }
+
+    @FXML
+    private void onCreateEmployee(ActionEvent event) {
+        loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml");
+    }
 }

@@ -7,7 +7,7 @@
     <center>
         <VBox prefHeight="624.0" prefWidth="989.0">
             <HBox>
-                <Button fx:id="btnCreate" text="Registrar Empleado" onAction="#onCreateEmployee"/>
+                <Button fx:id="btnCreate" onAction="#onCreateEmployee" text="Registrar Empleado" />
                 <Button fx:id="btnFiltrar" text="Filtrar" />
                 <TextField fx:id="txtBuscar" promptText="Buscar" />
             </HBox>
@@ -22,7 +22,7 @@
                     <TableColumn fx:id="colCorreo" prefWidth="99" text="Correo" />
                     <TableColumn fx:id="colCargo" prefWidth="72" text="Cargo" />
                     <TableColumn fx:id="colEstatus" prefWidth="86" text="Estatus" />
-                    <TableColumn fx:id="colAcciones" prefWidth="104" text="Acciones" />
+                    <TableColumn fx:id="colAcciones" prefWidth="338.0" text="Acciones" />
                 </columns>
             </TableView>
         </VBox>
