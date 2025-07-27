@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="716.0" prefWidth="1350" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.admin.AdminListController">
+<BorderPane prefHeight="716.0" prefWidth="1350" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.admin.AdminFormController">
    <center>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -23,7 +23,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="93.0" text="Nombre:*" textAlignment="CENTER" />
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfNombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
                <GridPane.margin>
                   <Insets />
@@ -32,25 +32,25 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Primer Apellido:*" />
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfApellidoP" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Segundo Apellido: *" />
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfApellidoM" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="56.0" text="Sexo:*" />
-                  <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="56.0" text="Genero:*" />
+                  <TextField fx:id="tfGenero" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="142.0" text="Fecha de Nacimiento:*" />
-                  <DatePicker maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <DatePicker fx:id="dpFechaNacimiento" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -62,31 +62,31 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="66.0" text="CURP:*" />
-                  <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfCurp" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="138.0" text="Estado de Nacimiento:*" />
-                  <ComboBox prefHeight="50.0" prefWidth="286.0" />
+                  <ComboBox fx:id="cbEstadoNacimiento" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="130.0" text="Correo Electronico:*" />
-                  <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfEmail" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="84.0" text="Usuario:*" />
-                  <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfNameUsuario" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <HBox prefHeight="100.0" prefWidth="400.0" spacing="16.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
-                  <Button contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="50.0" prefWidth="185.0" text="Cancelar" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="186.0" text="Registrar" />
+                  <Button fx:id="btnCancelar" onAction="#onCancelar" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="50.0" prefWidth="185.0" text="Cancelar" />
+                  <Button fx:id="btnRegistrar" onAction="#onRegistrar" mnemonicParsing="false" prefHeight="50.0" prefWidth="186.0" text="Registrar" />
                </children>
                <GridPane.margin>
                   <Insets right="20.0" />
@@ -95,13 +95,13 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="139.0" text="Numero de Telefono:*" />
-                  <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
+                  <TextField fx:id="tfNumeroTelefono" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="62.0" text="Puesto:*" />
-                  <ComboBox prefHeight="50.0" prefWidth="286.0" />
+                  <ComboBox fx:id="cbPuesto" prefHeight="50.0" prefWidth="286.0" />
                </children>
             </VBox>
          </children>

@@ -9,6 +9,9 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -17,34 +20,47 @@ public class AdminController extends UserController {
 
     @Override
     public void setInfo() {
-        UserController controller = loadView("/com/topglobal/dailyorder/views/admin/admin_home.fxml");
+        UserController controller = AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_home.fxml", contentPane);
+        ;
         controller.setUser(this.user);
         controller.setInfo();
     }
 
-    private <T> T loadView(String fxmlPath) {
+    public static <T> T loadView(String fxmlPath, AnchorPane contentPane) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(AdminController.class.getResource(fxmlPath));
             Parent view = loader.load();
+
+            T controller = loader.getController();
+
+            // Verifica si el controlador tiene un método setContentPane
+            try {
+                Method method = controller.getClass().getMethod("setContentPane", AnchorPane.class);
+                method.invoke(controller, contentPane);
+            } catch (NoSuchMethodException ignored) {
+                // El controlador no tiene setContentPane, lo ignoramos
+            }
+
             contentPane.getChildren().setAll(view);
             AnchorPane.setTopAnchor(view, 0.0);
             AnchorPane.setBottomAnchor(view, 0.0);
             AnchorPane.setLeftAnchor(view, 0.0);
             AnchorPane.setRightAnchor(view, 0.0);
-            return loader.getController();
-        } catch (IOException e) {
+
+            return controller;
+        } catch (IOException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
+
+
+
 
     @FXML
     private void onPersonal(ActionEvent event) {
-        loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml");
+        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
+
     }
 
-    @FXML
-    private void onCreateEmployee(ActionEvent event) {
-        loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml");
-    }
 }

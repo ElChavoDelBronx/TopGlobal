@@ -55,10 +55,11 @@ public class EmployeeDAO {
         return employee;
     }
 
+
     public List<Employee> findAllEmployees() throws SQLException {
         String sql = "SELECT e.ID_EMPLOYEE, e.NAME, e.FATHER_LASTNAME, e.MOTHER_LASTNAME, c.NAME_USER, e.PHONE_NUMBER, e.EMAIL, e.ROLE, c.STATUS, e.SHIFT\n" +
                 "FROM EMPLOYEE e JOIN CREDENTIAL_DATA c ON e.ID_EMPLOYEE = c.FK_ID_EMPLOYEE";
-        List<Employee> personal = new ArrayList<Employee>();
+        List<Employee> personal = new ArrayList<>();
         try{
             Connection conexion = DatabaseConfig.getConnection();
             PreparedStatement stmt = conexion.prepareStatement(sql);

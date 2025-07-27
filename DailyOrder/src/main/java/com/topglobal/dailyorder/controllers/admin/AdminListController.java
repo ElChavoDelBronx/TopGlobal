@@ -1,6 +1,7 @@
 package com.topglobal.dailyorder.controllers.admin;
 
 import com.topglobal.dailyorder.dao.EmployeeDAO;
+import com.topglobal.dailyorder.models.users.Admin;
 import com.topglobal.dailyorder.models.users.Employee;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -118,26 +119,8 @@ public class AdminListController implements Initializable {
 
     @FXML
     private void onCreateEmployee(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/com/topglobal/dailyorder/views/admin/admin_form.fxml"));
-            GridPane view = loader.load();
+        System.out.println("Click");
+        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
 
-            // Aquí obtienes el controlador
-            AdminListController controller = loader.getController();
-
-            // Le pasas el contentPane para que él pueda usarlo también
-            controller.setContentPane(contentPane);
-
-            // Muestras la vista en el centro
-            contentPane.getChildren().setAll(view);
-            AnchorPane.setTopAnchor(view, 0.0);
-            AnchorPane.setBottomAnchor(view, 0.0);
-            AnchorPane.setLeftAnchor(view, 0.0);
-            AnchorPane.setRightAnchor(view, 0.0);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
