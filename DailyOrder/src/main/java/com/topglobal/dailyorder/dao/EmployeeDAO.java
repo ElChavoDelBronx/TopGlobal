@@ -57,7 +57,7 @@ public class EmployeeDAO {
 
 
     public List<Employee> findAllEmployees() throws SQLException {
-        String sql = "SELECT e.ID_EMPLOYEE, e.NAME, e.FATHER_LASTNAME, e.MOTHER_LASTNAME, c.NAME_USER, e.PHONE_NUMBER, e.EMAIL, e.ROLE, c.STATUS, e.SHIFT\n" +
+        String sql = "SELECT e.ID_EMPLOYEE, e.NAME, e.FATHER_LASTNAME, e.MOTHER_LASTNAME, c.NAME_USER, e.PHONE_NUMBER, e.EMAIL, e.ROLE, c.STATUS \n" +
                 "FROM EMPLOYEE e JOIN CREDENTIAL_DATA c ON e.ID_EMPLOYEE = c.FK_ID_EMPLOYEE";
         List<Employee> personal = new ArrayList<>();
         try{
@@ -75,9 +75,6 @@ public class EmployeeDAO {
                 personalI.setEmail(rs.getString("EMAIL"));
                 personalI.setRole(rs.getString("ROLE"));
                 personalI.setStatus(rs.getInt("STATUS"));
-                personalI.setShift(rs.getString("SHIFT"));
-
-
 
                 personal.add(personalI);
             }
@@ -88,23 +85,56 @@ public class EmployeeDAO {
     }
 
     public void createEmployee(Employee employee) throws SQLException {
-        String sql = "INSERT INTO EMPLOYEE (NAME, FATHER_LASTNAME, MOTHER_LASTNAME, PHONE_NUMBER, ROLE, SHIFT) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO EMPLOYEE (NAME, FATHER_LASTNAME, MOTHER_LASTNAME, PHONE_NUMBER, ROLE, SHIFT, GENDER, BIRTHDAY, CURP, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlCredentials = "INSERT INTO CREDENTIAL_DATA (NAME_USER, PASS,FK_ID_EMPLOYEE, STATUS) VALUES (?, ?, ?, ?)";
+
+
+        Connection conexion = null;
+        PreparedStatement stmtEmployee = null;
+        PreparedStatement stmtCredentials = null;
         try{
-            Connection conexion = DatabaseConfig.getConnection();
-            PreparedStatement stmt = conexion.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, employee.getName());
-            stmt.setString(2, employee.getFatherLastname());
-            stmt.setString(3, employee.getMotherLastname());
-            stmt.setString(4, employee.getPhoneNumber());
-            stmt.setString(5, employee.getRole());
-            stmt.setString(6, employee.getShift());
-            stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
+            conexion = DatabaseConfig.getConnection();
+            conexion.setAutoCommit(false);
+            stmtEmployee = conexion.prepareStatement(sql, new String[]{"ID_EMPLOYEE"});
+            stmtEmployee.setString(1, employee.getName());
+            stmtEmployee.setString(2, employee.getFatherLastname());
+            stmtEmployee.setString(3, employee.getMotherLastname());
+            stmtEmployee.setString(4, employee.getPhoneNumber());
+            stmtEmployee.setString(5, employee.getRole());
+            stmtEmployee.setString(6, employee.getShift());
+            stmtEmployee.setString(7, employee.getGender());
+            stmtEmployee.setDate(8, java.sql.Date.valueOf(employee.getBirthday()));
+            stmtEmployee.setString(9, employee.getCurp());
+            stmtEmployee.setString(10, employee.getEmail());
+            stmtEmployee.executeUpdate();
+
+            ResultSet rs = stmtEmployee.getGeneratedKeys();
+            int generatedId = -1;
             if (rs.next()) {
-                System.out.println("Creado con exito");
+                generatedId = rs.getInt(1);
+            } else {
+                throw new SQLException("No se pudo obtener el ID del empleado insertado.");
             }
+
+            stmtCredentials = conexion.prepareStatement(sqlCredentials);
+            stmtCredentials.setString(1, employee.getUser());
+            stmtCredentials.setString(2, "temporal123");
+            stmtCredentials.setInt(3, generatedId);
+            stmtCredentials.setInt(4, employee.getStatus());
+            stmtCredentials.executeUpdate();
+
+            conexion.commit(); // Confirmar ambos inserts
+            System.out.println("Empleado y credenciales creados con éxito.");
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            if (conexion != null) conexion.rollback(); // En caso de error, rollback
+            e.printStackTrace();
+            throw new RuntimeException("Error al crear empleado y credenciales: " + e.getMessage());
+        } finally {
+            // Cerrar recursos
+            if (stmtCredentials != null) stmtCredentials.close();
+            if (stmtEmployee != null) stmtEmployee.close();
+            if (conexion != null) conexion.setAutoCommit(true);
         }
     }
 }

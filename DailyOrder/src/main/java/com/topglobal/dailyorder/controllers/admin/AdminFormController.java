@@ -3,6 +3,7 @@ package com.topglobal.dailyorder.controllers.admin;
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Employee;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,8 @@ public class AdminFormController {
     @FXML private Button btnCancelar;
     @FXML private TextField tfNumeroTelefono;
     @FXML private ComboBox<String> cbPuesto;
+    @FXML private ComboBox<String> cbHorario;
+    @FXML int status = 1;
 
     EmployeeDAO dao = new EmployeeDAO();
 
@@ -37,15 +40,31 @@ public class AdminFormController {
 
     @FXML
     private void initialize() {
-        /*
         try {
-            List<Employee> personal = dao.findAllEmployees();
-            cbEstadoNacimiento.setItems(FXCollections.observableArrayList(personal));
+            /*
+            ObservableList<String> estados = FXCollections.observableArrayList(
+                    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche",
+                    "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango",
+                    "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco",
+                    "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
+                    "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora",
+                    "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
+            );
+            */
+            ObservableList<String> puesto = FXCollections.observableArrayList(
+                    "Administrador", "Lider de meseros", "Mesero"
+            );
+            ObservableList<String> horario = FXCollections.observableArrayList(
+                    "Matutino", "Vespertino"
+            );
+
+            //cbEstadoNacimiento.setItems(estados);
+            cbPuesto.setItems(puesto);
+            cbHorario.setItems(horario);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-         */
     }
 
     @FXML
@@ -53,41 +72,49 @@ public class AdminFormController {
         String nombre = tfNombre.getText().trim();
         String apellidoP = tfApellidoP.getText().trim();
         String apellidoM = tfApellidoM.getText().trim();
+        String telefono = tfNumeroTelefono.getText().trim();
+        String puesto = cbPuesto.getValue();
+        String horario = cbHorario.getValue();
         String genero = tfGenero.getText().trim();
         LocalDate fechaNacimiento = dpFechaNacimiento.getValue();
         String curp = tfCurp.getText().trim();
-        //Employee estado = cbEstadoNacimiento.getSelectionModel().getSelectedItem();
+        //String estados = cbEstadoNacimiento.getValue();
         String email = tfEmail.getText().trim();
         String usuario = tfNameUsuario.getText().trim();
-        String telefono = tfNumeroTelefono.getText().trim();
-        //Employee puesto = cbPuesto.getSelectionModel().getSelectedItem();
+        int status = 1;
 
 
-        if(nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() || genero.isEmpty()
-                || fechaNacimiento == null || curp.isEmpty() || /*estado == null ||*/ email.isEmpty()
-                || usuario.isEmpty() || telefono.isEmpty() /*|| puesto == null*/ ) {
+
+        if (nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() || telefono.isEmpty() || puesto.isEmpty() || horario == null || genero.isEmpty()
+                || fechaNacimiento == null || curp.isEmpty() || email.isEmpty() || usuario.isEmpty()) {
 
             showAlert("ERROR", "Todos los campos son obligatorios");
             return;
         }
+
         Employee employee = new Employee();
         employee.setName(nombre);
         employee.setFatherLastname(apellidoP);
         employee.setMotherLastname(apellidoM);
+        employee.setPhoneNumber(telefono);
+        employee.setRole(puesto);
+        employee.setShift(horario);
         employee.setGender(genero);
-        employee.setEmail(email);
         employee.setBirthday(fechaNacimiento);
         employee.setCurp(curp);
-
+        employee.setEmail(email);
+        employee.setUser(usuario);         // 👈 este dato ya es obligatorio
+        employee.setStatus(1);             // 👈 por defecto puedes poner 1 (activo) o el que uses
 
         try {
             dao.createEmployee(employee);
-            showAlert("¡EXITO!", "Registro Exitoso");
-            AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
+            showAlert("¡ÉXITO!", "Registro Exitoso");
+            AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            showAlert("ERROR", "Ocurrió un error al registrar al empleado.");
         }
+
     }
 
     private void closeWindow() {
