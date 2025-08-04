@@ -132,11 +132,6 @@ public class AdminFormController {
 
     }
 
-    private void closeWindow() {
-        Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close();
-    }
-
     @FXML
     private void onCancelar() {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);

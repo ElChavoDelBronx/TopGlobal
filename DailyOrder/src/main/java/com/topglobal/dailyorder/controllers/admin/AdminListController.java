@@ -95,11 +95,10 @@ public class AdminListController implements Initializable {
                 pane.getChildren().forEach(b -> b.getStyleClass().add("action-btn"));
 
                 // Asignar acciones a cada botón
-                btnVer.setOnAction(e -> {
+                btnVer.setOnAction(event -> {
                     Employee emp = getTableView().getItems().get(getIndex());
-                    onWatchEmployee(emp);
+                    onWatchEmployee(emp.getId()); // ✅ OK
                 });
-
                 btnEditar.setOnAction(e -> {
                     Employee emp = getTableView().getItems().get(getIndex());
                     onEditEmployee(emp);
@@ -135,6 +134,10 @@ public class AdminListController implements Initializable {
         }
     }
 
+    public class EmpleadoContexto {
+        public static int idEmpleadoSeleccionado = -1;
+    }
+
     @FXML
     private void onCreateEmployee(ActionEvent event) {
         System.out.println("Click");
@@ -143,7 +146,11 @@ public class AdminListController implements Initializable {
     }
 
     @FXML
-    private void onWatchEmployee(Employee emp) {}
+    private void onWatchEmployee( int id) {
+        System.out.println("Click");
+        EmpleadoContexto.idEmpleadoSeleccionado = id;
+        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane);
+    }
 
     @FXML
     private void onEditEmployee(Employee emp) {}

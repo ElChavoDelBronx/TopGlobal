@@ -84,6 +84,48 @@ public class EmployeeDAO {
         return personal;
     }
 
+    public Employee findEmployeeById(int id) throws SQLException {
+        String sql = "SELECT e.ID_EMPLOYEE, e.NAME, e.FATHER_LASTNAME, e.MOTHER_LASTNAME, " +
+                "e.PHONE_NUMBER, e.ROLE, e.SHIFT, e.GENDER, e.BIRTHDAY, e.CURP, " +
+                "e.EMAIL, c.NAME_USER " +
+                "FROM EMPLOYEE e JOIN CREDENTIAL_DATA c ON e.ID_EMPLOYEE = c.FK_ID_EMPLOYEE " +
+                "WHERE e.ID_EMPLOYEE = ?";
+
+        try (Connection conexion = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Employee personalI = new Employee();
+                personalI.setId(rs.getInt("ID_EMPLOYEE"));
+                personalI.setName(rs.getString("NAME"));
+                personalI.setFatherLastname(rs.getString("FATHER_LASTNAME"));
+                personalI.setMotherLastname(rs.getString("MOTHER_LASTNAME"));
+                personalI.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+                personalI.setRole(rs.getString("ROLE"));
+                personalI.setShift(rs.getString("SHIFT"));
+                personalI.setGender(rs.getString("GENDER"));
+
+                java.sql.Date sqlDate = rs.getDate("BIRTHDAY");
+                if (sqlDate != null) {
+                    personalI.setBirthday(sqlDate.toLocalDate());
+                }
+
+                personalI.setCurp(rs.getString("CURP"));
+                personalI.setEmail(rs.getString("EMAIL"));
+                personalI.setUser(rs.getString("NAME_USER"));
+
+                return personalI;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+
     public void createEmployee(Employee employee) throws SQLException {
         String sql = "INSERT INTO EMPLOYEE (NAME, FATHER_LASTNAME, MOTHER_LASTNAME, PHONE_NUMBER, ROLE, SHIFT, GENDER, BIRTHDAY, CURP, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sqlCredentials = "INSERT INTO CREDENTIAL_DATA (NAME_USER, PASS,FK_ID_EMPLOYEE, STATUS) VALUES (?, ?, ?, ?)";
