@@ -9,7 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 public class AdminFormController {
@@ -17,7 +19,7 @@ public class AdminFormController {
     @FXML private TextField tfNombre;
     @FXML private TextField tfApellidoP;
     @FXML private TextField tfApellidoM;
-    @FXML private TextField tfGenero;
+    @FXML private ComboBox<String> cbGenero;
     @FXML private DatePicker dpFechaNacimiento;
     @FXML private TextField tfCurp;
     @FXML private ComboBox<String> cbEstadoNacimiento;
@@ -29,6 +31,7 @@ public class AdminFormController {
     @FXML private ComboBox<String> cbPuesto;
     @FXML private ComboBox<String> cbHorario;
     @FXML int status = 1;
+    @FXML private TextField tfEdad;
 
     EmployeeDAO dao = new EmployeeDAO();
 
@@ -41,6 +44,14 @@ public class AdminFormController {
     @FXML
     private void initialize() {
         try {
+            dpFechaNacimiento.valueProperty().addListener((obs, oldDate, newDate) -> {
+                if (newDate != null) {
+                    int edad = calcularEdad(newDate);
+                    tfEdad.setText(String.valueOf(edad));
+                } else {
+                    tfEdad.setText("");
+                }
+            });
             /*
             ObservableList<String> estados = FXCollections.observableArrayList(
                     "Aguascalientes", "Baja California", "Baja California Sur", "Campeche",
@@ -51,6 +62,9 @@ public class AdminFormController {
                     "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
             );
             */
+            ObservableList<String> genero = FXCollections.observableArrayList(
+                    "Masculino", "Femenino", "Otro"
+            );
             ObservableList<String> puesto = FXCollections.observableArrayList(
                     "Administrador", "Lider de meseros", "Mesero"
             );
@@ -59,6 +73,7 @@ public class AdminFormController {
             );
 
             //cbEstadoNacimiento.setItems(estados);
+            cbGenero.setItems(genero);
             cbPuesto.setItems(puesto);
             cbHorario.setItems(horario);
         } catch (Exception e) {
@@ -75,7 +90,7 @@ public class AdminFormController {
         String telefono = tfNumeroTelefono.getText().trim();
         String puesto = cbPuesto.getValue();
         String horario = cbHorario.getValue();
-        String genero = tfGenero.getText().trim();
+        String genero = cbGenero.getValue();
         LocalDate fechaNacimiento = dpFechaNacimiento.getValue();
         String curp = tfCurp.getText().trim();
         //String estados = cbEstadoNacimiento.getValue();
@@ -134,4 +149,11 @@ public class AdminFormController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+
+    // Método para calcular edad en años desde una fecha
+    private int calcularEdad(LocalDate fechaNacimiento) {
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
+    }
 }
+
+

@@ -85,14 +85,32 @@ public class AdminListController implements Initializable {
         );
         // Column “Acciones”
         colAcciones.setCellFactory(col -> new TableCell<>() {
-            private final Button btnVer    = new Button("Ver");
+            private final Button btnVer = new Button("Ver");
             private final Button btnEditar = new Button("Editar");
             private final Button btnCambiarEstatus = new Button("Cambiar Estatus");
             private final HBox pane = new HBox(5, btnVer, btnEditar, btnCambiarEstatus);
+
             {
                 pane.setAlignment(Pos.CENTER);
                 pane.getChildren().forEach(b -> b.getStyleClass().add("action-btn"));
+
+                // Asignar acciones a cada botón
+                btnVer.setOnAction(e -> {
+                    Employee emp = getTableView().getItems().get(getIndex());
+                    onWatchEmployee(emp);
+                });
+
+                btnEditar.setOnAction(e -> {
+                    Employee emp = getTableView().getItems().get(getIndex());
+                    onEditEmployee(emp);
+                });
+
+                btnCambiarEstatus.setOnAction(e -> {
+                    Employee emp = getTableView().getItems().get(getIndex());
+                    onDeleteEmployee(emp);
+                });
             }
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -123,4 +141,13 @@ public class AdminListController implements Initializable {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
 
     }
+
+    @FXML
+    private void onWatchEmployee(Employee emp) {}
+
+    @FXML
+    private void onEditEmployee(Employee emp) {}
+
+    @FXML
+    private void onDeleteEmployee(Employee emp) {}
 }

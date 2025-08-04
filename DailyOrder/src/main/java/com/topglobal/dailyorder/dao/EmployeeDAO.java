@@ -31,11 +31,11 @@ public class EmployeeDAO {
                 //Se obtiene el rol del empleado
                 String role = rs.getString("ROLE");
                 //Instanciar el tipo de empleado basado en el rol
-                if("ADMIN".equalsIgnoreCase(role)) {
+                if("Administrador".equalsIgnoreCase(role)) {
                     employee = new Admin();
-                }else if("WAITERLEADER".equalsIgnoreCase(role)){
+                }else if("Lider de meseros".equalsIgnoreCase(role)){
                     employee = new WaiterLeader();
-                }else if("WAITER".equalsIgnoreCase(role)){
+                }else if("Mesero".equalsIgnoreCase(role)){
                     employee = new Waiter();
                 }
                 //Set a los atributos relevantes del empleado
@@ -137,4 +137,58 @@ public class EmployeeDAO {
             if (conexion != null) conexion.setAutoCommit(true);
         }
     }
+
+
+    public void updateEmployee(Employee employee) throws SQLException {
+        String sqlUpdateEmployee = "UPDATE EMPLOYEE SET NAME=?, FATHER_LASTNAME=?, MOTHER_LASTNAME=?, PHONE_NUMBER=?, ROLE=?, SHIFT=?, GENDER=?, BIRTHDAY=?, CURP=?, EMAIL=? WHERE ID_EMPLOYEE=?";
+        String sqlUpdateCredentials = "UPDATE CREDENTIAL_DATA SET NAME_USER=?, PASS=?, STATUS=? WHERE FK_ID_EMPLOYEE=?";
+
+        Connection conexion = null;
+        PreparedStatement stmtEmployee = null;
+        PreparedStatement stmtCredentials = null;
+
+        try {
+            conexion = DatabaseConfig.getConnection();
+            conexion.setAutoCommit(false);
+
+            // Actualizar datos del empleado
+            stmtEmployee = conexion.prepareStatement(sqlUpdateEmployee);
+            stmtEmployee.setString(1, employee.getName());
+            stmtEmployee.setString(2, employee.getFatherLastname());
+            stmtEmployee.setString(3, employee.getMotherLastname());
+            stmtEmployee.setString(4, employee.getPhoneNumber());
+            stmtEmployee.setString(5, employee.getRole());
+            stmtEmployee.setString(6, employee.getShift());
+            stmtEmployee.setString(7, employee.getGender());
+            stmtEmployee.setDate(8, java.sql.Date.valueOf(employee.getBirthday()));
+            stmtEmployee.setString(9, employee.getCurp());
+            stmtEmployee.setString(10, employee.getEmail());
+            stmtEmployee.setInt(11, employee.getId()); // WHERE ID_EMPLOYEE = ?
+
+            stmtEmployee.executeUpdate();
+
+            // Actualizar credenciales
+            stmtCredentials = conexion.prepareStatement(sqlUpdateCredentials);
+            stmtCredentials.setString(1, employee.getUser());
+            stmtCredentials.setString(2, "temporal123"); // o puedes actualizar solo si ha cambiado
+            stmtCredentials.setInt(3, employee.getStatus());
+            stmtCredentials.setInt(4, employee.getId());
+
+            stmtCredentials.executeUpdate();
+
+            conexion.commit();
+            System.out.println("Empleado y credenciales actualizados con éxito.");
+
+        } catch (Exception e) {
+            if (conexion != null) conexion.rollback();
+            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar empleado: " + e.getMessage());
+        } finally {
+            if (stmtCredentials != null) stmtCredentials.close();
+            if (stmtEmployee != null) stmtEmployee.close();
+            if (conexion != null) conexion.setAutoCommit(true);
+        }
+    }
+
+
 }
