@@ -101,7 +101,7 @@ public class AdminListController implements Initializable {
                 });
                 btnEditar.setOnAction(e -> {
                     Employee emp = getTableView().getItems().get(getIndex());
-                    onEditEmployee(emp);
+                    onEditEmployee(emp.getId());
                 });
 
                 btnCambiarEstatus.setOnAction(e -> {
@@ -153,7 +153,12 @@ public class AdminListController implements Initializable {
     }
 
     @FXML
-    private void onEditEmployee(Employee emp) {}
+    private void onEditEmployee(int id) {
+        System.out.println("Click");
+        EmpleadoContexto.idEmpleadoSeleccionado = id;
+        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane);
+
+    }
 
     @FXML
     private void onDeleteEmployee(Employee emp) {}

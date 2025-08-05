@@ -86,7 +86,10 @@ public class AdminWatchEmployeeController implements Initializable {
     }
 
     @FXML
-    private void onEditEmployee() {}
+    private void onEditEmployee(ActionEvent event) {
+        AdminController.loadView( "/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane);
+
+    }
 
 
 

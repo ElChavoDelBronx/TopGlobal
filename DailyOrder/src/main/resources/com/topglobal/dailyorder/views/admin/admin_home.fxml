@@ -55,8 +55,7 @@
                 <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity"/>
                 <Button text="Salida" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity"/>
                 <Label text="Accesos Rapidos" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                <Button text="Registrar Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="Infinity"/>
-                <Button text="Registrar Platillo" GridPane.columnIndex="1" GridPane.rowIndex="6" maxWidth="Infinity"/>
+                <Button fx:id="btnRegistrar" onAction="#onRegistrar" text="Registrar Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="Infinity"/>
             </GridPane>
         </VBox>
 </GridPane>
