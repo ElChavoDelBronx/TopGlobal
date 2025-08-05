@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -43,6 +44,14 @@ public class AdminFormController {
 
     @FXML
     private void initialize() {
+<<<<<<< HEAD
+=======
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
+
+        /*
+>>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
         try {
             dpFechaNacimiento.valueProperty().addListener((obs, oldDate, newDate) -> {
                 if (newDate != null) {
@@ -81,6 +90,7 @@ public class AdminFormController {
         }
 
     }
+
 
     @FXML
     private void onRegistrar() {
