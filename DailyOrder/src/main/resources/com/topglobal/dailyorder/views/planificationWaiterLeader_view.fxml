@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.topglobal.dailyorder.controllers.leader.PlanificationLeaderController"
+            style="-fx-background-color: #EDF3F8;">
+
+    <!-- Barra lateral izquierda -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="150" style="-fx-padding:20 0 0 20;">
+            <Button style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;" text="🏠" onAction="#volverAlMenuLider">
+                <VBox.margin><Insets bottom="110"/></VBox.margin>
+            </Button>
+
+            <Button style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;" text="📄" onAction="#abrirVentanaPlanificacion">
+                <VBox.margin><Insets bottom="500"/></VBox.margin>
+            </Button>
+
+            <Button style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;" text="⋯"/>
+        </VBox>
+    </left>
+
+    <!-- Contenido central -->
+    <center>
+        <StackPane style="-fx-padding: 20;" BorderPane.alignment="CENTER">
+            <VBox fx:id="contenidoPrincipal"
+                  spacing="20"
+                  alignment="TOP_LEFT"
+                  style="-fx-background-color: transparent;"
+                  VBox.vgrow="ALWAYS"
+                  maxWidth="Infinity"
+                  maxHeight="Infinity">
+
+                <!-- ENCABEZADO -->
+                <VBox spacing="5">
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="Gestión Plan de Trabajo" style="-fx-font-size: 14px; -fx-text-fill: #888;" />
+                        <Label text=">" style="-fx-font-size: 14px; -fx-text-fill: #888;" />
+                        <Label text="Planificación" style="-fx-font-size: 14px; -fx-text-fill: #888;" />
+                    </HBox>
+                    <Label text="Planificación de Trabajo" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                </VBox>
+
+                <!-- BOTONES -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="+ Nueva Planificación" onAction="#crearNuevaPlanificacion"
+                            style="-fx-background-color: #00B2D9; -fx-pref-height:50; -fx-pref-width:250; -fx-text-fill: white; -fx-background-radius: 8;" />
+                    <Button text="Usar Plan Existente" onAction="#usarUnaPlanificacion"
+                            style="-fx-background-radius: 8; -fx-pref-height:50; -fx-pref-width:250;" />
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <TextField promptText="Buscar..." prefWidth="250" prefHeight="50" />
+                </HBox>
+
+                <!-- TABLA -->
+                <TableView fx:id="tablaPlanificacion" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+                    <columns>
+                        <TableColumn text="Nombre Plan" prefWidth="360" />
+                        <TableColumn text="Fecha" prefWidth="290" />
+                        <TableColumn text="Empleado" prefWidth="360" />
+                        <TableColumn text="Acciones" prefWidth="340" />
+                    </columns>
+                </TableView>
+
+                <!-- PIE -->
+                <HBox alignment="CENTER_RIGHT">
+                    <Label text="1 - 10 ➝" style="-fx-text-fill: #777;" />
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

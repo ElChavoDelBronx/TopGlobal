@@ -9,7 +9,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.topglobal.dailyorder.controllers.leader.LeaderController"
+            fx:controller="com.topglobal.dailyorder.controllers.leader.PlanificationLeaderController"
             style="-fx-background-color: #f4f8fc;">
 
     <!-- PORQUERIA IZQUIERDA -->

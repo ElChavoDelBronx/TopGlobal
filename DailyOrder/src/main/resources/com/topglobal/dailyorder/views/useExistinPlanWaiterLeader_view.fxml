@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.12"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.topglobal.dailyorder.controllers.leader.PlanificationLeaderController"
+           style="-fx-background-color: #F4F8FC;">
+
+    <HBox spacing="30" alignment="TOP_LEFT">
+
+        <!-- Barra lateral izquierda -->
+        <VBox alignment="TOP_CENTER" prefWidth="70" style="-fx-padding:20 0 0 20;">
+            <Button text="🏠"
+                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
+                <VBox.margin><Insets bottom="110"/></VBox.margin>
+            </Button>
+
+            <Button text="📄"
+                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
+                <VBox.margin><Insets bottom="490"/></VBox.margin>
+            </Button>
+
+            <Button text="⋯"
+                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
+            </Button>
+        </VBox>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <VBox spacing="20" alignment="TOP_LEFT" style="-fx-padding: 20 20 20 20;">
+
+            <!-- Encabezado -->
+            <HBox alignment="CENTER_LEFT" prefWidth="1350" spacing="20">
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="Gestión Plan de Trabajo" style="-fx-font-size: 14px; -fx-text-fill: #666666;" />
+                    <Label text="Planificación de Trabajo" style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="Planificación > Usar Plan Existente" style="-fx-font-size: 14px; -fx-text-fill: #666666;" />
+            </HBox>
+
+            <!-- CONTENEDOR DE TARJETAS DE PLANES -->
+            <HBox spacing="30" alignment="TOP_LEFT"
+                  style="-fx-background-color: white;
+                         -fx-padding: 30;
+                         -fx-border-radius: 10;
+                         -fx-background-radius: 10;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+                  prefWidth="1350" prefHeight="500">
+
+                <!-- TARJETA 1 -->
+                <VBox spacing="15" prefWidth="280" prefHeight="420"
+                      style="-fx-background-color: #FFFFFF;
+                             -fx-border-color: #E0E0E0;
+                             -fx-border-radius: 8;
+                             -fx-background-radius: 8;
+                             -fx-padding: 15;">
+                    <Label text="Plan A" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <CheckBox text="Tarea ejemplo 1" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 2" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 3" style="-fx-font-size: 14px;" />
+                </VBox>
+
+                <!-- TARJETA 2 -->
+                <VBox spacing="15" prefWidth="280" prefHeight="420"
+                      style="-fx-background-color: #FFFFFF;
+                             -fx-border-color: #E0E0E0;
+                             -fx-border-radius: 8;
+                             -fx-background-radius: 8;
+                             -fx-padding: 15;">
+                    <Label text="Plan B" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <CheckBox text="Tarea ejemplo 1" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 2" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 3" style="-fx-font-size: 14px;" />
+                </VBox>
+
+                <!-- TARJETA 3 -->
+                <VBox spacing="15" prefWidth="280" prefHeight="420"
+                      style="-fx-background-color: #FFFFFF;
+                             -fx-border-color: #E0E0E0;
+                             -fx-border-radius: 8;
+                             -fx-background-radius: 8;
+                             -fx-padding: 15;">
+                    <Label text="Plan C" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <CheckBox text="Tarea ejemplo 1" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 2" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 3" style="-fx-font-size: 14px;" />
+                </VBox>
+
+                <!-- TARJETA 4 -->
+                <VBox spacing="15" prefWidth="280" prefHeight="420"
+                      style="-fx-background-color: #FFFFFF;
+                             -fx-border-color: #E0E0E0;
+                             -fx-border-radius: 8;
+                             -fx-background-radius: 8;
+                             -fx-padding: 15;">
+                    <Label text="Plan D" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <CheckBox text="Tarea ejemplo 1" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 2" style="-fx-font-size: 14px;" />
+                    <CheckBox text="Tarea ejemplo 3" style="-fx-font-size: 14px;" />
+                </VBox>
+
+            </HBox>
+        </VBox>
+    </HBox>
+</StackPane>
