@@ -52,14 +52,7 @@
                 <padding>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
                 </padding>
-<<<<<<< HEAD
-                <Label text="Checador" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                <Button text="Entrada" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity"/>
-                <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity"/>
-                <Button text="Salida" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity"/>
-                <Label text="Accesos Rapidos" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                <Button fx:id="btnRegistrar" onAction="#onRegistrar" text="Registrar Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="Infinity"/>
-=======
+
                 <Label text="Checador"  GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="label-section"/>
                 <Button text="Entrada" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="white-button"/>
                 <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="white-button"/>
@@ -67,7 +60,7 @@
                 <Label text="Accesos Rapidos" GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="label-section"/>
                 <Button text="Registrar Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5" styleClass="white-button"/>
                 <Button text="Registrar Platillo" GridPane.columnIndex="1" GridPane.rowIndex="6" styleClass="white-button"/>
->>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
+
             </GridPane>
         </VBox>
 </GridPane>

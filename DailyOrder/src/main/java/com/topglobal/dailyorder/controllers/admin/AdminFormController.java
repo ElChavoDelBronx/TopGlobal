@@ -44,14 +44,12 @@ public class AdminFormController {
 
     @FXML
     private void initialize() {
-<<<<<<< HEAD
-=======
+
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
 
-        /*
->>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
+
         try {
             dpFechaNacimiento.valueProperty().addListener((obs, oldDate, newDate) -> {
                 if (newDate != null) {
@@ -61,16 +59,9 @@ public class AdminFormController {
                     tfEdad.setText("");
                 }
             });
-            /*
-            ObservableList<String> estados = FXCollections.observableArrayList(
-                    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche",
-                    "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango",
-                    "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco",
-                    "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
-                    "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora",
-                    "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
-            );
-            */
+
+
+
             ObservableList<String> genero = FXCollections.observableArrayList(
                     "Masculino", "Femenino", "Otro"
             );
@@ -81,7 +72,7 @@ public class AdminFormController {
                     "Matutino", "Vespertino"
             );
 
-            //cbEstadoNacimiento.setItems(estados);
+
             cbGenero.setItems(genero);
             cbPuesto.setItems(puesto);
             cbHorario.setItems(horario);

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.12"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.topglobal.dailyorder.controllers.leader.NewPlanificationLeaderController"
+           style="-fx-background-color: #F4F8FC;">
+
+    <HBox spacing="30" alignment="TOP_LEFT">
+
+        <!-- Barra lateral izquierda -->
+        <VBox alignment="TOP_CENTER" prefWidth="70" style="-fx-padding:20 0 0 20;">
+            <Button text="🏠" onAction="#volverAlMenuLider"
+                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
+                <VBox.margin><Insets bottom="110"/></VBox.margin>
+            </Button>
+
+            <Button text="📄" onAction="#abrirVentanaPlanificacion"
+                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
+                <VBox.margin><Insets bottom="490"/></VBox.margin>
+            </Button>
+
+            <Button text="⋯"
+                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
+            </Button>
+        </VBox>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <VBox spacing="20" alignment="TOP_LEFT" style="-fx-padding: 20 20 20 20;">
+
+            <!-- Encabezado -->
+            <HBox alignment="CENTER_LEFT" prefWidth="1350" spacing="20">
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="Gestión Plan de Trabajo" style="-fx-font-size: 14px; -fx-text-fill: #666666;" />
+                    <Label text="Planificación de Trabajo" style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="Planificación > Nueva Planificación" style="-fx-font-size: 14px; -fx-text-fill: #666666;" />
+            </HBox>
+
+            <!-- CUADRO BLANCO MÁS LARGO (1350px) -->
+            <VBox alignment="TOP_LEFT" spacing="25"
+                  style="-fx-background-color: white;
+                         -fx-padding: 40 50 40 50;
+                         -fx-border-radius: 10;
+                         -fx-background-radius: 10;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+                  prefWidth="1400" prefHeight="620">
+
+                <!-- TÍTULO DEL FORMULARIO -->
+                <Label text="Título" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+                <!-- Asignar a -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Asignar a:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    <ComboBox fx:id="cbAsignar" promptText="Buscar..." prefWidth="500" />
+                </HBox>
+
+                <!-- Agregar Tarea -->
+                <Button text="+ Agregar Tarea..."
+                        style="-fx-font-size: 16px; -fx-background-color: transparent; -fx-text-fill: black;" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Botones inferiores -->
+                <HBox alignment="BOTTOM_RIGHT" spacing="15">
+                    <Button text="Cancelar"
+                            style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC; -fx-pref-width: 100; -fx-pref-height: 35;" />
+                    <Button text="Guardar"
+                            style="-fx-font-size: 14px; -fx-background-color: #00A8B0; -fx-text-fill: white; -fx-pref-width: 100; -fx-pref-height: 35;" />
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </HBox>
+</StackPane>

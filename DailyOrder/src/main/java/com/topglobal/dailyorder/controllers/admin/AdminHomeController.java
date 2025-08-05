@@ -4,11 +4,11 @@ import com.topglobal.dailyorder.controllers.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-<<<<<<< HEAD
+
 import javafx.scene.layout.AnchorPane;
-=======
+
 import javafx.scene.text.Font;
->>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
+
 
 public class AdminHomeController extends UserController {
     @FXML private Label lblFullName;
@@ -17,17 +17,17 @@ public class AdminHomeController extends UserController {
     @FXML private Label lblEmail;
     @FXML private Label lblShift;
 
-<<<<<<< HEAD
+
     private AnchorPane contentPane;
 
     public void setContentPane(AnchorPane contentPane) {
         this.contentPane = contentPane;
-=======
+    }
     public void initialize() {
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
->>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
+
     }
 
     @Override

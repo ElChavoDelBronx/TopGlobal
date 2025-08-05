@@ -35,41 +35,12 @@ stylesheets="@../../stylesheets/admin_form.css">
                   <Insets />
                </GridPane.margin>
             </VBox>
-<<<<<<< HEAD
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-               <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Primer Apellido:*" />
-                  <TextField fx:id="tfApellidoP" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-               <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Segundo Apellido: *" />
-                  <TextField fx:id="tfApellidoM" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
-               <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="56.0" text="Genero:*" />
-                  <ComboBox fx:id="cbGenero" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="142.0" text="Fecha de Nacimiento:*" />
-                  <DatePicker fx:id="dpFechaNacimiento" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="70.0" text="Edad:*" />
-                  <TextField fx:id="tfEdad" disable="true" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" />
-=======
+
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Primer Apellido:*" styleClass="label-input" />
                   <TextField fx:id="tfApellidoP" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" styleClass="input" />
->>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
+
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -80,13 +51,10 @@ stylesheets="@../../stylesheets/admin_form.css">
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
-<<<<<<< HEAD
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="Horario:*" />
-                  <ComboBox fx:id="cbHorario" prefHeight="50.0" prefWidth="286.0" />
-=======
+
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="56.0" text="Genero:*" styleClass="label-input" />
                   <TextField fx:id="tfGenero" maxWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" styleClass="input" />
->>>>>>> 6199621164dbf8b314ce866603c924f56c6db52e
+
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" >
