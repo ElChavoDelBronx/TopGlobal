@@ -1,0 +1,26 @@
+.label-view {
+    -fx-font-family: "Lexend Regular";
+    -fx-opacity: 0.5;
+    -fx-font-size: 20px;
+}
+.label-welcome{
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 40px;
+}
+.label-section {
+    -fx-font-family: "Lexend Light";
+    -fx-font-size: 24px;
+}
+.label-planName {
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 24px;
+}
+.vbox-tasks {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CAD4D8;
+    -fx-padding: 40 50 40 50;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}

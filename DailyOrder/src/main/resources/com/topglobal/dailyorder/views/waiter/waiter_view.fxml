@@ -18,17 +18,14 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
             </padding>
             <Button text="🏠" onAction="#setInfo"/>
-            <Button text="👁"/>
+            <Button text="👁" onAction="#showTasks"/>
             <Button text="..."/>
         </VBox>
     </left>
     <!--MAIN CONTENT-->
     <center>
 
-        <GridPane>
-            <Label text="Menú Principal" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <Label text="Hola, Bienvenido!" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold"/>
-        </GridPane>
+
 
         <AnchorPane fx:id="contentPane"/>
     </center>

@@ -11,7 +11,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHomeController"
-          prefHeight="400.0" prefWidth="600.0" >
+          prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheets/home_view.css">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -24,46 +24,42 @@
     </rowConstraints>
     <!--ADMIN INFO-->
 
-    <VBox>
-
-            <Label text="Menú Principal"  />
-            <Label text="Hola, Bienvenido!"  style="-fx-font-weight: bold"/>
-
-
-
-        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10">
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Menú Principal" styleClass="label-view"/>
+            <Label text="Hola, Bienvenido!" styleClass="label-welcome"/>
+        <VBox spacing="10">
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
             </padding>
-            <Label fx:id="lblFullName" text="Oscar Mendoza" style="-fx-font-weight: bold"/>
-            <Label text="Mesero"/>
-            <Label text="Nombre de Usuario" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblUsername" text="MeseroChespi88"/>
-            <Label text="Telefono:" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblPhoneNumber" text="777-123-4567"/>
-            <Label text="Correo Electrónico:" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblEmail" text="elizabeth.castillo@empresa.com"/>
-            <Label text="Turno Actual" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblShift" text="Matutino"/>
+            <Label fx:id="lblFullName" text="Oscar Mendoza" styleClass="label-bold"/>
+            <Label text="Mesero" styleClass="label-info"/>
+            <Label text="Nombre de Usuario" styleClass="label-bold"/>
+            <Label fx:id="lblUsername" text="MeseroChespi88" styleClass="label-info"/>
+            <Label text="Telefono:" styleClass="label-bold"/>
+            <Label fx:id="lblPhoneNumber" text="777-123-4567" styleClass="label-info"/>
+            <Label text="Correo Electrónico:" styleClass="label-bold"/>
+            <Label fx:id="lblEmail" text="elizabeth.castillo@empresa.com" styleClass="label-info"/>
+            <Label text="Turno Actual" styleClass="label-bold"/>
+            <Label fx:id="lblShift" text="Matutino" styleClass="label-info"/>
         </VBox>
 
     </VBox>
 
     <!--ADMIN ACTIONS-->
-    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="vbox-actions">
         <GridPane vgap="10">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="20"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="60"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="20"/>
             </columnConstraints>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
             </padding>
-            <Label text="Checador" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Button text="Entrada" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" onAction="#marcarEntrada"/>
-            <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity" onAction="#marcarDescanso"/>
-            <Button text="Salida" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity" onAction="#marcarSalida"/>
+            <Label text="Checador" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="label-section"/>
+            <Button text="Entrada" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" onAction="#marcarEntrada" styleClass="white-button"/>
+            <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity" onAction="#marcarDescanso" styleClass="white-button"/>
+            <Button text="Salida" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity" onAction="#marcarSalida" styleClass="white-button"/>
         </GridPane>
     </VBox>
 
