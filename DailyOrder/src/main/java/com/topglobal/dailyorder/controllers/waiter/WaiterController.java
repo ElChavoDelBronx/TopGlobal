@@ -1,5 +1,6 @@
 package com.topglobal.dailyorder.controllers.waiter;
 
+import com.topglobal.dailyorder.Main;
 import com.topglobal.dailyorder.controllers.UserController;
 import com.topglobal.dailyorder.utils.View;
 import javafx.fxml.FXML;
@@ -25,6 +26,10 @@ public class WaiterController extends UserController {
     @FXML
     public void showTasks() {
         View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_tasks.fxml", contentPane);
+    }
+    @FXML
+    public void onLogout() {
+        Main.changeScene("/com/topglobal/dailyorder/views/login_view.fxml", "Login");
     }
 
 }

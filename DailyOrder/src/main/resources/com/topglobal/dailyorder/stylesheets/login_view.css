@@ -38,16 +38,28 @@
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 8px;
     -fx-pref-height: 44px;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
 }
 #btnLogin:hover {
     -fx-background-color: #0E5E67;
     -fx-text-fill: #FFFFFF;
+    -fx-border-color: #0E5E67;
+}
+#btnLogin:focused {
+    -fx-border-color: #000000;
 }
 .eye-button {
     -fx-background-color: transparent;
     -fx-pref-height: 44px;
     -fx-pref-width: 44px;
     -fx-opacity: 0.5;
+    -fx-border-color: transparent;
+}
+.eye-button:focused {
+    -fx-border-color: #000000;
+    -fx-opacity: 1;
 }
 .eye-button:hover {
     -fx-opacity: 1;

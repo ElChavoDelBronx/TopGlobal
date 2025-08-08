@@ -33,13 +33,13 @@
             </padding>
             <Label fx:id="lblFullName" text="Oscar Mendoza" styleClass="label-bold"/>
             <Label text="Mesero" styleClass="label-info"/>
-            <Label text="Nombre de Usuario" styleClass="label-bold"/>
+            <Label text="Nombre de Usuario:" styleClass="label-bold"/>
             <Label fx:id="lblUsername" text="MeseroChespi88" styleClass="label-info"/>
             <Label text="Telefono:" styleClass="label-bold"/>
             <Label fx:id="lblPhoneNumber" text="777-123-4567" styleClass="label-info"/>
             <Label text="Correo Electrónico:" styleClass="label-bold"/>
             <Label fx:id="lblEmail" text="elizabeth.castillo@empresa.com" styleClass="label-info"/>
-            <Label text="Turno Actual" styleClass="label-bold"/>
+            <Label text="Turno Actual:" styleClass="label-bold"/>
             <Label fx:id="lblShift" text="Matutino" styleClass="label-info"/>
         </VBox>
 

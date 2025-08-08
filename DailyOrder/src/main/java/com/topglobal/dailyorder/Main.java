@@ -28,7 +28,7 @@ public class Main extends Application {
         primaryStage.setMaximized(true);
         primaryStage.setFullScreen(true);
         primaryStage.setMinWidth(800);
-        primaryStage.setMinHeight(500);
+        primaryStage.setMinHeight(700);
         primaryStage.show();
     }
 
@@ -51,7 +51,7 @@ public class Main extends Application {
             primaryStage.setTitle(title);
             primaryStage.setScene(newScene);
             primaryStage.setMinWidth(800);
-            primaryStage.setMinHeight(500);
+            primaryStage.setMinHeight(700);
 
             // Restaurar estado **después** de que JavaFX haya aplicado la Scene
             Platform.runLater(() -> {
@@ -60,9 +60,6 @@ public class Main extends Application {
                 if (wasMaximized) {
                     // Si estaba maximizada, volver a maximizar
                     primaryStage.setMaximized(true);
-
-                    // En algunos sistemas, si esto falla, probar toggling:
-                    // Platform.runLater(() -> { primaryStage.setMaximized(false); primaryStage.setMaximized(true); });
                 } else {
                     // Si no estaba maximizada, restaurar tamaño y posición
                     // Primero limitar la posición al área visible (por si cambió de monitor)
