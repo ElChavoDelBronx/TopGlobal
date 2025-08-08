@@ -27,6 +27,7 @@ public class WaiterHomeController extends UserController {
     public void setInfo() {
         if (this.user != null) {
             lblFullName.setText(user.getName() + " " + user.getFatherLastname() + " " + user.getMotherLastname());
+            lblUsername.setText(user.getUser());
             lblPhoneNumber.setText(user.getPhoneNumber());
             lblEmail.setText(user.getEmail());
             lblShift.setText(user.getShift());
