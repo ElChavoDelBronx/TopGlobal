@@ -28,15 +28,15 @@
 .whiteCircle-button:hover {
     -fx-background-color: #0E5E67;
 }
-.tasks-icon {
+.sidebar-icon {
     -fx-fill: #000000;
     -fx-scale-x: 0.75;
     -fx-scale-y: 0.75;
 }
-.whiteCircle-button:hover > .tasks-icon{
+.whiteCircle-button:hover > .sidebar-icon{
     -fx-fill: #FFFFFF;
 }
-.whiteCircle-button:hover > Group > .logout-icon{
+.whiteCircle-button:hover > Group > .sidebar-icon{
     -fx-fill: #FFFFFF;
 }
 .logout-icon {

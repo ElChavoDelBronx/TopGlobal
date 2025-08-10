@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         // Cambiar vista fxml segun conveniencia.
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/topglobal/dailyorder/views/login_view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/topglobal/dailyorder/views/admin/admin_view.fxml"));
 
         Image image = new Image(getClass().getResourceAsStream("/com/topglobal/dailyorder/icons/Logo.png"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -26,7 +26,7 @@ public class Main extends Application {
         primaryStage.getIcons().add(image);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(700);
         primaryStage.show();

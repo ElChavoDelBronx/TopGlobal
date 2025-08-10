@@ -1,5 +1,6 @@
 package com.topglobal.dailyorder.controllers.admin;
 
+import com.topglobal.dailyorder.Main;
 import com.topglobal.dailyorder.controllers.UserController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,11 +57,18 @@ public class AdminController extends UserController {
 
 
 
-
+    @FXML
+    private void onTables(ActionEvent event) {
+        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_table_management.fxml", contentPane);
+    }
     @FXML
     private void onPersonal(ActionEvent event) {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
 
+    }
+    @FXML
+    public void onLogout() {
+        Main.changeScene("/com/topglobal/dailyorder/views/login_view.fxml", "Login");
     }
 
 }
