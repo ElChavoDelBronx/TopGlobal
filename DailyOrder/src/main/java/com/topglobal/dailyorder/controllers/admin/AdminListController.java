@@ -5,6 +5,7 @@ import com.topglobal.dailyorder.models.users.Admin;
 import com.topglobal.dailyorder.models.users.Employee;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +39,13 @@ public class AdminListController implements Initializable {
     @FXML private TableColumn<Employee, String> colCargo;
     @FXML private TableColumn<Employee, String> colEstatus;
     @FXML private TableColumn<Employee, Void> colAcciones;
+    //@FXML private ComboBox<String> cbFiltroTipo;
+    //@FXML private ComboBox<String> cbValorFiltro;
+    @FXML private Button btnFiltrar;
+    @FXML private TableView<Employee> tablaEmpleados;
+    private Employee empleadoActual;
+    EmployeeDAO dao = new EmployeeDAO();
+    private final ObservableList<Employee> listaEmpleados = FXCollections.observableArrayList();
 
     private final EmployeeDAO employeeDAO = new EmployeeDAO();
 
@@ -47,8 +55,38 @@ public class AdminListController implements Initializable {
         this.contentPane = contentPane;
     }
 
+    //Inicializa tipografia, obtine ID por cada empleado y carga información en la tabla
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*
+        cbFiltroTipo.getItems().addAll("Puesto", "Horario", "Nombre (A-Z)", "Apellido paterno (A-Z)");
+
+        // Escucha el tipo de filtro seleccionado
+        cbFiltroTipo.valueProperty().addListener((obs, oldVal, newVal) -> {
+            cbValorFiltro.getItems().clear();
+
+            switch (newVal) {
+                case "Puesto":
+                    cbValorFiltro.getItems().addAll("Administrador", "Lider de meseros", "Mesero"); // según tus roles
+                    break;
+                case "Horario":
+                    cbValorFiltro.getItems().addAll("Vespertino", "Matutino"); // ajusta según tu DB
+                    break;
+                default:
+                    cbValorFiltro.setDisable(true);
+            }
+        });
+        */
+        tablePersonal.setItems(listaEmpleados);
+        int id = AdminListController.EmpleadoContexto.idEmpleadoSeleccionado;
+        if (id != -1) {
+            try {
+                empleadoActual = dao.findEmployeeById(id);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
@@ -86,9 +124,10 @@ public class AdminListController implements Initializable {
         colCargo.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().getRole())
         );
-        colEstatus.setCellValueFactory(data ->
-                new ReadOnlyStringWrapper(String.valueOf(data.getValue().getStatus()))
-        );
+        colEstatus.setCellValueFactory(data -> {
+            String estadoTexto = data.getValue().getStatus() == 1 ? "Activo" : "Inactivo";
+            return new ReadOnlyStringWrapper(estadoTexto);
+        });
         // Column “Acciones”
         colAcciones.setCellFactory(col -> new TableCell<>() {
             private final Button btnVer = new Button("Ver");
@@ -103,16 +142,18 @@ public class AdminListController implements Initializable {
                 // Asignar acciones a cada botón
                 btnVer.setOnAction(event -> {
                     Employee emp = getTableView().getItems().get(getIndex());
-                    onWatchEmployee(emp.getId()); // ✅ OK
+                    System.out.println("ID del empleado: " + emp.getId());
+                    onWatchEmployee(emp.getId());
                 });
-                btnEditar.setOnAction(e -> {
+                btnEditar.setOnAction(event -> {
                     Employee emp = getTableView().getItems().get(getIndex());
+                    System.out.println("ID del empleado: " + emp.getId());
                     onEditEmployee(emp.getId());
                 });
 
-                btnCambiarEstatus.setOnAction(e -> {
+                btnCambiarEstatus.setOnAction(event -> {
                     Employee emp = getTableView().getItems().get(getIndex());
-                    onDeleteEmployee(emp);
+                    onChangeStatus(emp.getId());
                 });
             }
 
@@ -130,20 +171,23 @@ public class AdminListController implements Initializable {
 
     }
 
+    //Realiza consulta a la base de datos
     private void loadPersonal() {
         try {
             List<Employee> personal = employeeDAO.findAllEmployees();
-            tablePersonal.setItems(FXCollections.observableArrayList(personal));
+            listaEmpleados.setAll(personal); // Esto actualiza la tabla sin necesidad de recargar vista
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
+    //Reconoce ID del empleado según su registro
     public class EmpleadoContexto {
         public static int idEmpleadoSeleccionado = -1;
     }
 
+    //Metodo para cambiar de vista al formulario de registro de empleados
     @FXML
     private void onCreateEmployee(ActionEvent event) {
         System.out.println("Click");
@@ -151,6 +195,7 @@ public class AdminListController implements Initializable {
 
     }
 
+    //Metodo para visualizar información completa de un solo empleado visible desde la tabla de empleados
     @FXML
     private void onWatchEmployee( int id) {
         System.out.println("Click");
@@ -158,6 +203,7 @@ public class AdminListController implements Initializable {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane);
     }
 
+    //Metodo para cambiar a vista de editar información completa de un solo empleado
     @FXML
     private void onEditEmployee(int id) {
         System.out.println("Click");
@@ -166,6 +212,56 @@ public class AdminListController implements Initializable {
 
     }
 
+    //Metodo para cambiar estatus de un solo empleado
     @FXML
-    private void onDeleteEmployee(Employee emp) {}
+    private void onChangeStatus(int id) {
+        try {
+            Employee empleado = employeeDAO.findEmployeeById(id);
+            if (empleado != null) {
+
+                int nuevoStatus = empleado.getStatus() == 1 ? 0 : 1;
+                empleado.setStatus(nuevoStatus);
+
+                employeeDAO.changeStatus(empleado);
+                System.out.println("Status actualizado para empleado con ID: " + id);
+
+                loadPersonal(); // Actualiza la tabla después de cambiar estado
+            } else {
+                System.out.println("No se encontró el empleado con ID: " + id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    @FXML
+    private void onFiltrar() {
+        String tipo = cbFiltroTipo.getValue();
+        String valor = cbValorFiltro.getValue();
+
+        List<Employee> empleadosFiltrados;
+
+        switch (tipo) {
+            case "Puesto":
+                empleadosFiltrados = employeeDAO.findByRole(valor);
+                break;
+            case "Horario":
+                empleadosFiltrados = employeeDAO.findByShift(valor);
+                break;
+            case "Nombre (A-Z)":
+                empleadosFiltrados = employeeDAO.orderByNameAsc();
+                break;
+            case "Apellido paterno (A-Z)":
+                empleadosFiltrados = employeeDAO.orderByFatherLastnameAsc();
+                break;
+            default:
+                empleadosFiltrados = employeeDAO.findAllEmployees();
+        }
+
+        tablaEmpleados.setItems(FXCollections.observableArrayList(empleadosFiltrados));
+    }
+*/
+
+
 }

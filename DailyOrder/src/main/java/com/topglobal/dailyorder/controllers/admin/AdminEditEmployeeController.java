@@ -34,26 +34,26 @@ public class AdminEditEmployeeController implements Initializable {
     @FXML int status = 1;
     @FXML private TextField tfEdad;
 
-    private final EmployeeDAO employeeDAO = new EmployeeDAO();
-
+    private Employee empleadoActual;
     EmployeeDAO dao = new EmployeeDAO();
 
+    //Setter utilizado para cargar vista central
     private AnchorPane contentPane;
-
     public void setContentPane(AnchorPane contentPane) {
         this.contentPane = contentPane;
     }
 
-
+    //Inicializa menus desplegables, calculo de fecha actual, obtine id
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int id = AdminListController.EmpleadoContexto.idEmpleadoSeleccionado;
         if (id != -1) {
             try {
-                Employee empleado = employeeDAO.findEmployeeById(id);
-                if (empleado != null) {
-                    loadEmployee(empleado);
+                empleadoActual = dao.findEmployeeById(id);
+                if (empleadoActual != null) {
+                    loadEmployee(empleadoActual);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -84,6 +84,7 @@ public class AdminEditEmployeeController implements Initializable {
         cbHorario.setItems(horario);
     }
 
+    //Metodo para cargar información de un solo empleado
     private void loadEmployee(Employee empleado) {
         tfNombre.setText(empleado.getName());
         tfApellidoP.setText(empleado.getFatherLastname());
@@ -105,11 +106,13 @@ public class AdminEditEmployeeController implements Initializable {
         }
     }
 
+    //Carga vista para visualizar información del empleado
     @FXML
     private void onCancelar(ActionEvent event) {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane);
     }
 
+    //Guarda modificaciones en la información del usuario y cambia a vista de tabla de empleados
     @FXML
     private void onGuardar() {
         String nombre = tfNombre.getText().trim();
@@ -121,41 +124,40 @@ public class AdminEditEmployeeController implements Initializable {
         String genero = cbGenero.getValue();
         LocalDate fechaNacimiento = dpFechaNacimiento.getValue();
         String curp = tfCurp.getText().trim();
-        //String estados = cbEstadoNacimiento.getValue();
         String email = tfEmail.getText().trim();
         String usuario = tfNameUsuario.getText().trim();
 
-        if (nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() || telefono.isEmpty() || puesto.isEmpty() || horario == null || genero.isEmpty()
-                || fechaNacimiento == null || curp.isEmpty() || email.isEmpty() || usuario.isEmpty()) {
-
-            showAlert("ERROR", "Todos los campos son obligatorios");
+        if (empleadoActual == null) {
+            showAlert("ERROR", "Empleado no válido");
             return;
         }
 
-        Employee employee = new Employee();
-        employee.setName(nombre);
-        employee.setFatherLastname(apellidoP);
-        employee.setMotherLastname(apellidoM);
-        employee.setPhoneNumber(telefono);
-        employee.setRole(puesto);
-        employee.setShift(horario);
-        employee.setGender(genero);
-        employee.setBirthday(fechaNacimiento);
-        employee.setCurp(curp);
-        employee.setEmail(email);
-        employee.setUser(usuario);         // 👈 este dato ya es obligatorio
+        empleadoActual.setName(nombre);
+        empleadoActual.setFatherLastname(apellidoP);
+        empleadoActual.setMotherLastname(apellidoM);
+        empleadoActual.setPhoneNumber(telefono);
+        empleadoActual.setRole(puesto);
+        empleadoActual.setShift(horario);
+        empleadoActual.setGender(genero);
+        empleadoActual.setBirthday(fechaNacimiento);
+        empleadoActual.setCurp(curp);
+        empleadoActual.setEmail(email);
+        empleadoActual.setUser(usuario);
 
         try {
-            dao.updateEmployee(employee);
-            showAlert("¡ÉXITO!", "Guardado con exito");
+            System.out.println("ID del empleado a actualizar: " + empleadoActual.getId());
+            dao.updateEmployee(empleadoActual);
+            showAlert("¡ÉXITO!", "Guardado con éxito");
             AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("ERROR", "Ocurrió un error al registrar al empleado.");
         }
 
+
     }
 
+    //Metodo utilizado para mostrar POP-POPS
     public void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -164,13 +166,9 @@ public class AdminEditEmployeeController implements Initializable {
         alert.showAndWait();
     }
 
+    //Metodo utilizado para calcular edad apartir de la fecha actual y la fecha ingresada en formulario
     private int calcularEdad(LocalDate fechaNacimiento) {
         return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
-
-
-
-
-
 
 }

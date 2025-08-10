@@ -14,7 +14,7 @@ public class PlanificationLeaderController {
     @FXML
     private void volverAlMenuLider(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/waiterLeader_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/leader/waiterLeader_view.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -29,7 +29,7 @@ public class PlanificationLeaderController {
     @FXML
     private void crearNuevaPlanificacion(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/newPlanificationWaiterLeader_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/leader/newPlanificationWaiterLeader_view.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -44,7 +44,7 @@ public class PlanificationLeaderController {
     @FXML
     private void usarUnaPlanificacion(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/useExistinPlanWaiterLeader_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/leader/useExistinPlanWaiterLeader_view.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -60,7 +60,7 @@ public class PlanificationLeaderController {
     @FXML
     private void abrirVentanaPlanificacion(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/planificationWaiterLeader_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/topglobal/dailyorder/views/leader/planificationWaiterLeader_view.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

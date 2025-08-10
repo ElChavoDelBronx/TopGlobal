@@ -43,7 +43,7 @@ public class AdminWatchEmployeeController implements Initializable {
         this.contentPane = contentPane;
     }
 
-
+    //Obtine ID de empleado seleccionado
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int id = AdminListController.EmpleadoContexto.idEmpleadoSeleccionado;
@@ -59,6 +59,7 @@ public class AdminWatchEmployeeController implements Initializable {
         }
     }
 
+    //Carga información completa del empleado
     private void loadEmployee(Employee empleado) {
         tfNombre.setText(empleado.getName());
         tfApellidoP.setText(empleado.getFatherLastname());
@@ -80,11 +81,13 @@ public class AdminWatchEmployeeController implements Initializable {
         }
     }
 
+    //Regresa a tabla de empleados
     @FXML
     private void onReturnList(ActionEvent event) {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
     }
 
+    //Cambia a vista para editar información del empleado sleecionado
     @FXML
     private void onEditEmployee(ActionEvent event) {
         AdminController.loadView( "/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane);
