@@ -21,7 +21,7 @@
             </padding>
             <Label text="Iniciar Sesión" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
             <Label text="Correo Electrónico" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <TextField fx:id="tfEmail" promptText="example@email.com" GridPane.columnIndex="0" GridPane.rowIndex="2" maxWidth="Infinity"/>
+            <TextField fx:id="tfUser" promptText="example@email.com" GridPane.columnIndex="0" GridPane.rowIndex="2" maxWidth="Infinity"/>
             <Label text="Contraseña" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
             <PasswordField fx:id="pwfLogin" promptText="Ingresa tu contraseña" GridPane.columnIndex="0" GridPane.rowIndex="4" maxWidth="Infinity"/>
 

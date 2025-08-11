@@ -1,0 +1,38 @@
+package com.topglobal.dailyorder.controllers.admin;
+
+import com.topglobal.dailyorder.controllers.UserController;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+
+public class AdminHomeController extends UserController {
+    @FXML private Label lblFullName;
+    @FXML private Label lblUsername;
+    @FXML private Label lblPhoneNumber;
+    @FXML private Label lblEmail;
+    @FXML private Label lblShift;
+
+    private AnchorPane contentPane;
+
+    public void setContentPane(AnchorPane contentPane) {
+        this.contentPane = contentPane;
+    }
+
+    @Override
+    public void setInfo() {
+        if (this.user != null) {
+            lblFullName.setText(user.getName() + " " + user.getFatherLastname() + " " + user.getMotherLastname());
+            lblPhoneNumber.setText(user.getPhoneNumber());
+            lblEmail.setText(user.getEmail());
+            lblShift.setText(user.getShift());
+        }
+    }
+
+    @FXML
+    private void onRegistrar(ActionEvent event) {
+        System.out.println("Click");
+        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
+
+    }
+}
