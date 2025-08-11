@@ -71,7 +71,7 @@ public class MenuItemDAO {
                 "    LEFT JOIN food_category fc ON f.id_food = fc.fk_id_food\n" +
                 "    LEFT JOIN menu_category mc ON mc.id_category = fc.fk_id_category\n" +
                 "ORDER BY\n" +
-                "    mc.category_description ASC";
+                "    mc.category_description ASC, f.food_name ASC";
         List<MenuItem> items = new ArrayList<>();
         try{
             Connection conn = DatabaseConfig.getConnection();

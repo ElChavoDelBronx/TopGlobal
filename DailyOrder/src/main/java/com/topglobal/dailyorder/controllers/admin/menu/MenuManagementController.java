@@ -8,57 +8,123 @@ import com.topglobal.dailyorder.models.objects.MenuItem;
 
 import com.topglobal.dailyorder.utils.CustomAlert;
 import com.topglobal.dailyorder.utils.View;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import org.controlsfx.control.ToggleSwitch;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class MenuManagementController {
     private MenuItem selectedDish;
-    private List<String> categoriesDesc;
+    private List<Button> categoryButtons = new ArrayList<>();
+    private List<MenuItem> allMenuItems = new ArrayList<>();
+    private List<MenuItem> menuItemsSearched = new ArrayList<>();
+    private ObservableList<MenuItem> observableMenuItems;
+    private MenuCategory currentCategory;
+    @FXML TextField tfSearch;
     @FXML Button btnAllDishes;
+    @FXML ScrollPane categoryScroll;
     @FXML FlowPane fpCategories;
     @FXML FlowPane fpDishes;
     public void initialize() {
+        loadAllDishCards();
         try {
-            List<MenuCategory> categories =MenuCategoryDAO.findCategories();
-            categoriesDesc = categories.stream()
-                    .map(MenuCategory::getDescription)
-                    .toList();
-            for(String category : categoriesDesc) {
-                Button b = new Button(category);
+            List<MenuCategory> categories = MenuCategoryDAO.findCategories();
+            for(MenuCategory category : categories) {
+                Button b = new Button(
+                        category.getDescription()
+                );
                 b.getStyleClass().add("category-button");
+                categoryButtons.add(b);
                 fpCategories.getChildren().add(b);
+                b.setOnAction(event -> {
+                    btnAllDishes.getStyleClass().remove("active-category");
+                    btnAllDishes.getStyleClass().add("category-button");
+
+                    for(Button button : categoryButtons) {
+                        if(button.getText().equals(category.getDescription())) {
+                            currentCategory = category;
+                            loadCategoryDishCards();
+                            button.getStyleClass().remove(("category-button"));
+                            button.getStyleClass().add("active-category");
+                        }else{
+                            button.getStyleClass().remove("active-category");
+                            button.getStyleClass().add("category-button");
+                        }
+                    }
+
+                });
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+           String start = newValue.toLowerCase();
+           menuItemsSearched = observableMenuItems.stream().filter(item -> item.getName().toLowerCase().startsWith(start)).toList();
+           loadByDishName();
+        });
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Thin.ttf"), 12);
-
-        btnAllDishes.getStyleClass().add("active-category");
-        loadAllDishCards();
     }
     @FXML
     protected void loadAllDishCards() {
-        try{
-            List <MenuItem> dishes = MenuItemDAO.findAll();
-            for (MenuItem dish : dishes) {
+        btnAllDishes.getStyleClass().add("active-category");
+        btnAllDishes.getStyleClass().remove("category-button");
+        fpDishes.getChildren().clear();
+        for(Button button : categoryButtons) {
+            button.getStyleClass().remove("active-category");
+            button.getStyleClass().add("category-button");
+        }
+        if(allMenuItems.isEmpty()) {
+            try {
+                allMenuItems = MenuItemDAO.findAll();
+                for (MenuItem dish : allMenuItems) {
+                    VBox card = createDishCard(dish);
+                    fpDishes.getChildren().add(card);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            for(MenuItem dish : allMenuItems) {
                 VBox card = createDishCard(dish);
                 fpDishes.getChildren().add(card);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        }
+        observableMenuItems = FXCollections.observableArrayList(allMenuItems);
+        tfSearch.clear();
+    }
+    protected void loadCategoryDishCards() {
+        fpDishes.getChildren().clear();
+        observableMenuItems.clear();
+        for(MenuItem dish : allMenuItems) {
+            if(dish.getCategory().getId() == currentCategory.getId()) {
+                observableMenuItems.add(dish);
+                VBox card = createDishCard(dish);
+                fpDishes.getChildren().add(card);
+            }
+        }
+        tfSearch.clear();
+    }
+    private void loadByDishName(){
+        fpDishes.getChildren().clear();
+        for(MenuItem dish : menuItemsSearched) {
+            VBox card = createDishCard(dish);
+            fpDishes.getChildren().add(card);
         }
     }
     private VBox createDishCard(MenuItem dish) {
