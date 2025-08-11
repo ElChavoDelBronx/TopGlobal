@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.topglobal.dailyorder.controllers.admin.menu.MenuItemFormController"
+      prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../stylesheets/modalForm.css" spacing="10">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+    <Label text="Añadir Nuevo Platillo" styleClass="label-modal"/>
+    <VBox>
+        <Label text="Nombre del platillo:" styleClass="label-info"/>
+        <TextField fx:id="tfName" promptText="Ej. Paella Valenciana"/>
+    </VBox>
+    <VBox>
+        <Label text="Descripción:" styleClass="label-info"/>
+        <TextArea fx:id="taDescription" promptText="Breve descripcion"/>
+    </VBox>
+    <HBox>
+        <VBox>
+            <Label text="Costo:" styleClass="label-info"/>
+            <TextField fx:id="tfCost" promptText="0.00"/>
+        </VBox>
+        <VBox>
+            <Label text="Categoría:" styleClass="label-info"/>
+            <ComboBox fx:id="cbCategory" promptText="Selecciona la carrera" styleClass="form-field" editable="true"/>
+        </VBox>
+    </HBox>
+
+    <CheckBox fx:id="chbxAvailability" text="Disponible"/>
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button fx:id="btnCancel" text="Cancelar" onAction="#onCancel" styleClass="secondary-button"/>
+        <Button fx:id="btnAddMenuItem" text="Guardar Platillo" onAction="#onAddMenuItem" styleClass="primary-button"/>
+    </HBox>
+</VBox>

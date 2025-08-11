@@ -1,0 +1,60 @@
+.primary-button {
+    -fx-background-color: #1BAFC0;
+    -fx-background-radius: 8px;
+    -fx-border-color: #1BAFC0;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 24px;
+    -fx-cursor: hand;
+    -fx-pref-height: 50px;
+}
+.primary-button:hover, .secondary-button:hover {
+    -fx-background-color: #0E5E67;
+    -fx-border-color: #0E5E67;
+    -fx-text-fill: #FFFFFF;
+}
+.primary-button:hover > .button-icon {
+    -fx-fill: #FFFFFF;
+}
+.secondary-button {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8px;
+    -fx-border-color: #CAD4D8;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 24px;
+    -fx-cursor: hand;
+    -fx-pref-height: 50px;
+}
+.label-modal {
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 24px;
+}
+.label-info {
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 16px;
+}
+.text-field, .text-area, .combo-box {
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 16px;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CAD4D8;
+}
+.check-box {
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 16px;
+}
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: gray;
+    -fx-border-radius: 3;
+    -fx-padding: 4;
+}
+.check-box:selected .box {
+    -fx-background-color: #1BAFC0;
+}
+.check-box:selected .mark {
+    -fx-mark-color: #FFFFFF;
+}
