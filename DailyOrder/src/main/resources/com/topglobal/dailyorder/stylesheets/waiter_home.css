@@ -1,0 +1,78 @@
+
+/* Estilo para el título principal (Encabezado) */
+.h1 {
+    -fx-font-family: "Lexend bold"; /* Puedes cambiar la fuente si lo deseas */
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Color de texto oscuro, puedes ajustarlo */
+}
+
+/* Estilo para el subtítulo (Semi Encabezado) */
+.h2 {
+    -fx-font-family: "Lexend regular";
+    -fx-font-size: 24px;
+    -fx-font-weight: 500; /* Medium */
+    -fx-text-fill: #555555; /* Un gris un poco más claro */
+}
+
+/* Estilo para el texto general (Texto) */
+.text {
+    -fx-font-family: "Lexend light";
+    -fx-font-size: 24px;
+    -fx-font-weight: normal; /* Regular */
+    -fx-text-fill: #666666;
+}
+
+
+/* Tarjetas */
+.card-white {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-pref-width: 600px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);
+}
+
+.card-orange {
+    -fx-background-color: #ffdeab;
+    -fx-background-radius: 12px;
+    fx-pref-width: 600px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);
+}
+.normal-button {
+    /* Dimensiones del botón */
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+
+    /* Color de fondo para estado inactivo (normal) */
+    -fx-background-color: #1BAFC0;
+
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: white;
+    -fx-font-size: 8px;
+
+
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+/* Icono */
+.icon-label {
+    -fx-font-size: 50px;
+    -fx-text-fill: white;
+}
+
+/* Botón */
+.btn-orange {
+    -fx-background-color: white;
+    -fx-text-fill: #ffb84d;
+    -fx-font-weight: bold;
+    -fx-pref-width: 400;
+    -fx-pref-height: 50;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+
+.btn-orange:hover {
+    -fx-background-color: #ffe6c4;
+}

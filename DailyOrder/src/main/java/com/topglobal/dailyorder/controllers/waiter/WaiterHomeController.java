@@ -1,6 +1,8 @@
 package com.topglobal.dailyorder.controllers.waiter;
 
 import com.topglobal.dailyorder.controllers.UserController;
+import com.topglobal.dailyorder.utils.View;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -55,5 +57,9 @@ public class WaiterHomeController extends UserController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
+    @FXML
+    public void onAddOrder(ActionEvent event) {
+        View view = new View();
+        view.loadModal(event, "/com/topglobal/dailyorder/views/waiter/waiter_add_order.fxml", "Añadir Nueva Orden");
+    }
 }
