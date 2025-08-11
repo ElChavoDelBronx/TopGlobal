@@ -1,46 +1,134 @@
-.home-button {
-    -fx-padding: 0;
-    -fx-pref-height: 44px;
-    -fx-pref-width: 44px;
-    -fx-background-color: #000000;
-    -fx-background-radius: 22px;
-    -fx-cursor: hand;
+
+.menu-button {
+    /* Dimensiones del botón */
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+
+    /* Color de fondo para estado inactivo (normal) */
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: black;
+    -fx-font-size: 8px;
+
 }
-.home-button:hover {
+
+.menu-button:hover {
+    /* Color de fondo al pasar el mouse */
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.logout-button {
+    /* Dimensiones del botón */
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+
+    /* Color de fondo para estado inactivo (normal) */
+    -fx-background-color: #FF3467;
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+
+.logout-button:hover {
+    /* Color de fondo al pasar el mouse */
+    -fx-background-color: #AB314F;
+}
+
+.normal-button {
+    /* Dimensiones del botón */
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+
+    /* Color de fondo para estado inactivo (normal) */
+    -fx-background-color: #1BAFC0;
+
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: white;
+    -fx-font-size: 8px;
+
+
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+.normal-button:hover {
+    /* Color de fondo al pasar el mouse */
     -fx-background-color: #0E5E67;
 }
-.home-button:hover > .home-icon {
-    -fx-fill: #000000;
+
+
+.user-color {
+    -fx-font-size: 8px;          /* letra más pequeña */
+    -fx-text-fill: white;        /* texto blanco */
+    -fx-padding: 0 4px;          /* menos espacio interno */
+    -fx-pref-width: 100px;        /* ancho más reducido */
+    -fx-pref-height: 10px;       /* alto más reducido */
+    -fx-background-color: #FFD700; /* amarillo */
+    -fx-background-radius: 30px;  /* esquinas redondeadas */
 }
-.home-icon {
-    -fx-fill: #FFFFFF;
-    -fx-scale-x: 1;
-    -fx-scale-y: 1;
+
+/* Estilo para el título principal (Encabezado) */
+.h1 {
+    -fx-font-family: "Lexend Extra- bold"; /* Puedes cambiar la fuente si lo deseas */
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Color de texto oscuro, puedes ajustarlo */
 }
-.whiteCircle-button {
-    -fx-padding: 0;
-    -fx-pref-height: 44px;
-    -fx-pref-width: 44px;
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 22px;
-    -fx-cursor: hand;
+
+/* Estilo para el subtítulo (Semi Encabezado) */
+.h2 {
+    -fx-font-family: "Lexend regular";
+    -fx-font-size: 24px;
+    -fx-font-weight: 500; /* Medium */
+    -fx-text-fill: #555555; /* Un gris un poco más claro */
 }
-.whiteCircle-button:hover {
+
+/* Estilo para el texto general (Texto) */
+.text {
+    -fx-font-family: "Lexend light";
+    -fx-font-size: 24px;
+    -fx-font-weight: normal; /* Regular */
+    -fx-text-fill: #666666;
+}
+
+.outView-button {
+    /* Dimensiones del botón */
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+
+    /* Color de fondo para estado inactivo (normal) */
+    -fx-background-color: transparent;
+
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: black;
+    -fx-font-size: 8px;
+
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+.active-button {
+    /* Dimensiones del botón */
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+
+    /* Color de fondo para estado inactivo (normal) */
     -fx-background-color: #0E5E67;
-}
-.sidebar-icon {
-    -fx-fill: #000000;
-    -fx-scale-x: 0.75;
-    -fx-scale-y: 0.75;
-}
-.whiteCircle-button:hover > .sidebar-icon{
-    -fx-fill: #FFFFFF;
-}
-.whiteCircle-button:hover > Group > .sidebar-icon{
-    -fx-fill: #FFFFFF;
-}
-.logout-icon {
-    -fx-fill: #000000;
-    -fx-scale-x: 0.75;
-    -fx-scale-y: 0.75;
+
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: white;
+    -fx-font-size: 8px;
+
+
+    -fx-background-radius: 10px; /* Bordes redondeados */
 }

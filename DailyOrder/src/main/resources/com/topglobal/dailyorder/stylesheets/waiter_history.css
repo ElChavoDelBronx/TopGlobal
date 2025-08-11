@@ -1,0 +1,123 @@
+
+/* Estilo para el título principal (Encabezado) */
+.h1 {
+    -fx-font-family: "Lexend bold"; /* Puedes cambiar la fuente si lo deseas */
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Color de texto oscuro, puedes ajustarlo */
+}
+
+/* Estilo para el subtítulo (Semi Encabezado) */
+.h2 {
+    -fx-font-family: "Lexend regular";
+    -fx-font-size: 24px;
+    -fx-font-weight: 500; /* Medium */
+    -fx-text-fill: #555555; /* Un gris un poco más claro */
+}
+
+/* Estilo para el texto general (Texto) */
+.text {
+    -fx-font-family: "Lexend light";
+    -fx-font-size: 24px;
+    -fx-font-weight: normal; /* Regular */
+    -fx-text-fill: #666666;
+}
+
+/* Tarjetas y layout */
+.card-white {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);
+}
+
+.card-orange {
+    -fx-background-color: #fff3e0;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 2);
+}
+
+/* Order card */
+.order-card {
+    -fx-background-color: white;
+    -fx-padding: 18;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 3);
+    -fx-min-height: 160;
+}
+
+/* Textos */
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+}
+
+.card-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #222;
+}
+
+.muted {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8a8a8a;
+}
+
+/* Estados */
+.status-pending {
+    -fx-background-color: #ff6b81;
+    -fx-text-fill: white;
+    -fx-padding: 5 10;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+}
+
+.status-done {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-padding: 5 10;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+}
+
+/* Botones */
+.tabButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333;
+    -fx-padding: 6 14;
+    -fx-background-radius: 8;
+    -fx-font-size: 14px;
+}
+
+.tabButton:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.tabButton.selected {
+    -fx-background-color: #ccf1f5;
+    -fx-text-fill: #00796b;
+}
+
+.btn-light {
+    -fx-background-color: #1BAFC0;
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+
+    /* Estilo del texto */
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: white;
+}
+
+.btn-outline {
+   -fx-background-color: #FF3467;
+    -fx-border-radius: 8;
+    -fx-text-fill: white;
+    -fx-padding: 6 12;
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+.btn-outline:hover{
+    -fx-background-color: #AB314F;
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+/* ScrollPane limpio */
+.scroll-light .viewport {
+    -fx-background-color: transparent;
+}

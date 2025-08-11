@@ -4,13 +4,8 @@ import com.topglobal.dailyorder.Main;
 import com.topglobal.dailyorder.controllers.UserController;
 import com.topglobal.dailyorder.utils.View;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-
-import java.io.IOException;
+import javafx.scene.text.Font;
 
 public class WaiterController extends UserController {
 
@@ -22,14 +17,20 @@ public class WaiterController extends UserController {
         controller.setUser(this.user);
         controller.setInfo();
     }
-
+    @FXML public void showHistory(){
+        View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_history.fxml", contentPane);
+    }
     @FXML
     public void showTasks() {
-        View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_tasks.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_home.fxml", contentPane);
     }
     @FXML
     public void onLogout() {
         Main.changeScene("/com/topglobal/dailyorder/views/login_view.fxml", "Login");
     }
-
+    public void initialize() {
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
+    }
 }

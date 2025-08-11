@@ -45,7 +45,7 @@ public class LoginController {
                 String newFxmlPath;
                 String title;
                 if(employee instanceof Admin){
-                    newFxmlPath = "/com/topglobal/dailyorder/views/admin/admin_view.fxml";
+                    newFxmlPath = "/com/topglobal/dailyorder/views/admin/admin_viewold.fxml";
                     title = "Administrador";
                 }else if(employee instanceof WaiterLeader){
                     newFxmlPath = "/com/topglobal/dailyorder/views/leader/waiterLeader_view.fxml";
