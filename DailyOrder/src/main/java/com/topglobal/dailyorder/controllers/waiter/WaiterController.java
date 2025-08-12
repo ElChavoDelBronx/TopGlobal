@@ -1,14 +1,11 @@
 package com.topglobal.dailyorder.controllers.waiter;
 
+import com.topglobal.dailyorder.Main;
 import com.topglobal.dailyorder.controllers.UserController;
+import com.topglobal.dailyorder.utils.View;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-
-import java.io.IOException;
+import javafx.scene.text.Font;
 
 public class WaiterController extends UserController {
 
@@ -16,25 +13,24 @@ public class WaiterController extends UserController {
 
     @Override
     public void setInfo() {
-        UserController controller = loadView("/com/topglobal/dailyorder/views/waiter/waiter_home.fxml");
+        UserController controller = View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_home.fxml", contentPane);
         controller.setUser(this.user);
         controller.setInfo();
     }
-
-    private <T> T loadView(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            GridPane view = loader.load();
-            contentPane.getChildren().setAll(view);
-            AnchorPane.setTopAnchor(view, 0.0);
-            AnchorPane.setBottomAnchor(view, 0.0);
-            AnchorPane.setLeftAnchor(view, 0.0);
-            AnchorPane.setRightAnchor(view, 0.0);
-            return loader.getController();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    @FXML public void showHistory(){
+        View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_history.fxml", contentPane);
     }
-
+    @FXML
+    public void showTasks() {
+        View.loadView("/com/topglobal/dailyorder/views/waiter/waiter_home.fxml", contentPane);
+    }
+    @FXML
+    public void onLogout() {
+        Main.changeScene("/com/topglobal/dailyorder/views/login_view.fxml", "Login");
+    }
+    public void initialize() {
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
+    }
 }

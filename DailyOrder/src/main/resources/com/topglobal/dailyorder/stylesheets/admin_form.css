@@ -1,0 +1,49 @@
+#btnCancelar {
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 10 20 10 20;
+    -fx-pref-height: 50px;
+    -fx-max-width: infinity;
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-color: #CAD4D8;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 1);
+}
+#btnCancelar:hover{
+    -fx-border-color: #0E5E67;
+    -fx-background-color: #0E5E67;
+    -fx-text-fill: #FFFFFF;
+}
+#btnRegistrar{
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 20;
+    -fx-pref-height: 50px;
+    -fx-background-color: #1BAFC0;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 1);
+}
+#btnRegistrar:hover{
+    -fx-background-color: #0E5E67;
+    -fx-text-fill: #FFFFFF;
+}
+.label-input{
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 14px;
+}
+.input{
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 16px;
+    -fx-pref-height: 50px;
+}
+.label-view {
+    -fx-font-family: "Lexend Regular";
+    -fx-opacity: 0.5;
+    -fx-font-size: 20px;
+}
+.label-welcome{
+    -fx-font-family: "Lexend Regular";
+    -fx-font-size: 40px;
+}
+

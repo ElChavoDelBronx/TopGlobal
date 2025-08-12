@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/17.0.12"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.topglobal.dailyorder.controllers.leader.LeaderController"
-           style="-fx-background-color: #F4F8FC;">
+<BorderPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../stylesheets/sidebar.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterController">
 
-    <HBox spacing="40" alignment="TOP_LEFT">
+    <!-- SIDEBAR -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="253.0" spacing="20">
+            <padding>
+                <Insets bottom="20" left="10" right="10" top="20" />
+            </padding>
 
-        <!-- BOTONES LATERALES -->
-        <VBox alignment="TOP_CENTER" prefWidth="150" style="-fx-padding:20 0 0 20;">
-            <Button text="🏠"
-                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
-                <VBox.margin><Insets bottom="110"/></VBox.margin>
-            </Button>
-
-            <Button text="📄" onAction="#abrirVentanaPlanificacion"
-                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
-                <VBox.margin><Insets bottom="490"/></VBox.margin>
-            </Button>
-
-            <Button text="⋯"
-                    style="-fx-background-radius:8; -fx-pref-height:50; -fx-pref-width:50;">
-            </Button>
-        </VBox>
-
-        <!-- INFORMACIÓN USUARIO -->
-        <VBox alignment="TOP_LEFT" spacing="20" prefWidth="300" style="-fx-padding:20 0 0 0;">
-            <Label text="Menú principal" style="-fx-font-size:24px;" />
-            <Label text="Hola, Bienvenido!" style="-fx-font-size:32px; -fx-font-weight:bold;" />
-            <Label text="Jose Madero" style="-fx-font-size:24px; -fx-font-weight:bold;" />
-            <Label text="Líder de Meseros" style="-fx-font-size:24px;" />
-
-            <Region prefHeight="20" />
-
-            <Label text="Usuario:" style="-fx-font-size:24px; -fx-font-weight:bold;" />
-            <Label text="Lider12Mesas" style="-fx-font-size:24px;" />
-
-            <Label text="Teléfono:" style="-fx-font-size:24px; -fx-font-weight:bold;" />
-            <Label text="777‑882‑4646" style="-fx-font-size:20px;" />
-
-            <Label text="Correo Electrónico:" style="-fx-font-size:24px; -fx-font-weight:bold;" />
-            <Label text="jose.madero@gmail.com" style="-fx-font-size:20px;" />
-
-            <Label text="Turno Actual:" style="-fx-font-size:24px; -fx-font-weight:bold;" />
-            <Label text="Matutino" style="-fx-font-size:20px;" />
-        </VBox>
-
-        <!-- CHECADOR Y BOTONES -->
-        <StackPane>
-            <VBox alignment="CENTER" maxHeight="750" maxWidth="850"
-                  prefHeight="750" prefWidth="800" spacing="50"
-                  style="-fx-background-color: white;
-                         -fx-padding: 50 70 50 70;
-                         -fx-border-radius: 20;
-                         -fx-background-radius: 20;
-                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 0);">
-
-                <Label text="Checador" alignment="TOP_LEFT" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
-
-                <Button text="Marcar Entrada" style="-fx-font-size: 24px; -fx-pref-width: 450;  -fx-pref-height: 50;" />
-                <Button text="Marcar Descanso" style="-fx-font-size: 24px; -fx-pref-width: 450; -fx-pref-height: 50;" />
-                <Button text="Marcar Salida" style="-fx-font-size: 24px; -fx-pref-width: 450; -fx-pref-height: 50;" />
-
-                <Label text="Accesos Rápidos" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
-
-                <Button text="Crear Planificación" style="-fx-font-size: 24px; -fx-pref-width: 450; -fx-pref-height: 50;" />
+            <!-- Títulos -->
+            <VBox alignment="TOP_CENTER" >
+                <Button  styleClass="menu-button" text="Daily Order">
+                    <graphic>
+                        <ImageView fitHeight="28" fitWidth="28">
+                            <image>
+                                <Image url="@../../icons/Logo.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Label styleClass="h2" text="Panel de Gestión" />
             </VBox>
-        </StackPane>
 
-        <!-- Espacio adicional invisible si se necesita -->
-        <Region prefHeight="200.0" prefWidth="200.0" />
-    </HBox>
-</StackPane>
+            <!-- Rol -->
+            <VBox alignment="TOP_CENTER">
+                <Button styleClass="user-color" text="Admin" />
+            </VBox>
+
+            <!-- Botón de vista -->
+            <VBox alignment="TOP_CENTER" prefHeight="242.0" prefWidth="289.0" VBox.vgrow="ALWAYS" spacing="15">
+                <Button styleClass="active-button" text="Ordenes">
+                    <graphic>
+                        <Group>
+                            <SVGPath content="M3.5 5.83337V22.1667C3.5 24.7345 5.593 25.6667 7 25.6667H24.5V23.3334H7.014C6.475 23.3194 5.83333 23.107 5.83333 22.1667C5.83333 21.2264 6.475 21.014 7.014 21H24.5V4.66671C24.5 3.37987 23.4535 2.33337 22.1667 2.33337H7C5.593 2.33337 3.5 3.26554 3.5 5.83337Z" fill="WHITE" />
+
+                        </Group>
+                    </graphic>
+                </Button>
+                <Button styleClass="normal-button" text="Planificación">
+                    <graphic>
+                        <Group>
+                            <SVGPath content="M16.8466 6.74328L4.8976 18.6899C4.54232 19.0451 4.31114 19.5054 4.23843 20.0024L3.59326 24.4054L7.99743 23.7603C8.49462 23.6872 8.95495 23.4556 9.30993 23.0999L21.2566 11.1533M16.8466 6.74328L19.4471 4.14161C19.6204 3.96823 19.8262 3.83069 20.0527 3.73686C20.2792 3.64302 20.522 3.59473 20.7672 3.59473C21.0124 3.59473 21.2551 3.64302 21.4816 3.73686C21.7081 3.83069 21.9139 3.96823 22.0873 4.14161L23.8583 5.91261C24.0316 6.08595 24.1692 6.29175 24.263 6.51825C24.3569 6.74476 24.4051 6.98753 24.4051 7.2327C24.4051 7.47787 24.3569 7.72063 24.263 7.94714C24.1692 8.17364 24.0316 8.37944 23.8583 8.55278L21.2566 11.1533M16.8466 6.74328L21.2566 11.1533" fill="WHITE" />
+                        </Group>
+                    </graphic>
+                </Button>
+
+            </VBox>
+
+            <!-- Botón cerrar sesión -->
+            <Button onAction="#onLogout" styleClass="logout-button" text="Cerrar Sesión">
+                <graphic>
+                    <Group>
+                        <SVGPath content="M18.6666 15.1667V12.8334H8.16659V9.33337L2.33325 14L8.16659 18.6667V15.1667H18.6666Z" fill="WHITE" />
+                        <SVGPath content="M23.3333 3.5H12.8333C11.5465 3.5 10.5 4.5465 10.5 5.83333V10.5H12.8333V5.83333H23.3333V22.1667H12.8333V17.5H10.5V22.1667C10.5 23.4535 11.5465 24.5 12.8333 24.5H23.3333C24.6202 24.5 25.6667 23.4535 25.6667 22.1667V5.83333C25.6667 4.5465 24.6202 3.5 23.3333 3.5Z" fill="WHITE" />
+                    </Group>
+                </graphic>
+
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <AnchorPane fx:id="contentPane" />
+    </center>
+</BorderPane>
+

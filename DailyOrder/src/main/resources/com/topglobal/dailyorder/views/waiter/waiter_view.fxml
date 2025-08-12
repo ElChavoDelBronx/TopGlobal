@@ -1,37 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterController"
-            prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #e9f1f9;">
+<BorderPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../stylesheets/sidebar.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterController">
 
-
-    <!--SIDEBAR-->
+    <!-- SIDEBAR -->
     <left>
-        <VBox spacing="20" alignment="TOP_CENTER" >
+        <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="253.0" spacing="20">
             <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="20" left="10" right="10" top="20" />
             </padding>
-            <Button text="🏠" onAction="#setInfo"/>
-            <Button text="👁"/>
-            <Button text="..."/>
+
+            <!-- Títulos -->
+            <VBox alignment="TOP_CENTER" >
+                <Button  styleClass="menu-button" text="Daily Order">
+                    <graphic>
+                      <ImageView fitHeight="28" fitWidth="28">
+                          <image>
+                              <Image url="@../../icons/Logo.png" />
+                          </image>
+                      </ImageView>
+                    </graphic>
+                </Button>
+                <Label styleClass="h2" text="Panel de Gestión" />
+            </VBox>
+
+            <!-- Rol -->
+            <VBox alignment="TOP_CENTER">
+                <Button styleClass="user-color" text="Mesero" />
+            </VBox>
+
+            <!-- Botón de vista -->
+            <VBox alignment="TOP_CENTER" prefHeight="242.0" prefWidth="289.0" VBox.vgrow="ALWAYS" spacing="15">
+                <Button styleClass="active-button" text="Nuevo Pedido" onAction="#showTasks">
+                    <graphic>
+                        <Group>
+                            <SVGPath content="M13.9999 11.6667C16.5772 11.6667 18.6666 9.57737 18.6666 7.00004C18.6666 4.42271 16.5772 2.33337 13.9999 2.33337C11.4226 2.33337 9.33325 4.42271 9.33325 7.00004C9.33325 9.57737 11.4226 11.6667 13.9999 11.6667Z" fill="WHITE" />
+                            <SVGPath content="M23.3334 20.4166C23.3334 23.3158 23.3334 25.6666 14.0001 25.6666C4.66675 25.6666 4.66675 23.3158 4.66675 20.4166C4.66675 17.5175 8.84575 15.1666 14.0001 15.1666C19.1544 15.1666 23.3334 17.5175 23.3334 20.4166Z" fill="WHITE" />
+                        </Group>
+                    </graphic>
+                </Button>
+                <Button styleClass="normal-button" text="Historial" onAction="#showHistory">
+                    <graphic>
+                        <Group>
+                            <SVGPath content="M14 24.5C11.3167 24.5 8.97867 23.6106 6.986 21.8318C4.99333 20.0531 3.85078 17.8313 3.55833 15.1667H5.95C6.22222 17.1889 7.12172 18.8611 8.6485 20.1833C10.1753 21.5056 11.9591 22.1667 14 22.1667C16.275 22.1667 18.2051 21.3745 19.7902 19.7902C21.3753 18.2058 22.1674 16.2758 22.1667 14C22.1659 11.7242 21.3737 9.79456 19.7902 8.211C18.2066 6.62744 16.2766 5.83489 14 5.83333C12.6583 5.83333 11.4042 6.14444 10.2375 6.76667C9.07083 7.38889 8.08889 8.24444 7.29167 9.33333H10.5V11.6667H3.5V4.66667H5.83333V7.40833C6.825 6.16389 8.03561 5.20139 9.46517 4.52083C10.8947 3.84028 12.4063 3.5 14 3.5C15.4583 3.5 16.8245 3.77728 18.0985 4.33183C19.3725 4.88639 20.4808 5.63461 21.4235 6.5765C22.3662 7.51839 23.1148 8.62672 23.6693 9.9015C24.2239 11.1763 24.5008 12.5424 24.5 14C24.4992 15.4576 24.2223 16.8237 23.6693 18.0985C23.1163 19.3733 22.3677 20.4816 21.4235 21.4235C20.4793 22.3654 19.3709 23.114 18.0985 23.6693C16.8261 24.2247 15.4599 24.5016 14 24.5ZM17.2667 18.9L12.8333 14.4667V8.16667H15.1667V13.5333L18.9 17.2667L17.2667 18.9Z" fill="WHITE" />
+
+                        </Group>
+                    </graphic>
+                </Button>
+            </VBox>
+
+            <!-- Botón cerrar sesión -->
+            <Button onAction="#onLogout" styleClass="logout-button" text="Cerrar Sesión">
+                <graphic>
+                    <Group>
+                        <SVGPath content="M18.6666 15.1667V12.8334H8.16659V9.33337L2.33325 14L8.16659 18.6667V15.1667H18.6666Z" fill="WHITE" />
+                        <SVGPath content="M23.3333 3.5H12.8333C11.5465 3.5 10.5 4.5465 10.5 5.83333V10.5H12.8333V5.83333H23.3333V22.1667H12.8333V17.5H10.5V22.1667C10.5 23.4535 11.5465 24.5 12.8333 24.5H23.3333C24.6202 24.5 25.6667 23.4535 25.6667 22.1667V5.83333C25.6667 4.5465 24.6202 3.5 23.3333 3.5Z" fill="WHITE" />
+                    </Group>
+                </graphic>
+
+            </Button>
         </VBox>
     </left>
-    <!--MAIN CONTENT-->
+
+    <!-- MAIN CONTENT -->
     <center>
-
-        <GridPane>
-            <Label text="Menú Principal" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <Label text="Hola, Bienvenido!" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold"/>
-        </GridPane>
-
-        <AnchorPane fx:id="contentPane"/>
+        <AnchorPane fx:id="contentPane" />
     </center>
-
-
 </BorderPane>

@@ -43,6 +43,7 @@ public class EmployeeDAO {
                 employee.setName(rs.getString("NAME"));
                 employee.setFatherLastname(rs.getString("FATHER_LASTNAME"));
                 employee.setMotherLastname(rs.getString("MOTHER_LASTNAME"));
+                employee.setUser(rs.getString("NAME_USER"));
                 employee.setPhoneNumber(rs.getString("PHONE_NUMBER"));
                 employee.setEmail(rs.getString("EMAIL"));
                 employee.setShift(rs.getString("SHIFT"));

@@ -1,72 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.Group?>
+<VBox fx:id="contentPane" alignment="TOP_LEFT" prefHeight="500" prefWidth="800" spacing="30" styleClass="root" stylesheets="@../../stylesheets/waiter_home.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHomeController">
 
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHomeController"
-          prefHeight="400.0" prefWidth="600.0" >
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-    <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
-        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints vgrow="ALWAYS"/>
-    </rowConstraints>
-    <!--ADMIN INFO-->
+    <!-- Título principal -->
+    <Label styleClass="h1" text="Mi Vista de Mesero">
+        <VBox.margin>
+            <Insets bottom="0" left="10" right="0" top="10" />
+        </VBox.margin>
+    </Label>
 
-    <VBox>
+    <!-- Contenedor de tarjetas -->
+    <HBox alignment="CENTER" spacing="40">
 
-            <Label text="Menú Principal"  />
-            <Label text="Hola, Bienvenido!"  style="-fx-font-weight: bold"/>
-
-
-
-        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10">
+        <!-- Tarjeta blanca -->
+        <VBox prefWidth="350" spacing="10" styleClass="card-white">
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
-            <Label fx:id="lblFullName" text="Oscar Mendoza" style="-fx-font-weight: bold"/>
-            <Label text="Mesero"/>
-            <Label text="Nombre de Usuario" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblUsername" text="MeseroChespi88"/>
-            <Label text="Telefono:" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblPhoneNumber" text="777-123-4567"/>
-            <Label text="Correo Electrónico:" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblEmail" text="elizabeth.castillo@empresa.com"/>
-            <Label text="Turno Actual" style="-fx-font-weight: bold"/>
-            <Label fx:id="lblShift" text="Matutino"/>
+
+            <Label styleClass="h2" text="Mi Planificación de Hoy" />
+
+            <Region prefHeight="5" />
+            <Label styleClass="h2" text="Mesero:" />
+            <Label fx:id="lblFullName" styleClass="text" text="Nombre mesero" />
+            <Label styleClass="h2" text="Turno:" />
+            <Label fx:id="lblShift" styleClass="text" text="Turno mesero" />
+
+            <Region prefHeight="10" />
+
+            <Label fx:id="lblTables" styleClass="h2" text="Mesas Asignadas:" />
+            <Label styleClass="text" text="• Mesa #04" />
+            <Label styleClass="text" text="• Mesa #05" />
+            <Label styleClass="text-" text="• Mesa #06" />
+
         </VBox>
 
-    </VBox>
-
-    <!--ADMIN ACTIONS-->
-    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <GridPane vgap="10">
-            <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
-            </columnConstraints>
+        <!-- Tarjeta naranja -->
+        <VBox alignment="CENTER" prefHeight="462.0" prefWidth="488.0" spacing="20" styleClass="card-orange">
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
-            <Label text="Checador" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Button text="Entrada" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" onAction="#marcarEntrada"/>
-            <Button text="Descanso" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity" onAction="#marcarDescanso"/>
-            <Button text="Salida" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity" onAction="#marcarSalida"/>
-        </GridPane>
-    </VBox>
 
+            <!-- Icono como texto -->
+                <Group>
+                    <SVGPath content="M105.875 12C106.942 12 107.966 12.4106 108.721 13.1406C109.475 13.8706 109.9 14.8603 109.9 15.8926V58.7139H101.85V19.7861H37.4502V113.214H61.5996V121H33.4248C32.3573 121 31.3339 120.589 30.5791 119.859C29.8244 119.129 29.3995 118.14 29.3994 117.107V15.8926C29.3995 14.8603 29.8244 13.8706 30.5791 13.1406C31.3339 12.4106 32.3573 12 33.4248 12H105.875ZM77.7002 58.7139H45.5V50.9287H77.7002V58.7139ZM93.7998 43.1426H45.5V35.3574H93.7998V43.1426Z" fill="WHITE" />
+                    <SVGPath content="M67.0534 118.245L69.0244 104.747C69.1445 103.865 69.5472 103.044 70.1771 102.412L108.367 64.2177C108.861 63.7168 109.476 63.3518 110.153 63.1581C110.83 62.9644 111.546 62.9484 112.231 63.1118C115.737 64.0797 118.914 65.9782 121.426 68.6056C124.05 71.1318 125.937 74.3219 126.888 77.8355C127.052 78.5196 127.036 79.2343 126.842 79.9104C126.648 80.5865 126.282 81.2011 125.781 81.6948L87.5492 119.84C86.9151 120.468 86.0929 120.871 85.2081 120.988L71.6968 122.957C71.0585 123.05 70.4073 122.991 69.796 122.786C69.1846 122.581 68.6304 122.234 68.1781 121.775C67.7258 121.316 67.3883 120.757 67.1929 120.143C66.9975 119.529 66.9497 118.877 67.0534 118.242M101.142 71.4823L118.556 88.8751" fill="WHITE" />
+                </Group>
 
+            <!-- Botón -->
+            <Button fx:id="btnNewOrder" onAction="#onAddOrder" styleClass="btn-orange" text="Tomar Nuevo Pedido" />
+        </VBox>
 
-</GridPane>
+    </HBox>
+
+</VBox>

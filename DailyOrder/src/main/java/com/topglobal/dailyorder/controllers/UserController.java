@@ -13,4 +13,5 @@ public abstract class UserController {
         this.user = user;
     }
     public abstract void setInfo();
+
 }

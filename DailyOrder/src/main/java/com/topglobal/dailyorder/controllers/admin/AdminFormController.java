@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -43,6 +44,12 @@ public class AdminFormController {
 
     @FXML
     private void initialize() {
+
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
+
+
         try {
             dpFechaNacimiento.valueProperty().addListener((obs, oldDate, newDate) -> {
                 if (newDate != null) {
@@ -52,16 +59,9 @@ public class AdminFormController {
                     tfEdad.setText("");
                 }
             });
-            /*
-            ObservableList<String> estados = FXCollections.observableArrayList(
-                    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche",
-                    "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango",
-                    "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco",
-                    "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
-                    "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora",
-                    "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
-            );
-            */
+
+
+
             ObservableList<String> genero = FXCollections.observableArrayList(
                     "Masculino", "Femenino", "Otro"
             );
@@ -72,7 +72,7 @@ public class AdminFormController {
                     "Matutino", "Vespertino"
             );
 
-            //cbEstadoNacimiento.setItems(estados);
+
             cbGenero.setItems(genero);
             cbPuesto.setItems(puesto);
             cbHorario.setItems(horario);
@@ -81,6 +81,7 @@ public class AdminFormController {
         }
 
     }
+
 
     @FXML
     private void onRegistrar() {
