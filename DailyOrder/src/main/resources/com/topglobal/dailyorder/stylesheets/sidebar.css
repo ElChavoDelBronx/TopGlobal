@@ -77,7 +77,7 @@
 
 /* Estilo para el título principal (Encabezado) */
 .h1 {
-    -fx-font-family: "Lexend Extra- bold"; /* Puedes cambiar la fuente si lo deseas */
+    -fx-font-family: "Lexend bold"; /* Puedes cambiar la fuente si lo deseas */
     -fx-font-size: 32px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333; /* Color de texto oscuro, puedes ajustarlo */
