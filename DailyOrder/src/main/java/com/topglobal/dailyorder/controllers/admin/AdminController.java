@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 public class AdminController extends UserController {
     @FXML private AnchorPane contentPane;
 
+    //Metodo para cargar información de usuario que inicio sesión
     @Override
     public void setInfo() {
         UserController controller = AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_home.fxml", contentPane);
@@ -27,6 +28,7 @@ public class AdminController extends UserController {
         controller.setInfo();
     }
 
+    //Metodo estatico para controlar y cargar las vistas centrales
     public static <T> T loadView(String fxmlPath, AnchorPane contentPane) {
         try {
             FXMLLoader loader = new FXMLLoader(AdminController.class.getResource(fxmlPath));
@@ -34,7 +36,6 @@ public class AdminController extends UserController {
 
             T controller = loader.getController();
 
-            // Verifica si el controlador tiene un método setContentPane
             try {
                 Method method = controller.getClass().getMethod("setContentPane", AnchorPane.class);
                 method.invoke(controller, contentPane);
@@ -55,12 +56,12 @@ public class AdminController extends UserController {
         }
     }
 
-
-
     @FXML
     private void onTables(ActionEvent event) {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_table_management.fxml", contentPane);
     }
+
+    //Metodo para cargar vista de tabla de empleados
     @FXML
     private void onPersonal(ActionEvent event) {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);

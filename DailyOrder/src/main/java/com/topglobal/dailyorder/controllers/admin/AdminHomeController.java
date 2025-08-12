@@ -4,9 +4,7 @@ import com.topglobal.dailyorder.controllers.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.text.Font;
 
 
@@ -17,12 +15,13 @@ public class AdminHomeController extends UserController {
     @FXML private Label lblEmail;
     @FXML private Label lblShift;
 
-
     private AnchorPane contentPane;
-
     public void setContentPane(AnchorPane contentPane) {
         this.contentPane = contentPane;
     }
+
+
+    //Inicializa tipografia
     public void initialize() {
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
@@ -30,6 +29,7 @@ public class AdminHomeController extends UserController {
 
     }
 
+    //Carga información de usuario
     @Override
     public void setInfo() {
         if (this.user != null) {
@@ -41,8 +41,9 @@ public class AdminHomeController extends UserController {
         }
     }
 
+    //Metodo para cambiar de vista al formulario de registro de empleados
     @FXML
-    private void onRegistrar(ActionEvent event) {
+    private void onCreateEmployee(ActionEvent event) {
         System.out.println("Click");
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
 

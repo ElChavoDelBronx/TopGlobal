@@ -23,7 +23,6 @@ public class AdminFormController {
     @FXML private ComboBox<String> cbGenero;
     @FXML private DatePicker dpFechaNacimiento;
     @FXML private TextField tfCurp;
-    @FXML private ComboBox<String> cbEstadoNacimiento;
     @FXML private TextField tfEmail;
     @FXML private TextField tfNameUsuario;
     @FXML private Button btnRegistrar;
@@ -42,13 +41,13 @@ public class AdminFormController {
         this.contentPane = contentPane;
     }
 
+    //Inicializa tipografia e información de menus desplegables
     @FXML
     private void initialize() {
 
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
-
 
         try {
             dpFechaNacimiento.valueProperty().addListener((obs, oldDate, newDate) -> {
@@ -60,8 +59,6 @@ public class AdminFormController {
                 }
             });
 
-
-
             ObservableList<String> genero = FXCollections.observableArrayList(
                     "Masculino", "Femenino", "Otro"
             );
@@ -72,7 +69,6 @@ public class AdminFormController {
                     "Matutino", "Vespertino"
             );
 
-
             cbGenero.setItems(genero);
             cbPuesto.setItems(puesto);
             cbHorario.setItems(horario);
@@ -82,7 +78,7 @@ public class AdminFormController {
 
     }
 
-
+    //Registra nuevo empleado y cambia a vista de tabla de empleados
     @FXML
     private void onRegistrar() {
         String nombre = tfNombre.getText().trim();
@@ -94,14 +90,13 @@ public class AdminFormController {
         String genero = cbGenero.getValue();
         LocalDate fechaNacimiento = dpFechaNacimiento.getValue();
         String curp = tfCurp.getText().trim();
-        //String estados = cbEstadoNacimiento.getValue();
         String email = tfEmail.getText().trim();
         String usuario = tfNameUsuario.getText().trim();
         int status = 1;
 
 
 
-        if (nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() || telefono.isEmpty() || puesto.isEmpty() || horario == null || genero.isEmpty()
+        if (nombre.isEmpty() || apellidoP.isEmpty() || apellidoM.isEmpty() || telefono.isEmpty() || puesto.isEmpty() || horario == null || genero == null
                 || fechaNacimiento == null || curp.isEmpty() || email.isEmpty() || usuario.isEmpty()) {
 
             showAlert("ERROR", "Todos los campos son obligatorios");
@@ -119,8 +114,8 @@ public class AdminFormController {
         employee.setBirthday(fechaNacimiento);
         employee.setCurp(curp);
         employee.setEmail(email);
-        employee.setUser(usuario);         // 👈 este dato ya es obligatorio
-        employee.setStatus(1);             // 👈 por defecto puedes poner 1 (activo) o el que uses
+        employee.setUser(usuario);
+        employee.setStatus(1);
 
         try {
             dao.createEmployee(employee);
@@ -133,11 +128,13 @@ public class AdminFormController {
 
     }
 
+    //Carga vista para visualizar información del empleado
     @FXML
     private void onCancelar() {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
     }
 
+    //Metodo utilizado para mostrar POP-POPS
     public void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -146,7 +143,7 @@ public class AdminFormController {
         alert.showAndWait();
     }
 
-    // Método para calcular edad en años desde una fecha
+    //Metodo utilizado para calcular edad apartir de la fecha actual y la fecha ingresada en formulario
     private int calcularEdad(LocalDate fechaNacimiento) {
         return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
