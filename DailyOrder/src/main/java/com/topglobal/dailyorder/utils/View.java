@@ -2,7 +2,9 @@ package com.topglobal.dailyorder.utils;
 
 import com.topglobal.dailyorder.controllers.admin.AdminController;
 import com.topglobal.dailyorder.controllers.admin.AdminEditTableController;
+import com.topglobal.dailyorder.controllers.admin.menu.EditMenuItemFormController;
 import com.topglobal.dailyorder.models.objects.DiningTable;
+import com.topglobal.dailyorder.models.objects.MenuItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,10 +21,14 @@ import java.lang.reflect.Method;
 public class View {
     //Aqui se definiran todos los atributos que se necesiten antes de cargar una vista
     private DiningTable diningTable;
+    private MenuItem menuItem;
     //Agregar constructores según sea necesario
     public View() {}
     public View(DiningTable diningTable) {
         this.diningTable = diningTable;
+    }
+    public View(MenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 
     public static <T> T loadView(String fxmlPath, AnchorPane contentPane) {
@@ -65,6 +71,8 @@ public class View {
             //Aca se verificará las instancias de los controladores que se necesiten
             if(controller instanceof AdminEditTableController){
                 ((AdminEditTableController) controller).setDiningTable(diningTable);
+            }else if(controller instanceof EditMenuItemFormController){
+                ((EditMenuItemFormController) controller).setFormData(menuItem);
             }
 
             Stage dialog = new Stage();

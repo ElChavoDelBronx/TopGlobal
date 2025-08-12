@@ -19,13 +19,14 @@ public class Main extends Application {
         primaryStage = stage;
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/topglobal/dailyorder/views/login_view.fxml"));
+
         Image image = new Image(getClass().getResourceAsStream("/com/topglobal/dailyorder/icons/Logo.png"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Login");
         primaryStage.getIcons().add(image);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
-        //primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(700);
         primaryStage.show();
