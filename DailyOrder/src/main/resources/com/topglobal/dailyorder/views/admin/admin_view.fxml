@@ -71,7 +71,7 @@
                         </Group>
                     </graphic>
                 </Button>
-                <Button styleClass="normal-button" text="Ordenes">
+                <Button styleClass="normal-button" text="Ordenes" onAction="#onOrders">
                     <graphic>
                         <Group>
                             <SVGPath content="M3.5 5.83337V22.1667C3.5 24.7345 5.593 25.6667 7 25.6667H24.5V23.3334H7.014C6.475 23.3194 5.83333 23.107 5.83333 22.1667C5.83333 21.2264 6.475 21.014 7.014 21H24.5V4.66671C24.5 3.37987 23.4535 2.33337 22.1667 2.33337H7C5.593 2.33337 3.5 3.26554 3.5 5.83337Z" fill="WHITE" />
