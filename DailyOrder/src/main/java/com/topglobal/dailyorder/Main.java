@@ -20,7 +20,7 @@ public class Main extends Application {
 
         // Cambiar vista fxml segun conveniencia.
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/topglobal/dailyorder/views/login_view.fxml"));
-        
+
         Image image = new Image(getClass().getResourceAsStream("/com/topglobal/dailyorder/icons/Logo.png"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Login");
