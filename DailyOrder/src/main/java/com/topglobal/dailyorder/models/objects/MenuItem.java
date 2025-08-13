@@ -10,6 +10,19 @@ public class MenuItem {
     private int isActive;
     private int quantity;
 
+    // 🔹 Constructor vacío: útil cuando quieres instanciar y luego settear valores
+    public MenuItem() {
+    }
+
+    // 🔹 Constructor con parámetros: inicializa directamente
+    public MenuItem(int idItem, String name, double price) {
+        this.id = idItem;
+        this.name = name;
+        this.cost = price;
+    }
+
+    // ====== Getters & Setters ======
+
     public int getId() {
         return id;
     }
