@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FoodOrderDAO {
@@ -24,6 +26,67 @@ public class FoodOrderDAO {
             throw new SQLException("Error fetching all orders", e);
         }
     }
+
+        Connection conn = null;
+
+        public static List<FoodOrder> getAllOrders() throws SQLException {
+            List<FoodOrder> orders = new ArrayList<>();
+
+            String sql = """
+            SELECT
+                o.ID_ORDER,
+                o.DAILY_FOLIO,
+                o.ORDER_TIME,
+                o.ORDER_STATUS,
+                o.ORDER_COST,
+                e.NAME || ' ' || e.FATHER_LASTNAME AS waiter_name,
+                dt.ID_TABLE,
+                dt.AREA || ' - Mesa ' || dt.ID_TABLE AS table_name,
+                LISTAGG(ofd.FOOD_QUANTITY || 'x ' || f.FOOD_NAME, ', ')
+                    WITHIN GROUP (ORDER BY f.FOOD_NAME) AS dishes
+            FROM ORDERS o
+            JOIN EMPLOYEE e ON o.FK_ID_WAITER = e.ID_EMPLOYEE
+            JOIN DINING_TABLE dt ON o.FK_ID_TABLE = dt.ID_TABLE
+            JOIN ORDER_FOOD ofd ON o.ID_ORDER = ofd.FK_ID_ORDER
+            JOIN FOOD f ON ofd.FK_ID_FOOD = f.ID_FOOD
+            GROUP BY
+                o.ID_ORDER, o.DAILY_FOLIO, o.ORDER_TIME, o.ORDER_STATUS, o.ORDER_COST,
+                e.NAME, e.FATHER_LASTNAME, dt.ID_TABLE, dt.AREA
+            ORDER BY o.ORDER_TIME DESC
+            
+        """;
+
+            try (Connection conn = DatabaseConfig.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+                    FoodOrder order = new FoodOrder();
+                    order.setOrderId(rs.getInt("ID_ORDER"));
+                    order.setDailyFolio(rs.getInt("DAILY_FOLIO"));
+                    order.setOrderDate(rs.getDate("ORDER_TIME").toLocalDate());
+                    order.setOrderStatus(rs.getString("ORDER_STATUS"));
+                    order.setTotalCost(rs.getDouble("ORDER_COST"));
+                    order.setWaiterName(rs.getString("waiter_name"));
+                    order.setDiningTableId(rs.getInt("ID_TABLE"));
+                    order.setDiningTableName(rs.getString("table_name"));
+
+                    String dishes = rs.getString("dishes");
+                    if (dishes != null) {
+                        order.setDishes(Arrays.asList(dishes.split(", ")));
+                    }
+
+                    orders.add(order);
+                }
+            }
+
+            return orders;
+        }
+
+
+
+
+
     //Metodo usado para crear una nueva orden
     public static void createOrder(
             FoodOrder order, int tableID, int waiterID, List<MenuItem> dishes

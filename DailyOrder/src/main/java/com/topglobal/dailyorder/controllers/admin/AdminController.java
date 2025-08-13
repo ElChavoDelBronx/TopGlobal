@@ -67,6 +67,7 @@ public class AdminController extends UserController {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
 
     }
+
     @FXML
     private void onFoodDish(ActionEvent event) {
         AdminController.loadView("/com/topglobal/dailyorder/views/admin/menu/menu_management.fxml", contentPane);

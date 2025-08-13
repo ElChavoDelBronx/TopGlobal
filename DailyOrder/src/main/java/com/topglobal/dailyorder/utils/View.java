@@ -4,6 +4,7 @@ import com.topglobal.dailyorder.controllers.admin.AdminController;
 import com.topglobal.dailyorder.controllers.admin.AdminEditTableController;
 import com.topglobal.dailyorder.controllers.admin.menu.EditMenuItemFormController;
 import com.topglobal.dailyorder.models.objects.DiningTable;
+import com.topglobal.dailyorder.models.objects.FoodOrder;
 import com.topglobal.dailyorder.models.objects.MenuItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +22,15 @@ import java.lang.reflect.Method;
 public class View {
     //Aqui se definiran todos los atributos que se necesiten antes de cargar una vista
     private DiningTable diningTable;
+    private FoodOrder foodOrder;
     private MenuItem menuItem;
     //Agregar constructores según sea necesario
     public View() {}
     public View(DiningTable diningTable) {
         this.diningTable = diningTable;
+    }
+    public View(FoodOrder foodOrder) {
+        this.foodOrder = foodOrder;
     }
     public View(MenuItem menuItem) {
         this.menuItem = menuItem;
