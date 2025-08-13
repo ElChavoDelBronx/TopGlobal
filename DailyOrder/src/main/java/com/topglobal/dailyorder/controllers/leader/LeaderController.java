@@ -28,7 +28,7 @@ public class LeaderController extends UserController {
 
     public static <T> T loadView(String fxmlPath, AnchorPane contentPane) {
         try {
-            FXMLLoader loader = new FXMLLoader(AdminController.class.getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(LeaderController.class.getResource(fxmlPath));
             Parent view = loader.load();
 
             T controller = loader.getController();
@@ -56,14 +56,14 @@ public class LeaderController extends UserController {
 
     @FXML
     private void onOrder(ActionEvent event) {
-        AdminController.loadView("/com/topglobal/dailyorder/views/leader/orders/leaderOrder_management.fxml", contentPane);
+        LeaderController.loadView("/com/topglobal/dailyorder/views/leader/orders/leaderOrder_management.fxml", contentPane);
     }
 
     //Metodo para cargar vista de tabla de empleados
 
     @FXML
     private void onPlan(ActionEvent event) {
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
+        LeaderController.loadView("/com/topglobal/dailyorder/views/leader/plan/leaderPlan_Management.fxml", contentPane);
 
     }
     @FXML
