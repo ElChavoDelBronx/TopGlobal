@@ -29,7 +29,7 @@ public class WaiterAddOrder {
     @FXML private Button btnCancel;
     @FXML private Button btnAddOrder;
 
-    /*private final ObservableList<MenuItem> platillosOrdenados = FXCollections.observableArrayList();
+    private final ObservableList<MenuItem> platillosOrdenados = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -191,5 +191,5 @@ public class WaiterAddOrder {
     @FXML
     public void onCancel() {
         View.closeWindow(btnCancel);
-    }*/
+    }
 }

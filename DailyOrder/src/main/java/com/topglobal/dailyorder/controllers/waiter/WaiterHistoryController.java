@@ -5,6 +5,7 @@ import com.topglobal.dailyorder.models.objects.FoodOrder;
 import com.topglobal.dailyorder.models.objects.MenuItem;
 import com.topglobal.dailyorder.models.users.Employee;
 import com.topglobal.dailyorder.utils.Session;
+import com.topglobal.dailyorder.utils.SessionData;
 import com.topglobal.dailyorder.utils.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class WaiterHistoryController {
-
+    private SessionData sessionData;
     @FXML private FlowPane cardContainer;
     @FXML private Button btnAll;
     @FXML private Button btnPending;
@@ -33,26 +34,35 @@ public class WaiterHistoryController {
     @FXML private Button btnReady;
     @FXML private Button btnApproved;
 
-    /*private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
-    private void initialize() {
-        loadAllOrders(null);
+    private void initialize() { //Se ejecuta antes de setSessionData
+    }
+
+    public void setSessionData(SessionData sessionData) { //La logica de inicializacion se movio a este metodo
+        this.sessionData = sessionData;
+        if(sessionData.getFoodOrders().isEmpty()){ //Si la lista de ordenes esta vacia, consulta la base de datos
+            loadAllOrders(null);
+        }else{
+            render(sessionData.getFoodOrders()); //Si ya no esta vacia, solo renderiza las tarjetas
+        }
     }
 
     @FXML
     private void loadAllOrders(ActionEvent event) {
         try {
             // Obtener el ID del mesero logueado
-            int waiterId = Session.getCurrentUser().getId();
+            int waiterId = sessionData.getUser().getId();
             render(FoodOrderDAO.getOrdersByWaiterId(waiterId));
 
 
             // Llamar al DAO para obtener solo las órdenes de ese mesero
-            List<FoodOrder> orders = FoodOrderDAO.getOrdersByWaiterId(waiterId);
+            //List<FoodOrder> orders = FoodOrderDAO.getOrdersByWaiterId(waiterId);
+            sessionData.setFoodOrders(FoodOrderDAO.getOrdersByWaiterId(waiterId));
 
             // Renderizar las órdenes en la interfaz
-            render(orders);
+            render(sessionData.getFoodOrders());
 
             // Marcar el botón como activo
             markActive(btnAll);
@@ -198,5 +208,5 @@ public class WaiterHistoryController {
         btnReady.getStyleClass().remove("tabButton-active");
         btnApproved.getStyleClass().remove("tabButton-active");
         active.getStyleClass().add("tabButton-active");
-    }*/
+    }
 }
