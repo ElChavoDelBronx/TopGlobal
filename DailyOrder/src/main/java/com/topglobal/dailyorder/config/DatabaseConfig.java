@@ -13,7 +13,6 @@ public class DatabaseConfig {
     public static Connection getConnection() throws SQLException {
         //Nota: Modificar la ruta del wallet según tu sistema de archivos
         System.setProperty("oracle.net.tns_admin", "C:\\Users\\ElChavoDelBronx\\OneDrive\\Escritorio\\Wallet_ENZF2JB6HHPUPOLO");
-
         //Obtiene la conexión usando alias, usuario y contraseña
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }

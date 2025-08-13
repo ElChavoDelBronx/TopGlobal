@@ -4,7 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_LEFT" prefHeight="500" prefWidth="800" styleClass="root" stylesheets="@../../stylesheets/waiter_history.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterController">
+<VBox alignment="TOP_LEFT" prefHeight="500" prefWidth="800"
+      styleClass="root"
+      stylesheets="@../../stylesheets/waiter_history.css"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHistoryController">
 
     <!-- Título principal -->
     <Label styleClass="h1" text="Gestión de Órdenes">
@@ -14,80 +19,39 @@
     </Label>
 
     <HBox spacing="30">
-
         <!-- Columna derecha (Gestión de Órdenes) -->
         <VBox spacing="16" HBox.hgrow="ALWAYS">
-
             <HBox spacing="12">
                 <padding>
                     <Insets bottom="6" left="6" right="6" top="6" />
                 </padding>
-                <Button styleClass="normal-button" text="Todas" />
-                <Button styleClass="tabButton" text="Pendientes" />
-                <Button styleClass="tabButton" text="En Preparación" />
-                <Button styleClass="tabButton" text="Listas para Servir" />
-                <Button styleClass="tabButton" text="Aprobadas" />
+                <Button fx:id="btnAll"       styleClass="tabButton" text="Todas"
+                        onAction="#loadAllOrders"/>
+                <Button fx:id="btnPending"   styleClass="tabButton" text="Pendientes"
+                        onAction="#loadPendingOrders"/>
+                <Button fx:id="btnPrep"      styleClass="tabButton" text="En Preparación"
+                        onAction="#loadPrepOrders"/>
+                <Button fx:id="btnReady"     styleClass="tabButton" text="Listas para Servir"
+                        onAction="#loadReadyOrders"/>
+                <Button fx:id="btnApproved"  styleClass="tabButton" text="Aprobadas"
+                        onAction="#loadApprovedOrders"/>
             </HBox>
         </VBox>
     </HBox>
 
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-light" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
-          <!-- Usamos FlowPane para que las tarjetas se dispongan en filas y haya separación -->
-          <FlowPane fx:id="cardContainer" hgap="24" vgap="24">
-              <padding>
-                  <Insets bottom="18" left="10" right="10" top="10" />
-              </padding>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                styleClass="scroll-light"
+                vbarPolicy="AS_NEEDED"
+                VBox.vgrow="ALWAYS">
+        <!-- Contenedor de tarjetas dinámico -->
+        <FlowPane fx:id="cardContainer" hgap="24" vgap="24">
+            <padding>
+                <Insets bottom="18" left="10" right="10" top="10" />
+            </padding>
+        </FlowPane>
+    </ScrollPane>
 
-              <!-- Tarjeta de ejemplo 1 -->
-              <VBox prefWidth="520" spacing="10" styleClass="order-card">
-                  <HBox alignment="CENTER_LEFT" spacing="10">
-                      <Label styleClass="card-title" text="Orden #101" />
-                      <Label styleClass="muted" text="18/07/2025 18:45" />
-                      <Region HBox.hgrow="ALWAYS" />
-                      <Label styleClass="status-pending" text="Pendiente" />
-                  </HBox>
-
-                  <Label styleClass="muted" text="Mesa: 05 — Mesero: Ana Gómez" />
-                  <VBox spacing="4">
-                      <Label styleClass="card-text" text="• 2x Ensalada Fresca" />
-                      <Label styleClass="card-text" text="• 1x Salmón a la Plancha" />
-                      <Label styleClass="card-text" text="• 3x Agua Mineral" />
-                  </VBox>
-
-                  <HBox alignment="CENTER_RIGHT" spacing="10">
-                      <Button styleClass="btn-light" text="Cobrar" />
-                      <Button styleClass="btn-outline" text="Rechazar" />
-                  </HBox>
-              </VBox>
-
-              <!-- Tarjeta de ejemplo 2 -->
-              <VBox prefWidth="520" spacing="10" styleClass="order-card">
-                  <HBox alignment="CENTER_LEFT" spacing="10">
-                      <Label styleClass="card-title" text="Orden #105" />
-                      <Label styleClass="muted" text="18/07/2025 19:12" />
-                      <Region HBox.hgrow="ALWAYS" />
-                      <Label styleClass="status-done" text="Entregada" />
-                  </HBox>
-
-                  <Label styleClass="muted" text="Mesa: 03 — Mesero: Luis Martínez" />
-                  <VBox spacing="4">
-                      <Label styleClass="card-text" text="• 1x Ceviche" />
-                      <Label styleClass="card-text" text="• 1x Margarita" />
-                  </VBox>
-
-                  <HBox alignment="CENTER_RIGHT" spacing="10">
-                      <Button styleClass="btn-light" text="Cobrar" />
-                      <Button styleClass="btn-outline" text="Rechazar" />
-                  </HBox>
-              </VBox>
-
-              <!-- Agrega más <VBox styleClass="order-card"> aquí -->
-          </FlowPane>
-      </ScrollPane>
-
-    <!-- Contenedor de tarjetas -->
     <padding>
         <Insets bottom="12" left="12" right="12" top="12" />
     </padding>
-
 </VBox>

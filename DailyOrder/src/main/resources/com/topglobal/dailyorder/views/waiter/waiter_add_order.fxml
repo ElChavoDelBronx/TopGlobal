@@ -1,26 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterAddOrder"
-      prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheets/sidebar.css" spacing="10">
+<VBox spacing="15" styleClass="root" stylesheets="@../../stylesheets/waiter_add_order.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterAddOrder">
+
     <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+        <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
-    <Label text="Añadir Nueva Orden" styleClass="h1"/>
-    <VBox>
-        <Label text="Número de Orden:" styleClass="h2"/>
-        <TextField fx:id="tfOrderNumber" promptText="Ej.10"/>
+
+    <!-- Título -->
+    <Label styleClass="h1" text="Añadir Nueva Orden" />
+
+    <!-- Card de encabezado (folio) -->
+    <VBox spacing="10" styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label styleClass="text" text="Número de Orden:  " />
+            <TextField fx:id="tfOrderNumber" editable="false" prefWidth="120" styleClass="text-field" />
+        </HBox>
     </VBox>
+
+    <!-- Card de selección de platillo -->
+    <VBox spacing="12" styleClass="card">
+        <GridPane hgap="12" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="75" />
+            </columnConstraints>
+
+            <Label styleClass="text" text="Platillo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="comboPlatillos" prefWidth="240" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label styleClass="text" text="Costo:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label fx:id="labelCosto" styleClass="text" text=" 0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label styleClass="text" text="Cantidad:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Spinner fx:id="spinnerCantidad" prefWidth="120" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Button onAction="#onAgregarPlatillo" prefWidth="270.0" styleClass="addPlate-button" text="Agregar Platillo" />
+        </HBox>
+    </VBox>
+
+    <!-- Card de tabla -->
+    <VBox spacing="10" styleClass="card">
+        <TableView fx:id="tablaOrden" prefHeight="260" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="colNombrePlatillo" prefWidth="220" text="Platillo" />
+                <TableColumn fx:id="colPrecioUnitario" prefWidth="120" text="Precio Unit." />
+                <TableColumn fx:id="colCantidad" prefWidth="100" text="Cantidad" />
+                <TableColumn fx:id="colSubtotal" prefWidth="120" text="Subtotal" />
+            </columns>
+        </TableView>
+
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <Label styleClass="h2" text="Total:" />
+            <Label fx:id="labelTotal" styleClass="text" text=" 0.00" />
+        </HBox>
+    </VBox>
+
+    <!-- Acciones -->
     <HBox alignment="CENTER_RIGHT" spacing="10">
-        <Button fx:id="btnCancel" text="Cancelar" onAction="#onCancel" styleClass="normal-button"/>
-        <Button fx:id="btnAddOrder" text="Guardar Orden" onAction="#onAddOrder" styleClass="normal-button"/>
+        <Button fx:id="btnCancel" onAction="#onCancel" text="Cancelar" />
+        <Button fx:id="btnAddOrder" onAction="#onAddOrder" text="Guardar Orden" />
     </HBox>
 </VBox>
