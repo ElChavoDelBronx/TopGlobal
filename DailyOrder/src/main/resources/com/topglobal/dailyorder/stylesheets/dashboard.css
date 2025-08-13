@@ -1,0 +1,99 @@
+/* Estilo para el título principal (Encabezado) */
+.h1 {
+    -fx-font-family: "Lexend bold"; /* Puedes cambiar la fuente si lo deseas */
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Color de texto oscuro, puedes ajustarlo */
+}
+
+/* Estilo para el subtítulo (Semi Encabezado) */
+.h2 {
+    -fx-font-family: "Lexend regular";
+    -fx-font-size: 24px;
+    -fx-font-weight: 500; /* Medium */
+    -fx-text-fill: #555555; /* Un gris un poco más claro */
+}
+
+/* Estilo para el texto general (Texto) */
+.text {
+    -fx-font-family: "Lexend light";
+    -fx-font-size: 24px;
+    -fx-font-weight: normal; /* Regular */
+    -fx-text-fill: #666666;
+}
+
+
+/* Color específico de cada tarjeta */
+.card-blue {
+    -fx-background-color: #1BAFC0;
+    -fx-pref-height: 100;
+    -fx-pref-width: 300;
+    -fx-font-family: "Lexend light";
+    -fx-text-fill: white;
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+
+.card-pink {
+    -fx-background-color: #FF3467;
+    -fx-pref-height: 100;
+    -fx-pref-width: 300;
+    -fx-font-family: "Lexend bold";
+    -fx-text-fill: white;
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+
+.card-purple {
+    -fx-background-color: #A24AFF;
+    -fx-pref-height: 100;
+    -fx-pref-width: 300;
+    -fx-font-family: "Lexend bold";
+    -fx-text-fill: white;
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+
+.card-yellow {
+    -fx-background-color: #FFDB4B;
+    -fx-pref-height: 100;
+    -fx-pref-width: 300;
+    -fx-font-family: "Lexend bold";
+    -fx-text-fill: white;
+    -fx-background-radius: 10px; /* Bordes redondeados */
+}
+
+/* Tarjetas blancas grandes */
+.card-large {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 3);
+    -fx-padding: 18;
+    -fx-max-width: 700px;
+    -fx-max-height: 550px;
+}
+
+
+
+
+
+
+
+/* ScrollPane limpio */
+.scroll-light .viewport {
+    -fx-background-color: transparent;
+}
+
+.card-icon {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.card-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+    -fx-text-alignment: center;
+}

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.shape.SVGPath?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
-<VBox fx:id="contentPane" alignment="TOP_LEFT" prefHeight="500" prefWidth="800" spacing="30" styleClass="root" stylesheets="@../../stylesheets/waiter_home.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHomeController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox fx:id="contentPane" alignment="TOP_LEFT" prefHeight="500" prefWidth="800"
+      spacing="30" styleClass="root"
+      stylesheets="@../../stylesheets/waiter_home.css"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterHomeController">
 
     <!-- Título principal -->
     <Label styleClass="h1" text="Mi Vista de Mesero">
@@ -29,6 +37,16 @@
             <Region prefHeight="5" />
             <Label styleClass="h2" text="Mesero:" />
             <Label fx:id="lblFullName" styleClass="text" text="Nombre mesero" />
+
+            <Label styleClass="h2" text="Usuario:" />
+            <Label fx:id="lblUsername" styleClass="text" text="Usuario" />
+
+            <Label styleClass="h2" text="Teléfono:" />
+            <Label fx:id="lblPhoneNumber" styleClass="text" text="Teléfono" />
+
+            <Label styleClass="h2" text="Correo:" />
+            <Label fx:id="lblEmail" styleClass="text" text="Correo" />
+
             <Label styleClass="h2" text="Turno:" />
             <Label fx:id="lblShift" styleClass="text" text="Turno mesero" />
 
@@ -37,7 +55,7 @@
             <Label fx:id="lblTables" styleClass="h2" text="Mesas Asignadas:" />
             <Label styleClass="text" text="• Mesa #04" />
             <Label styleClass="text" text="• Mesa #05" />
-            <Label styleClass="text-" text="• Mesa #06" />
+            <Label styleClass="text" text="• Mesa #06" />
 
         </VBox>
 
@@ -48,10 +66,10 @@
             </padding>
 
             <!-- Icono como texto -->
-                <Group>
-                    <SVGPath content="M105.875 12C106.942 12 107.966 12.4106 108.721 13.1406C109.475 13.8706 109.9 14.8603 109.9 15.8926V58.7139H101.85V19.7861H37.4502V113.214H61.5996V121H33.4248C32.3573 121 31.3339 120.589 30.5791 119.859C29.8244 119.129 29.3995 118.14 29.3994 117.107V15.8926C29.3995 14.8603 29.8244 13.8706 30.5791 13.1406C31.3339 12.4106 32.3573 12 33.4248 12H105.875ZM77.7002 58.7139H45.5V50.9287H77.7002V58.7139ZM93.7998 43.1426H45.5V35.3574H93.7998V43.1426Z" fill="WHITE" />
-                    <SVGPath content="M67.0534 118.245L69.0244 104.747C69.1445 103.865 69.5472 103.044 70.1771 102.412L108.367 64.2177C108.861 63.7168 109.476 63.3518 110.153 63.1581C110.83 62.9644 111.546 62.9484 112.231 63.1118C115.737 64.0797 118.914 65.9782 121.426 68.6056C124.05 71.1318 125.937 74.3219 126.888 77.8355C127.052 78.5196 127.036 79.2343 126.842 79.9104C126.648 80.5865 126.282 81.2011 125.781 81.6948L87.5492 119.84C86.9151 120.468 86.0929 120.871 85.2081 120.988L71.6968 122.957C71.0585 123.05 70.4073 122.991 69.796 122.786C69.1846 122.581 68.6304 122.234 68.1781 121.775C67.7258 121.316 67.3883 120.757 67.1929 120.143C66.9975 119.529 66.9497 118.877 67.0534 118.242M101.142 71.4823L118.556 88.8751" fill="WHITE" />
-                </Group>
+            <Group>
+                <SVGPath content="M105.875 12C106.942 12 107.966 12.4106 108.721 13.1406C109.475 13.8706 109.9 14.8603 109.9 15.8926V58.7139H101.85V19.7861H37.4502V113.214H61.5996V121H33.4248C32.3573 121 31.3339 120.589 30.5791 119.859C29.8244 119.129 29.3995 118.14 29.3994 117.107V15.8926C29.3995 14.8603 29.8244 13.8706 30.5791 13.1406C31.3339 12.4106 32.3573 12 33.4248 12H105.875ZM77.7002 58.7139H45.5V50.9287H77.7002V58.7139ZM93.7998 43.1426H45.5V35.3574H93.7998V43.1426Z" fill="WHITE" />
+                <SVGPath content="M67.0534 118.245L69.0244 104.747C69.1445 103.865 69.5472 103.044 70.1771 102.412L108.367 64.2177C108.861 63.7168 109.476 63.3518 110.153 63.1581C110.83 62.9644 111.546 62.9484 112.231 63.1118C115.737 64.0797 118.914 65.9782 121.426 68.6056C124.05 71.1318 125.937 74.3219 126.888 77.8355C127.052 78.5196 127.036 79.2343 126.842 79.9104C126.648 80.5865 126.282 81.2011 125.781 81.6948L87.5492 119.84C86.9151 120.468 86.0929 120.871 85.2081 120.988L71.6968 122.957C71.0585 123.05 70.4073 122.991 69.796 122.786C69.1846 122.581 68.6304 122.234 68.1781 121.775C67.7258 121.316 67.3883 120.757 67.1929 120.143C66.9975 119.529 66.9497 118.877 67.0534 118.242M101.142 71.4823L118.556 88.8751" fill="WHITE" />
+            </Group>
 
             <!-- Botón -->
             <Button fx:id="btnNewOrder" onAction="#onAddOrder" styleClass="btn-orange" text="Tomar Nuevo Pedido" />
