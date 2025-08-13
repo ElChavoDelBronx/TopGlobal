@@ -2,6 +2,7 @@ package com.topglobal.dailyorder.controllers.leader;
 
 import com.topglobal.dailyorder.controllers.UserController;
 import com.topglobal.dailyorder.controllers.admin.AdminController;
+import com.topglobal.dailyorder.utils.SessionData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,7 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 
-public class LeaderHomeController extends UserController {
+public class LeaderHomeController {
+    private SessionData sessionData;
     @FXML private Label lblFullName;
     @FXML private Label lblUsername;
     @FXML private Label lblPhoneNumber;
@@ -21,6 +23,14 @@ public class LeaderHomeController extends UserController {
         this.contentPane = contentPane;
     }
 
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+        lblFullName.setText(sessionData.getUser().getName() + " " + sessionData.getUser().getFatherLastname() + " " + sessionData.getUser().getMotherLastname());
+        lblUsername.setText(sessionData.getUser().getUser());
+        lblPhoneNumber.setText(sessionData.getUser().getPhoneNumber());
+        lblEmail.setText(sessionData.getUser().getEmail());
+        lblShift.setText(sessionData.getUser().getShift());
+    }
 
     //Inicializa tipografia
     public void initialize() {
@@ -30,16 +40,5 @@ public class LeaderHomeController extends UserController {
 
     }
 
-    //Carga información de usuario
-    @Override
-    public void setInfo() {
-        if (this.user != null) {
-            lblFullName.setText(user.getName() + " " + user.getFatherLastname() + " " + user.getMotherLastname());
-            lblUsername.setText(user.getUser());
-            lblPhoneNumber.setText(user.getPhoneNumber());
-            lblEmail.setText(user.getEmail());
-            lblShift.setText(user.getShift());
-        }
-    }
 
 }

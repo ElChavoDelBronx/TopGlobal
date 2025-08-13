@@ -5,6 +5,7 @@ import com.topglobal.dailyorder.dao.FoodOrderDAO;
 import com.topglobal.dailyorder.models.objects.DiningTable;
 import com.topglobal.dailyorder.models.objects.FoodOrder;
 import com.topglobal.dailyorder.utils.CustomAlert;
+import com.topglobal.dailyorder.utils.SessionData;
 import com.topglobal.dailyorder.utils.View;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,9 +29,13 @@ import java.util.ResourceBundle;
 
 public class LeaderOrderController implements Initializable {
     private FoodOrder selectedOrder;
-
+    private SessionData sessionData;
     @FXML
     private FlowPane flowPaneOrders;  // debe coincidir con fx:id en FXML
+
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -122,7 +127,7 @@ public class LeaderOrderController implements Initializable {
         btnEdit.setOnAction(event -> {
             selectedOrder = order;
             View view = new View(selectedOrder);
-            view.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_edit_order.fxml", "Editar Orden");
+            view.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_edit_order.fxml", "Editar Orden", sessionData);
         });
 
         buttonsSection.getChildren().addAll(btnEdit, btnDelete);

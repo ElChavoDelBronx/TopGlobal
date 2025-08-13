@@ -28,7 +28,7 @@ public class WaiterHistoryController {
     @FXML private Button btnReady;
     @FXML private Button btnApproved;
 
-    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    /*private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
     private void initialize() {
@@ -139,5 +139,5 @@ public class WaiterHistoryController {
         btnReady.getStyleClass().remove("tabButton-active");
         btnApproved.getStyleClass().remove("tabButton-active");
         active.getStyleClass().add("tabButton-active");
-    }
+    }*/
 }
