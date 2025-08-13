@@ -3,17 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="624" prefWidth="1350" stylesheets="@../../stylesheets/admin_list.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.admin.AdminListController">
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
     <center>
         <VBox prefHeight="624.0" prefWidth="989.0">
-            <Label styleClass="label-view" text="Gestionar Personal" />
-            <Label styleClass="label-welcome" text="Personal Restaurante" />
+            <Label styleClass="label-section" text="Gestionar Personal de Restaurante" />
             <HBox>
-                <Button fx:id="btnCreate" onAction="#onCreateEmployee" text="Registrar Empleado" />
-                <ComboBox fx:id="cbFiltroTipo" promptText="Filtrar por..." />
+                <padding>
+                    <Insets bottom="20"/>
+                </padding>
+                <Button fx:id="btnCreate" onAction="#onCreateEmployee" text="Registrar Empleado" styleClass="primary-button"/>
+                <!--<ComboBox fx:id="cbFiltroTipo" promptText="Filtrar por..." />
                 <ComboBox fx:id="cbValorFiltro" promptText="Selecciona valor" />
                 <Button text="Filtrar"  />
-                <TextField fx:id="txtBuscar" promptText="Buscar" />
+                <TextField fx:id="txtBuscar" promptText="Buscar" />-->
             </HBox>
             <TableView fx:id="tablePersonal" prefWidth="1350">
                 <columns>
@@ -26,7 +32,7 @@
                     <TableColumn fx:id="colCorreo" prefWidth="163.3333740234375" styleClass="table-head" text="Correo" />
                     <TableColumn fx:id="colCargo" prefWidth="147.33331298828125" styleClass="table-head" text="Cargo" />
                     <TableColumn fx:id="colEstatus" prefWidth="150.333251953125" styleClass="table-head" text="Estatus" />
-                    <TableColumn fx:id="colAcciones" prefWidth="148.333251953125" styleClass="table-head" text="Acciones" />
+                    <TableColumn fx:id="colAcciones" prefWidth="200" styleClass="table-head" text="Acciones" />
                 </columns>
             </TableView>
         </VBox>

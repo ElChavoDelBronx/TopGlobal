@@ -26,10 +26,12 @@
         </VBox>
     </top>
     <center>
-        <FlowPane vgap="20" hgap="20" fx:id="flowPaneTables">
-            <padding>
-                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
-            </padding>
-        </FlowPane>
+        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+            <FlowPane vgap="20" hgap="20" fx:id="flowPaneTables">
+                <padding>
+                    <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                </padding>
+            </FlowPane>
+        </ScrollPane>
     </center>
 </BorderPane>

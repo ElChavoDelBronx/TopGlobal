@@ -45,11 +45,15 @@ public class AdminEditEmployeeController implements Initializable {
         this.contentPane = contentPane;
     }
 
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+        loadEmployee(sessionData.getSelectedEmployee());
+    }
 
     //Inicializa menus desplegables, calculo de fecha actual, obtine id
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int id = AdminListController.EmpleadoContexto.idEmpleadoSeleccionado;
+        /*int id = AdminListController.EmpleadoContexto.idEmpleadoSeleccionado;
         if (id != -1) {
             try {
                 empleadoActual = dao.findEmployeeById(id);
@@ -60,7 +64,7 @@ public class AdminEditEmployeeController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         dpFechaNacimiento.valueProperty().addListener((obs, oldDate, newDate) -> {
             if (newDate != null) {

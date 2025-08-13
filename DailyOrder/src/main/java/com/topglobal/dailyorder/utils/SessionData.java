@@ -18,6 +18,7 @@ public class SessionData {
     private List<FoodOrder> foodOrders = new ArrayList<>();
     private DiningTable selectedTable;
     private MenuItem selectedMenuItem;
+    private Employee selectedEmployee;
 
     public Employee getUser() {
         return user;
@@ -38,6 +39,8 @@ public class SessionData {
     public void setEmployees(List<Employee> employees) {this.employees = employees;}
     public void addElement(Employee employee) {employees.add(employee);}
     public void removeElement(Employee employee) {employees.remove(employee);}
+    public Employee getSelectedEmployee() {return selectedEmployee;}
+    public void setSelectedEmployee(Employee selectedEmployee) {this.selectedEmployee = selectedEmployee;}
 
     public List<MenuItem> getMenuItems() {return menuItems;}
     public void setMenuItems(List<MenuItem> menuItems) {this.menuItems = menuItems;}

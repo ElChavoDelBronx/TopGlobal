@@ -59,7 +59,7 @@ public class EmployeeDAO {
 
     //Metodo para encontrar información de todos los empleados registrados
     public List<Employee> findAllEmployees() throws SQLException {
-        String sql = "SELECT e.ID_EMPLOYEE, e.NAME, e.FATHER_LASTNAME, e.MOTHER_LASTNAME, c.NAME_USER, e.PHONE_NUMBER, e.EMAIL, e.ROLE, c.STATUS \n" +
+        String sql = "SELECT e.ID_EMPLOYEE, e.NAME, e.FATHER_LASTNAME, e.MOTHER_LASTNAME, c.NAME_USER, e.PHONE_NUMBER, e.EMAIL, e.ROLE, c.STATUS, e.GENDER, e.BIRTHDAY, e.CURP, e.SHIFT \n" +
                 "FROM EMPLOYEE e JOIN CREDENTIAL_DATA c ON e.ID_EMPLOYEE = c.FK_ID_EMPLOYEE";
         List<Employee> personal = new ArrayList<>();
         try{
@@ -77,6 +77,10 @@ public class EmployeeDAO {
                 personalI.setEmail(rs.getString("EMAIL"));
                 personalI.setRole(rs.getString("ROLE"));
                 personalI.setStatus(rs.getInt("STATUS"));
+                personalI.setGender(rs.getString("GENDER"));
+                personalI.setBirthday(rs.getDate("BIRTHDAY").toLocalDate());
+                personalI.setCurp(rs.getString("CURP"));
+                personalI.setShift(rs.getString("SHIFT"));
 
                 personal.add(personalI);
             }

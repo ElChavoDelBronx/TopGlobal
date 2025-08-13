@@ -2,30 +2,26 @@
     -fx-font-family: "Lexend Regular";
     -fx-font-size: 24px;
 }
-#btnCreate{
-    -fx-font-family: "Lexend Regular";
-    -fx-font-size: 24px;
-    -fx-pref-height: 50px;
+.primary-button {
     -fx-background-color: #1BAFC0;
     -fx-background-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 1);
-}
-#btnFiltrar{
+    -fx-border-color: #1BAFC0;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
     -fx-font-family: "Lexend Regular";
     -fx-font-size: 24px;
+    -fx-cursor: hand;
     -fx-pref-height: 50px;
 }
-#txtBuscar{
-    -fx-font-family: "Lexend Regular";
-    -fx-font-size: 24px;
-    -fx-pref-height: 50px;
+.primary-button:hover, .secondary-button:hover {
+    -fx-background-color: #0E5E67;
+    -fx-border-color: #0E5E67;
+    -fx-text-fill: #FFFFFF;
 }
-.label-view {
-    -fx-font-family: "Lexend Regular";
-    -fx-opacity: 0.5;
-    -fx-font-size: 20px;
+.primary-button:hover > .button-icon {
+    -fx-fill: #FFFFFF;
 }
-.label-welcome{
+.label-section {
     -fx-font-family: "Lexend Regular";
     -fx-font-size: 40px;
 }

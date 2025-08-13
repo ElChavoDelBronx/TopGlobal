@@ -18,7 +18,7 @@ import java.time.Period;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminWatchEmployeeController implements Initializable {
+public class AdminWatchEmployeeController {
     private SessionData sessionData;
     @FXML private TextField tfNombre;
     @FXML private TextField tfApellidoP;
@@ -45,8 +45,13 @@ public class AdminWatchEmployeeController implements Initializable {
         this.contentPane = contentPane;
     }
 
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+        loadEmployee(sessionData.getSelectedEmployee());
+    }
+
     //Obtine ID de empleado seleccionado
-    @Override
+    /*@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int id = AdminListController.EmpleadoContexto.idEmpleadoSeleccionado;
         if (id != -1) {
@@ -59,7 +64,7 @@ public class AdminWatchEmployeeController implements Initializable {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
     //Carga información completa del empleado
     private void loadEmployee(Employee empleado) {

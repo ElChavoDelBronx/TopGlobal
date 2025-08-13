@@ -43,6 +43,10 @@ public class AdminFormController {
         this.contentPane = contentPane;
     }
 
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+    }
+
     //Inicializa tipografia e información de menus desplegables
     @FXML
     private void initialize() {
