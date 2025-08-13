@@ -38,7 +38,7 @@
 
             <!-- Botón de vista -->
             <VBox alignment="TOP_CENTER" prefHeight="242.0" prefWidth="289.0" VBox.vgrow="ALWAYS" spacing="15">
-                <Button styleClass="active-button" text="Dashboard">
+                <Button styleClass="active-button" text="Dashboard" onAction="#onDashboard">
                     <graphic>
                         <Group>
                             <SVGPath content="M23.3333 6.86271H4.66655V7.96073H23.3333V6.86271ZM4.66655 21.1372V10.1568H23.3333V21.1372H4.66655ZM2.33325 4.66663V23.3333H25.6665V4.66663H2.33325ZM19.8333 12.8333V19.8333H22.1665V12.8333H19.8333ZM16.3333 19.8333V15.1666H18.6665V19.8333H16.3333ZM12.8333 18.6666V19.8333H15.1665V18.6666H12.8333Z" fill="WHITE" />

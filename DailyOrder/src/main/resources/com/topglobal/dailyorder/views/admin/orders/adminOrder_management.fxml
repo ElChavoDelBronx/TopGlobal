@@ -8,35 +8,51 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.shape.SVGPath?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.topglobal.dailyorder.controllers.admin.orders.AdminOrderManagement"
-            prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../stylesheets/dish_management.css">
-    <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
-    </padding>
-    <top>
-        <VBox>
-            <Label text="Gestión de Mesas" styleClass="label-section"/>
-            <FlowPane vgap="10" hgap="10" fx:id="fpCategories">
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../stylesheets/waiter_history.css" styleClass="root">
+    <!-- Título principal -->
+    <Label styleClass="h1" text="Gestión de Órdenes">
+        <VBox.margin>
+            <Insets bottom="0" left="10" right="0" top="10" />
+        </VBox.margin>
+    </Label>
+
+    <HBox spacing="30">
+        <!-- Columna derecha (Gestión de Órdenes) -->
+        <VBox spacing="16" HBox.hgrow="ALWAYS">
+            <HBox spacing="12">
                 <padding>
-                    <Insets top="10.0" bottom="10.0"/>
+                    <Insets bottom="6" left="6" right="6" top="6" />
                 </padding>
-                <Button text="Todas" onAction="#onAll" styleClass="active-category"/>
-                <Button text="Pendientes" onAction="#onPending" styleClass="category-button"/>
-                <Button text="En Preparación" onAction="#onPreparation" styleClass="category-button"/>
-                <Button text="Listas para Servir" onAction="#onReady" styleClass="category-button"/>
-                <Button text="Aprobadas" onAction="#onApproved" styleClass="category-button"/>
-            </FlowPane>
+                <Button fx:id="btnAll"       styleClass="tabButton" text="Todas"
+                        onAction="#loadAllOrders"/>
+                <Button fx:id="btnPending"   styleClass="tabButton" text="Pendientes"
+                        onAction="#loadPendingOrders"/>
+                <Button fx:id="btnPrep"      styleClass="tabButton" text="En Preparación"
+                        onAction="#loadPrepOrders"/>
+                <Button fx:id="btnReady"     styleClass="tabButton" text="Listas para Servir"
+                        onAction="#loadReadyOrders"/>
+                <Button fx:id="btnApproved"  styleClass="tabButton" text="Aprobadas"
+                        onAction="#loadApprovedOrders"/>
+            </HBox>
         </VBox>
-    </top>
-    <center>
-        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
-            <FlowPane vgap="20" hgap="20" fx:id="fpOrders">
-                <padding>
-                    <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
-                </padding>
-            </FlowPane>
-        </ScrollPane>
-    </center>
-</BorderPane>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                styleClass="scroll-light"
+                vbarPolicy="AS_NEEDED"
+                VBox.vgrow="ALWAYS">
+        <!-- Contenedor de tarjetas dinámico -->
+        <FlowPane fx:id="cardContainer" hgap="24" vgap="24">
+            <padding>
+                <Insets bottom="18" left="10" right="10" top="10" />
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+
+    <padding>
+        <Insets bottom="12" left="12" right="12" top="12" />
+    </padding>
+</VBox>

@@ -24,8 +24,12 @@ public class AdminController {
 
     public void setSessionData(SessionData sessionData) {
         this.sessionData = sessionData;
+        onDashboard();
     }
-
+    @FXML
+    private void onDashboard() {
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_dashboard.fxml", contentPane, sessionData);
+    }
     @FXML
     private void onTables(ActionEvent event) {
         View.loadView("/com/topglobal/dailyorder/views/admin/admin_table_management.fxml", contentPane, sessionData);
