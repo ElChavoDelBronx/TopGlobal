@@ -4,11 +4,13 @@ import com.topglobal.dailyorder.Main;
 import com.topglobal.dailyorder.controllers.UserController;
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.*;
+import com.topglobal.dailyorder.utils.SessionData;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
 
 public class LoginController {
+    private SessionData sessionData = new SessionData();
     @FXML private TextField tfUser;
     @FXML private PasswordField pwfLogin;
     @FXML private TextField tfPassword;
@@ -23,20 +25,16 @@ public class LoginController {
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"),12);
+        tfPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            pwfLogin.setText(newValue);
+        });
     }
     @FXML
     protected void onLoginButtonClick() {
         //Obtiene los valores de los campos de texto
         String user = tfUser.getText().trim();
-        String hiddenPassword = pwfLogin.getText().trim();
-        String visiblePassword = tfPassword.getText().trim();
-        String password = "";
-        //Validación de contraseña con visibilidad alternada
-        if(!hiddenPassword.isEmpty()){
-            password = hiddenPassword;
-        }else if(!visiblePassword.isEmpty()){
-            password = visiblePassword;
-        }
+        String password = pwfLogin.getText().trim();
+
         //Valida que los campos no estén vacíos
         if (!user.isEmpty() && !password.isEmpty()) {
             //Obtiene el empleado por sus credenciales
@@ -54,12 +52,9 @@ public class LoginController {
                     newFxmlPath = "/com/topglobal/dailyorder/views/waiter/waiter_view.fxml";
                     title = "Mesero";
                 }
+                sessionData.setUser(employee);
                 //Cambia la escena a la vista correspondiente
-                UserController controller = Main.changeScene(newFxmlPath, title);
-                if(controller != null) {
-                    controller.setUser(employee);
-                    controller.setInfo();
-                }
+                Main.changeScene(newFxmlPath, title, sessionData);
             }else{
                 showAlert("Error", "Acceso denegado. Verifique su información de acceso o estado de cuenta con el administrador.");
             }

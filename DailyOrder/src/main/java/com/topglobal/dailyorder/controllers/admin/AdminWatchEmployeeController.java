@@ -2,6 +2,8 @@ package com.topglobal.dailyorder.controllers.admin;
 
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Employee;
+import com.topglobal.dailyorder.utils.SessionData;
+import com.topglobal.dailyorder.utils.View;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -17,8 +19,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminWatchEmployeeController implements Initializable {
-    @FXML
-    private TextField tfNombre;
+    private SessionData sessionData;
+    @FXML private TextField tfNombre;
     @FXML private TextField tfApellidoP;
     @FXML private TextField tfApellidoM;
     @FXML private TextField tfGenero;
@@ -84,13 +86,13 @@ public class AdminWatchEmployeeController implements Initializable {
     //Regresa a tabla de empleados
     @FXML
     private void onReturnList(ActionEvent event) {
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane, sessionData);
     }
 
     //Cambia a vista para editar información del empleado sleecionado
     @FXML
     private void onEditEmployee(ActionEvent event) {
-        AdminController.loadView( "/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane);
+        View.loadView( "/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane, sessionData);
 
     }
 

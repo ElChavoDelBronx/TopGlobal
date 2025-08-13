@@ -1,6 +1,8 @@
 package com.topglobal.dailyorder.controllers.admin;
 
 import com.topglobal.dailyorder.controllers.UserController;
+import com.topglobal.dailyorder.utils.SessionData;
+import com.topglobal.dailyorder.utils.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,7 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 
-public class AdminHomeController extends UserController {
+public class AdminHomeController {
+    private SessionData sessionData;
     @FXML private Label lblFullName;
     @FXML private Label lblUsername;
     @FXML private Label lblPhoneNumber;
@@ -20,6 +23,9 @@ public class AdminHomeController extends UserController {
         this.contentPane = contentPane;
     }
 
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+    }
 
     //Inicializa tipografia
     public void initialize() {
@@ -29,23 +35,11 @@ public class AdminHomeController extends UserController {
 
     }
 
-    //Carga información de usuario
-    @Override
-    public void setInfo() {
-        if (this.user != null) {
-            lblFullName.setText(user.getName() + " " + user.getFatherLastname() + " " + user.getMotherLastname());
-            lblUsername.setText(user.getUser());
-            lblPhoneNumber.setText(user.getPhoneNumber());
-            lblEmail.setText(user.getEmail());
-            lblShift.setText(user.getShift());
-        }
-    }
-
     //Metodo para cambiar de vista al formulario de registro de empleados
     @FXML
     private void onCreateEmployee(ActionEvent event) {
         System.out.println("Click");
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane, sessionData);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.topglobal.dailyorder;
 
+import com.topglobal.dailyorder.utils.SessionData;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class Main extends Application {
     private static Stage primaryStage;
@@ -26,13 +28,13 @@ public class Main extends Application {
         primaryStage.getIcons().add(image);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(700);
         primaryStage.show();
     }
 
-    public static <T> T changeScene(String fxmlPath, String title) {
+    public static <T> T changeScene(String fxmlPath, String title, SessionData sessionData) {
         try {
             // Guardar estado actual
             boolean wasMaximized = primaryStage.isMaximized();
@@ -45,6 +47,7 @@ public class Main extends Application {
             // Cargar nueva scene
             FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlPath));
             Parent root = loader.load();
+            T controller = loader.getController();
             Scene newScene = new Scene(root);
 
             // Aplicar title y scene (no llamar a show() aquí)
@@ -76,8 +79,13 @@ public class Main extends Application {
                     primaryStage.setMaximized(false);
                 }
             });
+            // Pasar el sessionData si existe
+            try {
+                Method method = controller.getClass().getMethod("setSessionData", SessionData.class);
+                method.invoke(controller, sessionData);
+            } catch (NoSuchMethodException ignored) {}
 
-            return loader.getController();
+            return controller;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

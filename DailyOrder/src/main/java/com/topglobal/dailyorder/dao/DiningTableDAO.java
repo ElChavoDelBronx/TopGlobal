@@ -39,7 +39,7 @@ public class DiningTableDAO {
         }
     }
     public static List<DiningTable> findAll() throws SQLException {
-        String sql = "SELECT ID_TABLE, AREA, CHAIR_NUMBER, STATUS FROM DINING_TABLE";
+        String sql = "SELECT ID_TABLE, AREA, CHAIR_NUMBER, STATUS FROM DINING_TABLE ORDER BY ID_TABLE ASC";
         List<DiningTable> tables = new ArrayList<>();
         try{
             Connection conn = DatabaseConfig.getConnection();

@@ -17,7 +17,7 @@
     </padding>
     <top>
         <VBox>
-            <Label text="Gestión de Mesas" styleClass="label-section"/>
+            <Label text="Gestión de Menú y Platillos" styleClass="label-section"/>
             <HBox spacing="10">
                 <Button fx:id="btnAddDish" onAction="#onAddDish" text="Añadir Nuevo Platillo" styleClass="primary-button">
                     <graphic>

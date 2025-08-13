@@ -2,6 +2,8 @@ package com.topglobal.dailyorder.controllers.admin;
 
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Employee;
+import com.topglobal.dailyorder.utils.SessionData;
+import com.topglobal.dailyorder.utils.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +18,7 @@ import java.time.Period;
 import java.util.ResourceBundle;
 
 public class AdminEditEmployeeController implements Initializable {
-
+    private SessionData sessionData;
     @FXML private TextField tfNombre;
     @FXML private TextField tfApellidoP;
     @FXML private TextField tfApellidoM;
@@ -42,6 +44,7 @@ public class AdminEditEmployeeController implements Initializable {
     public void setContentPane(AnchorPane contentPane) {
         this.contentPane = contentPane;
     }
+
 
     //Inicializa menus desplegables, calculo de fecha actual, obtine id
     @Override
@@ -109,7 +112,7 @@ public class AdminEditEmployeeController implements Initializable {
     //Carga vista para visualizar información del empleado
     @FXML
     private void onCancelar(ActionEvent event) {
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane, sessionData);
     }
 
     //Guarda modificaciones en la información del usuario y cambia a vista de tabla de empleados
@@ -148,7 +151,7 @@ public class AdminEditEmployeeController implements Initializable {
             System.out.println("ID del empleado a actualizar: " + empleadoActual.getId());
             dao.updateEmployee(empleadoActual);
             showAlert("¡ÉXITO!", "Guardado con éxito");
-            AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
+            View.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane, sessionData);
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("ERROR", "Ocurrió un error al registrar al empleado.");

@@ -3,6 +3,7 @@ package com.topglobal.dailyorder.controllers.admin;
 import com.topglobal.dailyorder.dao.DiningTableDAO;
 import com.topglobal.dailyorder.models.objects.DiningTable;
 import com.topglobal.dailyorder.utils.CustomAlert;
+import com.topglobal.dailyorder.utils.SessionData;
 import com.topglobal.dailyorder.utils.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,26 +22,37 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class AdminTableManagement implements Initializable {
-    private DiningTable selectedTable;
+public class AdminTableManagement {
+    private SessionData sessionData;
     @FXML Button btnAddTable;
     @FXML FlowPane flowPaneTables;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+        if(sessionData.getDiningTables().isEmpty()){
+            sessionData.setDiningTables(loadTables());
+        }else{
+            for(DiningTable diningTable : sessionData.getDiningTables()){
+                flowPaneTables.getChildren().add(createTableCard(diningTable));
+            }
+        }
+    }
+
+    @FXML
+    public void initialize() {
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
-        loadTables();
     }
     @FXML
     public void onAddTable(ActionEvent event) {
         View view = new View();
-        view.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_add_table.fxml", "Añadir Nueva Mesa");
+        view.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_add_table.fxml", "Añadir Nueva Mesa", sessionData);
     }
-    protected void loadTables() {
+    protected List<DiningTable> loadTables() {
+        List <DiningTable> tables;
         try{
-            List <DiningTable> tables = DiningTableDAO.findAll();
+            tables = DiningTableDAO.findAll();
             for (DiningTable table : tables) {
                 VBox card = createTableCard(table);
                 flowPaneTables.getChildren().add(card);
@@ -48,6 +60,7 @@ public class AdminTableManagement implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return tables;
     }
     private VBox createTableCard(DiningTable table) {
         //VBox es el contenedor de la tarjeta
@@ -71,18 +84,17 @@ public class AdminTableManagement implements Initializable {
         btnDelete.getStyleClass().add("action-button");
         //Se le agrega funcionalidad a los botones
         btnEdit.setOnAction(event -> {
-            selectedTable = table;
-            View view = new View(selectedTable);
-            view.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_edit_table.fxml", "Editar Mesa");
+            sessionData.setSelectedTable(table);
+            View.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_edit_table.fxml", "Editar Mesa", sessionData);
         });
         btnDelete.setOnAction(event -> {
-            selectedTable = table;
+            sessionData.setSelectedTable(table);
             //Se muestra una alerta de confirmación antes de eliminar la mesa
             Optional<ButtonType> result = CustomAlert.showConfirmationAlert("Confirmar Eliminación","¿Estás seguro?", "Esta acción no se puede deshacer.");
             // Si el usuario confirma, se procede a eliminar la mesa
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 try {
-                    DiningTableDAO.delete(selectedTable);
+                    DiningTableDAO.delete(sessionData.getSelectedTable());
                     CustomAlert.showInfoAlert("ÉXITO", "Mesa eliminada correctamente.");
                     flowPaneTables.getChildren().removeIf(node -> ((VBox) node).getChildren().contains(lblTableNumber));
                 } catch (Exception e) {

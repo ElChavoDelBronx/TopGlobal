@@ -31,7 +31,7 @@ public class View {
         this.menuItem = menuItem;
     }
 
-    public static <T> T loadView(String fxmlPath, AnchorPane contentPane) {
+    public static <T> T loadView(String fxmlPath, AnchorPane contentPane, SessionData sessionData) {
         try {
             FXMLLoader loader = new FXMLLoader(View.class.getResource(fxmlPath));
             Parent view = loader.load();
@@ -45,6 +45,11 @@ public class View {
             } catch (NoSuchMethodException ignored) {
                 // El controlador no tiene setContentPane, lo ignoramos
             }
+            // Pasar el sessionData si existe
+            try {
+                Method method = controller.getClass().getMethod("setSessionData", SessionData.class);
+                method.invoke(controller, sessionData);
+            } catch (NoSuchMethodException ignored) {}
 
             contentPane.getChildren().setAll(view);
             AnchorPane.setTopAnchor(view, 0.0);
@@ -59,7 +64,7 @@ public class View {
         }
     }
     //Carga un modal
-    public  <T> T loadModal(ActionEvent event, String fxmlPath, String title) {
+    public static <T> T loadModal(ActionEvent event, String fxmlPath, String title, SessionData sessionData) {
 
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -68,18 +73,17 @@ public class View {
             Parent root = loader.load();
             // Se obtiene el controlador del FXML cargado
             T controller = loader.getController();
-            //Aca se verificará las instancias de los controladores que se necesiten
-            if(controller instanceof AdminEditTableController){
-                ((AdminEditTableController) controller).setDiningTable(diningTable);
-            }else if(controller instanceof EditMenuItemFormController){
-                ((EditMenuItemFormController) controller).setFormData(menuItem);
-            }
 
             Stage dialog = new Stage();
             dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setTitle(title);
             dialog.setScene(new Scene(root));
+            // Pasar el sessionData si existe
+            try {
+                Method method = controller.getClass().getMethod("setSessionData", SessionData.class);
+                method.invoke(controller, sessionData);
+            } catch (NoSuchMethodException ignored) {}
             dialog.showAndWait();
             return controller;
         } catch (Exception e) {

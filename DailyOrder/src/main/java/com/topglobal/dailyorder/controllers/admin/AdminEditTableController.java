@@ -3,6 +3,7 @@ package com.topglobal.dailyorder.controllers.admin;
 import com.topglobal.dailyorder.dao.DiningTableDAO;
 import com.topglobal.dailyorder.models.objects.DiningTable;
 import com.topglobal.dailyorder.utils.CustomAlert;
+import com.topglobal.dailyorder.utils.SessionData;
 import com.topglobal.dailyorder.utils.TextFieldUtils;
 import com.topglobal.dailyorder.utils.View;
 import javafx.fxml.FXML;
@@ -12,16 +13,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 
 public class AdminEditTableController {
+    private SessionData sessionData;
     @FXML TextField tfTableNumber;
     @FXML TextField tfArea;
     @FXML TextField tfTableCapacity;
     @FXML CheckBox cbAvailability;
     @FXML Button btnCancel;
-    public void setDiningTable(DiningTable diningTable) {
-        tfTableNumber.setText(String.valueOf(diningTable.getTableNumber()));
-        tfArea.setText(diningTable.getArea());
-        tfTableCapacity.setText(String.valueOf(diningTable.getCapacity()));
-        cbAvailability.setSelected(diningTable.getStatus() == 1);
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
+        tfTableNumber.setText(String.valueOf(sessionData.getSelectedTable().getTableNumber()));
+        tfArea.setText(sessionData.getSelectedTable().getArea());
+        tfTableCapacity.setText(String.valueOf(sessionData.getSelectedTable().getCapacity()));
+        cbAvailability.setSelected(sessionData.getSelectedTable().getStatus() == 1);
     }
 
     public void initialize() {
@@ -53,9 +56,10 @@ public class AdminEditTableController {
         try {
             DiningTableDAO.update(newTable);
             CustomAlert.showInfoAlert("ÉXITO", "Mesa actualizada correctamente");
+            sessionData.addElement(newTable);
             View.closeWindow(btnCancel);
         } catch (Exception e) {
-            CustomAlert.showErrorAlert("ERROR", "No se pudo actualizar la mesa.");
+            CustomAlert.showErrorAlert("ERROR", "No se pudo actualizar la mesa. Verifique los datos ingresados.");
             throw new RuntimeException(e);
         }
     }

@@ -7,6 +7,7 @@ import com.topglobal.dailyorder.models.objects.MenuCategory;
 import com.topglobal.dailyorder.models.objects.MenuItem;
 
 import com.topglobal.dailyorder.utils.CustomAlert;
+import com.topglobal.dailyorder.utils.SessionData;
 import com.topglobal.dailyorder.utils.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MenuManagementController {
+    private SessionData sessionData;
     private MenuItem selectedDish;
     private List<Button> categoryButtons = new ArrayList<>();
     private List<MenuItem> allMenuItems = new ArrayList<>();
@@ -38,6 +40,11 @@ public class MenuManagementController {
     @FXML ScrollPane categoryScroll;
     @FXML FlowPane fpCategories;
     @FXML FlowPane fpDishes;
+
+    public void setSessionData(SessionData sessionData){
+        this.sessionData = sessionData;
+    }
+
     public void initialize() {
         loadAllDishCards();
         try {
@@ -177,7 +184,7 @@ public class MenuManagementController {
         btnEdit.setOnAction(event -> {
             selectedDish = dish;
             View view = new View(selectedDish);
-            view.loadModal(event, "/com/topglobal/dailyorder/views/admin/menu/editMenuItem_form.fxml", "Editar Platillo");
+            view.loadModal(event, "/com/topglobal/dailyorder/views/admin/menu/editMenuItem_form.fxml", "Editar Platillo", sessionData);
         });
         //Agregamos los HBox hijos al HBox padre antes de añadirlo a card
         hboxInf.getChildren().addAll(costSection, switchSection);
@@ -191,6 +198,6 @@ public class MenuManagementController {
     @FXML
     private void onAddDish(ActionEvent event) {
         View view = new View();
-        view.loadModal(event, "/com/topglobal/dailyorder/views/admin/menu/menuItem_form.fxml", "Agregar Platillo");
+        view.loadModal(event, "/com/topglobal/dailyorder/views/admin/menu/menuItem_form.fxml", "Añadir Nuevo Platillo", sessionData);
     }
 }

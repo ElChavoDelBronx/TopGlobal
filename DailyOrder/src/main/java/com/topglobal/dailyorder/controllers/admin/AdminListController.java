@@ -3,6 +3,8 @@ package com.topglobal.dailyorder.controllers.admin;
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Admin;
 import com.topglobal.dailyorder.models.users.Employee;
+import com.topglobal.dailyorder.utils.SessionData;
+import com.topglobal.dailyorder.utils.View;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,9 +28,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminListController implements Initializable {
-
-    @FXML
-    private TableView<Employee> tablePersonal;
+    private SessionData sessionData;
+    @FXML private TableView<Employee> tablePersonal;
     @FXML private TableColumn<Employee, Void> colNumero;
     @FXML private TableColumn<Employee, String> colNombre;
     @FXML private TableColumn<Employee, String> colApellidoP;
@@ -191,7 +192,7 @@ public class AdminListController implements Initializable {
     @FXML
     private void onCreateEmployee(ActionEvent event) {
         System.out.println("Click");
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_form.fxml", contentPane, sessionData);
 
     }
 
@@ -200,7 +201,7 @@ public class AdminListController implements Initializable {
     private void onWatchEmployee( int id) {
         System.out.println("Click");
         EmpleadoContexto.idEmpleadoSeleccionado = id;
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_watch_employee.fxml", contentPane, sessionData);
     }
 
     //Metodo para cambiar a vista de editar información completa de un solo empleado
@@ -208,7 +209,7 @@ public class AdminListController implements Initializable {
     private void onEditEmployee(int id) {
         System.out.println("Click");
         EmpleadoContexto.idEmpleadoSeleccionado = id;
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_edit_employee.fxml", contentPane, sessionData);
 
     }
 

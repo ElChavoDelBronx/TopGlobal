@@ -30,7 +30,7 @@
         </VBox>
         <VBox>
             <Label text="Categoría:" styleClass="label-info"/>
-            <ComboBox fx:id="cbCategory" promptText="Selecciona la carrera" styleClass="form-field" editable="true"/>
+            <ComboBox fx:id="cbCategory" promptText="Selecciona categoría" styleClass="form-field" editable="true"/>
         </VBox>
     </HBox>
 

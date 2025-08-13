@@ -1,6 +1,7 @@
 package com.topglobal.dailyorder.controllers.waiter;
 
 import com.topglobal.dailyorder.controllers.UserController;
+import com.topglobal.dailyorder.utils.SessionData;
 import com.topglobal.dailyorder.utils.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +13,9 @@ import javafx.scene.text.Font;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class WaiterHomeController extends UserController {
-    @FXML
-    private Label lblFullName;
+public class WaiterHomeController {
+    private SessionData sessionData;
+    @FXML private Label lblFullName;
     @FXML private Label lblUsername;
     @FXML private Label lblPhoneNumber;
     @FXML private Label lblEmail;
@@ -25,16 +26,11 @@ public class WaiterHomeController extends UserController {
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
         Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
     }
-    @Override
-    public void setInfo() {
-        if (this.user != null) {
-            lblFullName.setText(user.getName() + " " + user.getFatherLastname() + " " + user.getMotherLastname());
-            lblUsername.setText(user.getUser());
-            lblPhoneNumber.setText(user.getPhoneNumber());
-            lblEmail.setText(user.getEmail());
-            lblShift.setText(user.getShift());
-        }
+
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
     }
+
     @FXML
     private void marcarEntrada() {
         mostrarAlerta("Entrada marcada correctamente.");
@@ -60,6 +56,6 @@ public class WaiterHomeController extends UserController {
     @FXML
     public void onAddOrder(ActionEvent event) {
         View view = new View();
-        view.loadModal(event, "/com/topglobal/dailyorder/views/waiter/waiter_add_order.fxml", "Añadir Nueva Orden");
+        view.loadModal(event, "/com/topglobal/dailyorder/views/waiter/waiter_add_order.fxml", "Añadir Nueva Orden", sessionData);
     }
 }

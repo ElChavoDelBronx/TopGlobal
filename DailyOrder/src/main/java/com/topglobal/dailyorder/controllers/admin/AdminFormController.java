@@ -2,6 +2,8 @@ package com.topglobal.dailyorder.controllers.admin;
 
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.Employee;
+import com.topglobal.dailyorder.utils.SessionData;
+import com.topglobal.dailyorder.utils.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +18,7 @@ import java.time.Period;
 import java.util.List;
 
 public class AdminFormController {
-
+    private SessionData sessionData;
     @FXML private TextField tfNombre;
     @FXML private TextField tfApellidoP;
     @FXML private TextField tfApellidoM;
@@ -120,7 +122,7 @@ public class AdminFormController {
         try {
             dao.createEmployee(employee);
             showAlert("¡ÉXITO!", "Registro Exitoso");
-            AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
+            View.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane, sessionData);
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("ERROR", "Ocurrió un error al registrar al empleado.");
@@ -131,7 +133,7 @@ public class AdminFormController {
     //Carga vista para visualizar información del empleado
     @FXML
     private void onCancelar() {
-        AdminController.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane);
+        View.loadView("/com/topglobal/dailyorder/views/admin/admin_list.fxml", contentPane, sessionData);
     }
 
     //Metodo utilizado para mostrar POP-POPS

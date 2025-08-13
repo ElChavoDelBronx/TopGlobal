@@ -14,7 +14,7 @@
     <padding>
         <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
     </padding>
-    <Label text="Añadir Nueva Mesa" styleClass="label-modal"/>
+    <Label text="Editar Mesa" styleClass="label-modal"/>
     <VBox>
         <Label text="Número de Mesa:" styleClass="label-info"/>
         <TextField fx:id="tfTableNumber" promptText="Ej.10" disable="true"/>
