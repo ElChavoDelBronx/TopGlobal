@@ -21,4 +21,7 @@ module com.topglobal.dailyorder {
     opens com.topglobal.dailyorder.controllers.admin.menu to javafx.fxml;
     exports com.topglobal.dailyorder.controllers.admin.orders;
     opens com.topglobal.dailyorder.controllers.admin.orders to javafx.fxml;
+    exports com.topglobal.dailyorder.controllers.leader.orders to javafx.fxml;
+    opens com.topglobal.dailyorder.controllers.leader.orders to javafx.fxml;
+
 }

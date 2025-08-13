@@ -6,9 +6,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../stylesheets/sidebar.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.waiter.WaiterController">
+<BorderPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../stylesheets/sidebar.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topglobal.dailyorder.controllers.leader.LeaderController">
 
     <!-- SIDEBAR -->
     <left>
@@ -18,8 +17,8 @@
             </padding>
 
             <!-- Títulos -->
-            <VBox alignment="TOP_CENTER" >
-                <Button  styleClass="menu-button" text="Daily Order">
+            <VBox alignment="TOP_CENTER">
+                <Button styleClass="menu-button" text="Daily Order">
                     <graphic>
                         <ImageView fitHeight="28" fitWidth="28">
                             <image>
@@ -32,13 +31,13 @@
             </VBox>
 
             <!-- Rol -->
-            <VBox alignment="TOP_CENTER">
-                <Button styleClass="user-color" text="Admin" />
+            <VBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="229.0">
+                <Button prefHeight="35.0" prefWidth="200.0" styleClass="user-color" text="Lider de Meseros" />
             </VBox>
 
             <!-- Botón de vista -->
-            <VBox alignment="TOP_CENTER" prefHeight="242.0" prefWidth="289.0" VBox.vgrow="ALWAYS" spacing="15">
-                <Button styleClass="active-button" text="Ordenes">
+            <VBox alignment="TOP_CENTER" prefHeight="242.0" prefWidth="289.0" spacing="15" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnOrden" onAction="#onOrder" styleClass="active-button" text="Ordenes">
                     <graphic>
                         <Group>
                             <SVGPath content="M3.5 5.83337V22.1667C3.5 24.7345 5.593 25.6667 7 25.6667H24.5V23.3334H7.014C6.475 23.3194 5.83333 23.107 5.83333 22.1667C5.83333 21.2264 6.475 21.014 7.014 21H24.5V4.66671C24.5 3.37987 23.4535 2.33337 22.1667 2.33337H7C5.593 2.33337 3.5 3.26554 3.5 5.83337Z" fill="WHITE" />
@@ -46,7 +45,7 @@
                         </Group>
                     </graphic>
                 </Button>
-                <Button styleClass="normal-button" text="Planificación">
+                <Button fx:id="btnPlan" onAction="#onPlan" styleClass="normal-button" text="Planificación">
                     <graphic>
                         <Group>
                             <SVGPath content="M16.8466 6.74328L4.8976 18.6899C4.54232 19.0451 4.31114 19.5054 4.23843 20.0024L3.59326 24.4054L7.99743 23.7603C8.49462 23.6872 8.95495 23.4556 9.30993 23.0999L21.2566 11.1533M16.8466 6.74328L19.4471 4.14161C19.6204 3.96823 19.8262 3.83069 20.0527 3.73686C20.2792 3.64302 20.522 3.59473 20.7672 3.59473C21.0124 3.59473 21.2551 3.64302 21.4816 3.73686C21.7081 3.83069 21.9139 3.96823 22.0873 4.14161L23.8583 5.91261C24.0316 6.08595 24.1692 6.29175 24.263 6.51825C24.3569 6.74476 24.4051 6.98753 24.4051 7.2327C24.4051 7.47787 24.3569 7.72063 24.263 7.94714C24.1692 8.17364 24.0316 8.37944 23.8583 8.55278L21.2566 11.1533M16.8466 6.74328L21.2566 11.1533" fill="WHITE" />
@@ -74,4 +73,3 @@
         <AnchorPane fx:id="contentPane" />
     </center>
 </BorderPane>
-

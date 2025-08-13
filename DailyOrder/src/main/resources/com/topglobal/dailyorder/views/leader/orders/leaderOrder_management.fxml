@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.SVGPath?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.topglobal.dailyorder.controllers.leader.orders.LeaderOrderController"
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../stylesheets/dish_management.css">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+    <top>
+        <VBox>
+            <Label text="Gestión de Ordenes" styleClass="label-section"/>
+            <FlowPane vgap="10" hgap="10" fx:id="fpCategories">
+                <padding>
+                    <Insets top="10.0" bottom="10.0"/>
+                </padding>
+                <Button text="Todas" onAction="#onAll" styleClass="active-category"/>
+                <Button text="Pendientes" onAction="#onPending" styleClass="category-button"/>
+                <Button text="En Preparación" onAction="#onPreparation" styleClass="category-button"/>
+                <Button text="Listas para Servir" onAction="#onReady" styleClass="category-button"/>
+                <Button text="Aprobadas" onAction="#onApproved" styleClass="category-button"/>
+            </FlowPane>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+            <FlowPane vgap="20" hgap="20" fx:id="flowPaneOrders">
+                <padding>
+                    <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                </padding>
+            </FlowPane>
+        </ScrollPane>
+    </center>
+</BorderPane>
