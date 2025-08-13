@@ -29,7 +29,7 @@ import java.util.Optional;
 
 public class MenuManagementController {
     private SessionData sessionData;
-    private MenuItem selectedDish;
+    //private MenuItem selectedDish;
     private List<Button> categoryButtons = new ArrayList<>();
     private List<MenuItem> allMenuItems = new ArrayList<>();
     private List<MenuItem> menuItemsSearched = new ArrayList<>();
@@ -43,12 +43,36 @@ public class MenuManagementController {
 
     public void setSessionData(SessionData sessionData){
         this.sessionData = sessionData;
+        if(sessionData.getMenuCategories().isEmpty()){
+            loadCategories();
+        }
+        createCategoryButtons(this.sessionData.getMenuCategories());
+        loadAllDishCards();
     }
 
     public void initialize() {
-        loadAllDishCards();
+        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+           String start = newValue.toLowerCase();
+           menuItemsSearched = observableMenuItems.stream().filter(item -> item.getName().toLowerCase().startsWith(start)).toList();
+           loadByDishName();
+        });
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Thin.ttf"), 12);
+    }
+    private List<MenuCategory> loadCategories() {
+        List<MenuCategory> categories;
         try {
-            List<MenuCategory> categories = MenuCategoryDAO.findCategories();
+            categories = MenuCategoryDAO.findCategories();
+            System.out.println(categories.size());
+            sessionData.setMenuCategories(categories);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return categories;
+    }
+    private void createCategoryButtons(List<MenuCategory> categories) {
             for(MenuCategory category : categories) {
                 Button b = new Button(
                         category.getDescription()
@@ -74,18 +98,6 @@ public class MenuManagementController {
 
                 });
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-           String start = newValue.toLowerCase();
-           menuItemsSearched = observableMenuItems.stream().filter(item -> item.getName().toLowerCase().startsWith(start)).toList();
-           loadByDishName();
-        });
-        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Bold.ttf"), 12);
-        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Regular.ttf"), 12);
-        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-ExtraLight.ttf"), 12);
-        Font.loadFont(getClass().getResourceAsStream("/com/topglobal/dailyorder/fonts/Lexend-Thin.ttf"), 12);
     }
     @FXML
     protected void loadAllDishCards() {
@@ -96,10 +108,10 @@ public class MenuManagementController {
             button.getStyleClass().remove("active-category");
             button.getStyleClass().add("category-button");
         }
-        if(allMenuItems.isEmpty()) {
+        if(sessionData.getMenuItems().isEmpty()) {
             try {
-                allMenuItems = MenuItemDAO.findAll();
-                for (MenuItem dish : allMenuItems) {
+                sessionData.setMenuItems(MenuItemDAO.findAll());
+                for (MenuItem dish : sessionData.getMenuItems()) {
                     VBox card = createDishCard(dish);
                     fpDishes.getChildren().add(card);
                 }
@@ -107,18 +119,18 @@ public class MenuManagementController {
                 throw new RuntimeException(e);
             }
         }else{
-            for(MenuItem dish : allMenuItems) {
+            for(MenuItem dish : sessionData.getMenuItems()) {
                 VBox card = createDishCard(dish);
                 fpDishes.getChildren().add(card);
             }
         }
-        observableMenuItems = FXCollections.observableArrayList(allMenuItems);
+        observableMenuItems = FXCollections.observableArrayList(sessionData.getMenuItems());
         tfSearch.clear();
     }
     protected void loadCategoryDishCards() {
         fpDishes.getChildren().clear();
         observableMenuItems.clear();
-        for(MenuItem dish : allMenuItems) {
+        for(MenuItem dish : sessionData.getMenuItems()) {
             if(dish.getCategory().getId() == currentCategory.getId()) {
                 observableMenuItems.add(dish);
                 VBox card = createDishCard(dish);
@@ -167,6 +179,24 @@ public class MenuManagementController {
         //Switch para activar/desactivar el platillo
         ToggleSwitch switchActive = new ToggleSwitch(dish.getIsActive() == 1 ? "Activo" : "Inactivo");
         switchActive.setSelected(dish.getIsActive() == 1);
+        // Funcionalidad del switch
+        switchActive.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            sessionData.setSelectedMenuItem(dish);
+            sessionData.removeElement(sessionData.getSelectedMenuItem());
+            if(switchActive.isSelected()) {
+                dish.setIsActive(1);
+                switchActive.setText("Activo");
+            }else{
+                dish.setIsActive(0);
+                switchActive.setText("Inactivo");
+            }
+            try {
+                MenuItemDAO.update(dish, dish.getCategory());
+                sessionData.addElement(dish);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         switchSection.getChildren().add(switchActive);
 
         //--Boton de editar--
@@ -182,9 +212,10 @@ public class MenuManagementController {
         editSection.getChildren().add(btnEdit);
         //Se le agrega funcionalidad al boton de editar
         btnEdit.setOnAction(event -> {
-            selectedDish = dish;
-            View view = new View(selectedDish);
+            sessionData.setSelectedMenuItem(dish);
+            View view = new View(sessionData.getSelectedMenuItem());
             view.loadModal(event, "/com/topglobal/dailyorder/views/admin/menu/editMenuItem_form.fxml", "Editar Platillo", sessionData);
+            loadAllDishCards();
         });
         //Agregamos los HBox hijos al HBox padre antes de añadirlo a card
         hboxInf.getChildren().addAll(costSection, switchSection);
@@ -199,5 +230,6 @@ public class MenuManagementController {
     private void onAddDish(ActionEvent event) {
         View view = new View();
         view.loadModal(event, "/com/topglobal/dailyorder/views/admin/menu/menuItem_form.fxml", "Añadir Nuevo Platillo", sessionData);
+        loadAllDishCards();
     }
 }
