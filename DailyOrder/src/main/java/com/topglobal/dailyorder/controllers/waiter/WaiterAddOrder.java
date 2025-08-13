@@ -2,6 +2,7 @@ package com.topglobal.dailyorder.controllers.waiter;
 
 import com.topglobal.dailyorder.dao.FoodOrderDAO;
 import com.topglobal.dailyorder.dao.MenuItemDAO;
+import com.topglobal.dailyorder.models.objects.FoodOrder;
 import com.topglobal.dailyorder.models.objects.MenuItem;
 import com.topglobal.dailyorder.utils.View;
 
@@ -11,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+
+import java.time.LocalDate;
 
 public class WaiterAddOrder {
 
@@ -163,11 +166,18 @@ public class WaiterAddOrder {
                     .mapToDouble(p -> p.getCost() * p.getQuantity())
                     .sum();
 
-            // IDs de mesa y mesero (aquí puedes obtenerlos dinámicamente)
+            // IDs de mesa y mesero (puedes obtenerlos dinámicamente desde la UI)
             int tableId = 1;
             int waiterId = 1;
 
-            FoodOrderDAO.createOrderSimple(tableId, waiterId, "Pendiente", totalCost, platillosOrdenados);
+            // Crear objeto FoodOrder
+            FoodOrder order = new FoodOrder();
+            order.setOrderDate(LocalDate.now());          // fecha actual
+            order.setOrderStatus("pendiente");           // estado inicial
+            order.setTotalCost(totalCost);               // costo calculado
+
+            // Crear la orden usando el DAO
+            FoodOrderDAO.createOrder(order, tableId, waiterId, platillosOrdenados);
 
             new Alert(Alert.AlertType.INFORMATION, "Orden guardada exitosamente").showAndWait();
             View.closeWindow(btnAddOrder);
@@ -176,6 +186,7 @@ public class WaiterAddOrder {
             new Alert(Alert.AlertType.ERROR, "Error al guardar: " + e.getMessage()).showAndWait();
         }
     }
+
 
     @FXML
     public void onCancel() {

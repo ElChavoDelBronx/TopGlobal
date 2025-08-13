@@ -3,6 +3,9 @@ package com.topglobal.dailyorder.controllers.waiter;
 import com.topglobal.dailyorder.dao.FoodOrderDAO;
 import com.topglobal.dailyorder.models.objects.FoodOrder;
 import com.topglobal.dailyorder.models.objects.MenuItem;
+import com.topglobal.dailyorder.models.users.Employee;
+import com.topglobal.dailyorder.utils.Session;
+import com.topglobal.dailyorder.utils.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -14,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -38,10 +43,25 @@ public class WaiterHistoryController {
     @FXML
     private void loadAllOrders(ActionEvent event) {
         try {
-            render(FoodOrderDAO.findAll());
+            // Obtener el ID del mesero logueado
+            int waiterId = Session.getCurrentUser().getId();
+            render(FoodOrderDAO.getOrdersByWaiterId(waiterId));
+
+
+            // Llamar al DAO para obtener solo las órdenes de ese mesero
+            List<FoodOrder> orders = FoodOrderDAO.getOrdersByWaiterId(waiterId);
+
+            // Renderizar las órdenes en la interfaz
+            render(orders);
+
+            // Marcar el botón como activo
             markActive(btnAll);
-        } catch (SQLException e) { e.printStackTrace(); }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void loadPendingOrders(ActionEvent event) {
@@ -73,52 +93,91 @@ public class WaiterHistoryController {
     private void render(List<FoodOrder> orders) {
         cardContainer.getChildren().clear();
         for (FoodOrder o : orders) {
-            cardContainer.getChildren().add(buildCard(o));
+            cardContainer.getChildren().add(createOrderCard(o));
         }
     }
 
-    private VBox buildCard(FoodOrder o) {
-        VBox card = new VBox(10);
-        card.getStyleClass().add("order-card");
-        card.setPrefWidth(520);
-        card.setPadding(new Insets(12));
+    private VBox createOrderCard(FoodOrder order) {
+        VBox card = new VBox();
+        card.getStyleClass().add("card");
 
-        // Encabezado
-        HBox header = new HBox(10);
-        Label folio = new Label("Orden #" + o.getOrderId()); folio.getStyleClass().add("card-title");
-        String fechaTxt = o.getOrderDate() != null ? o.getOrderDate().format(fmt) : "";
-        Label fecha = new Label(fechaTxt); fecha.getStyleClass().add("muted");
-        Region spacer = new Region(); HBox.setHgrow(spacer, Priority.ALWAYS);
-        Label status = new Label(o.getOrderStatus());
-        status.getStyleClass().add(cssForStatus(o.getOrderStatus()));
-        header.getChildren().addAll(folio, fecha, spacer, status);
+        // Etiqueta con ID de la orden
+        Label lblOrderId = new Label("Folio #" + order.getDailyFolio());
+        lblOrderId.setFont(Font.font(16));
 
         // Meta
-        Label meta = new Label("Mesa: " + o.getDiningTableId() + " — Mesero ID: " + o.getWaiterId());
-        meta.getStyleClass().add("muted");
+        Label lblTableId = new Label("Mesa: " + order.getDiningTableId());
+        lblTableId.getStyleClass().add("muted");
 
-        // Lista de platillos
-        VBox itemsBox = new VBox(4);
-        try {
-            List<MenuItem> items = FoodOrderDAO.findItemsByOrderId(o.getOrderId());
-            for (MenuItem it : items) {
-                String name = it.getName() != null ? it.getName() : ("Item " + it.getId());
-                Label li = new Label("• " + it.getQuantity() + "x " + name);
-                li.getStyleClass().add("card-text");
-                itemsBox.getChildren().add(li);
+        // Etiqueta con fecha (solo LocalDate)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = order.getOrderDate() != null ? order.getOrderDate().format(formatter) : "N/A";
+        Label lblDate = new Label("Fecha: " + formattedDate);
+
+        // Etiqueta para mostrar estado con colores
+        Label lblStatus = new Label();
+        String statusText = order.getOrderStatus() != null ? order.getOrderStatus() : "Desconocido";
+        String statusClass = "";
+        switch (statusText.toLowerCase()) {
+            case "pendiente":
+                statusClass = "status-pending";
+                break;
+            case "aceptado":
+                statusClass = "status-accepted";
+                break;
+            case "rechazado":
+                statusClass = "status-rejected";
+                break;
+            default:
+                statusClass = "status-unknown";
+        }
+        lblStatus.setText("Estado: " + statusText);
+        lblStatus.getStyleClass().add(statusClass);
+
+        // Lista de platos/dishes
+        VBox dishesBox = new VBox();
+        dishesBox.setSpacing(4);
+        Label lblDishesTitle = new Label("Productos:");
+        lblDishesTitle.setFont(Font.font(null, FontWeight.BOLD, 14));
+        dishesBox.getChildren().add(lblDishesTitle);
+
+        if (order.getDishes() != null && !order.getDishes().isEmpty()) {
+            for (String dish : order.getDishes()) {
+                Label dishLabel = new Label("- " + dish);
+                dishesBox.getChildren().add(dishLabel);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } else {
+            dishesBox.getChildren().add(new Label("No hay productos."));
         }
 
-        // Acciones
-        HBox actions = new HBox(10);
-        actions.setAlignment(Pos.CENTER_RIGHT);
-        Button cobrar = new Button("Cobrar"); cobrar.getStyleClass().add("btn-light");
-        Button rechazar = new Button("Rechazar"); rechazar.getStyleClass().add("btn-outline");
-        actions.getChildren().addAll(cobrar, rechazar);
+        // Botones de acción
+        HBox buttonsSection = new HBox();
+        buttonsSection.setAlignment(Pos.CENTER);
+        buttonsSection.getStyleClass().add("hbox-CardButtons");
+        buttonsSection.setSpacing(10);
 
-        card.getChildren().addAll(header, meta, itemsBox, actions);
+        Button btnEdit = new Button("Editar");
+        Button btnDelete = new Button("Eliminar");
+
+        btnEdit.getStyleClass().add("action-button");
+        btnDelete.getStyleClass().add("action-button");
+
+        /*
+        btnEdit.setOnAction(event -> {
+            selectedOrder = order;
+            View view = new View(selectedOrder);
+            view.loadModal(event, "/com/topglobal/dailyorder/views/admin/admin_edit_order.fxml", "Editar Orden");
+        });
+
+         */
+
+        buttonsSection.getChildren().addAll(btnEdit, btnDelete);
+
+        // Agregar todos los elementos a la card
+        card.getChildren().addAll(lblOrderId, lblDate, lblTableId, lblStatus, dishesBox, buttonsSection);
+        card.setSpacing(8);
+        card.setPadding(new Insets(10));
+
         return card;
     }
 

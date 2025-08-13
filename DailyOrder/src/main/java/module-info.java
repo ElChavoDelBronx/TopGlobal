@@ -11,8 +11,6 @@ module com.topglobal.dailyorder {
     exports com.topglobal.dailyorder;
     exports com.topglobal.dailyorder.controllers.login;
     opens com.topglobal.dailyorder.controllers.login to javafx.fxml;
-    exports com.topglobal.dailyorder.controllers.waiter;
-    opens com.topglobal.dailyorder.controllers.waiter to javafx.fxml;
     exports com.topglobal.dailyorder.controllers.leader;
     opens com.topglobal.dailyorder.controllers.leader to javafx.fxml;
     exports com.topglobal.dailyorder.controllers.admin;
@@ -23,5 +21,7 @@ module com.topglobal.dailyorder {
     opens com.topglobal.dailyorder.controllers.admin.orders to javafx.fxml;
     exports com.topglobal.dailyorder.controllers.leader.orders to javafx.fxml;
     opens com.topglobal.dailyorder.controllers.leader.orders to javafx.fxml;
+    exports com.topglobal.dailyorder.controllers.waiter to javafx.fxml;
+    opens com.topglobal.dailyorder.controllers.waiter to javafx.fxml;
 
 }

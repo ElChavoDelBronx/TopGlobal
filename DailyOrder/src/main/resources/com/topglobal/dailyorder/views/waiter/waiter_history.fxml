@@ -44,9 +44,9 @@
                 vbarPolicy="AS_NEEDED"
                 VBox.vgrow="ALWAYS">
         <!-- Contenedor de tarjetas dinámico -->
-        <FlowPane fx:id="cardContainer" hgap="24" vgap="24">
+        <FlowPane fx:id="cardContainer" hgap="20" vgap="20">
             <padding>
-                <Insets bottom="18" left="10" right="10" top="10" />
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
             </padding>
         </FlowPane>
     </ScrollPane>
