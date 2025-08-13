@@ -4,6 +4,7 @@ import com.topglobal.dailyorder.Main;
 import com.topglobal.dailyorder.controllers.UserController;
 import com.topglobal.dailyorder.dao.EmployeeDAO;
 import com.topglobal.dailyorder.models.users.*;
+import com.topglobal.dailyorder.utils.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
@@ -42,6 +43,7 @@ public class LoginController {
             //Obtiene el empleado por sus credenciales
             Employee employee = EmployeeDAO.fetchEmployeeByCredentials(user, password);
             if(employee != null && employee.getStatus() == 1) {
+                Session.login(employee);
                 String newFxmlPath;
                 String title;
                 if(employee instanceof Admin){

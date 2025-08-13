@@ -1,4 +1,9 @@
 
+/* Fondo general para la vista del historial de mesero */
+.root {
+    -fx-background-color: #f5f5f5; /* Gris claro */
+}
+
 /* Estilo para el título principal (Encabezado) */
 .h1 {
     -fx-font-family: "Lexend bold"; /* Puedes cambiar la fuente si lo deseas */
@@ -107,7 +112,7 @@
 }
 
 .btn-outline {
-   -fx-background-color: #FF3467;
+    -fx-background-color: #FF3467;
     -fx-border-radius: 8;
     -fx-text-fill: white;
     -fx-padding: 6 12;
@@ -117,7 +122,9 @@
     -fx-background-color: #AB314F;
     -fx-background-radius: 10px; /* Bordes redondeados */
 }
+
 /* ScrollPane limpio */
 .scroll-light .viewport {
     -fx-background-color: transparent;
 }
+

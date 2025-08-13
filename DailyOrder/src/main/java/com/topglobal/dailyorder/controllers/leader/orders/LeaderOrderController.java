@@ -60,7 +60,7 @@ public class LeaderOrderController implements Initializable {
         card.getStyleClass().add("card");
 
         // Etiqueta con ID de la orden
-        Label lblOrderId = new Label("Folio # " + order.getDailyFolio());
+        Label lblOrderId = new Label("Folio #" + order.getDailyFolio());
         lblOrderId.setFont(Font.font(16));
 
         // Etiqueta con nombre del mesero

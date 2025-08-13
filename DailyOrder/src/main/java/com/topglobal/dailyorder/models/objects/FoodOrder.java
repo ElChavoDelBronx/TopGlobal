@@ -20,7 +20,6 @@ public class FoodOrder {
         dishes = new ArrayList<>();
     }
 
-<<<<<<< HEAD
     public int getOrderId() {
         return orderId;
     }
@@ -60,20 +59,9 @@ public class FoodOrder {
         return orderDate;
     }
     public void setOrderDate(LocalDate orderDate) {
-=======
-    // Nuevo: lista de platillos
-    private List<MenuItem> items = new ArrayList<>();
-
-    public FoodOrder() {}
-
-    public FoodOrder(int orderId, LocalDate orderDate, String status) {
-        this.orderId = orderId;
->>>>>>> TT04_S2
         this.orderDate = orderDate;
-        this.orderStatus = status;
     }
 
-<<<<<<< HEAD
     public double getTotalCost() {
         return totalCost;
     }
@@ -101,28 +89,4 @@ public class FoodOrder {
     public void setDishes(List<String> dishes) {
         this.dishes = dishes;
     }
-=======
-    // Getters & Setters
-    public int getOrderId() { return orderId; }
-    public void setOrderId(int orderId) { this.orderId = orderId; }
-
-    public int getDiningTableId() { return diningTableId; }
-    public void setDiningTableId(int diningTableId) { this.diningTableId = diningTableId; }
-
-    public int getWaiterId() { return waiterId; }
-    public void setWaiterId(int waiterId) { this.waiterId = waiterId; }
-
-    public LocalDate getOrderDate() { return orderDate; }
-    public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
-
-    public double getTotalCost() { return totalCost; }
-    public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
-
-    public String getOrderStatus() { return orderStatus; }
-    public void setStatus(String orderStatus) { this.orderStatus = orderStatus; }
-
-    public List<MenuItem> getItems() { return items; }
-    public void setItems(List<MenuItem> items) { this.items = items; }
->>>>>>> TT04_S2
 }
-
