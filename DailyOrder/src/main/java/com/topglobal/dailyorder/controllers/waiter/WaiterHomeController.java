@@ -29,6 +29,11 @@ public class WaiterHomeController {
 
     public void setSessionData(SessionData sessionData) {
         this.sessionData = sessionData;
+        lblFullName.setText(sessionData.getUser().getName() + " " + sessionData.getUser().getFatherLastname() + " " + sessionData.getUser().getMotherLastname());
+        lblUsername.setText(sessionData.getUser().getUser());
+        lblPhoneNumber.setText(sessionData.getUser().getPhoneNumber());
+        lblEmail.setText(sessionData.getUser().getEmail());
+        lblShift.setText(sessionData.getUser().getShift());
     }
 
     @FXML

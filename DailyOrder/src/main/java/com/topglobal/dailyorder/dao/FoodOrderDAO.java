@@ -133,7 +133,7 @@ public class FoodOrderDAO {
 
     public static List<FoodOrder> findByStatus(String status) throws SQLException {
         String sql = """
-        SELECT ID_ORDER, FK_ID_TABLE, FK_ID_WAITER, ORDER_TIME, ORDER_STATUS, ORDER_COST
+        SELECT ID_ORDER, FK_ID_TABLE, FK_ID_WAITER, ORDER_TIME, ORDER_STATUS, ORDER_COST, DAILY_FOLIO
         FROM ORDERS
         WHERE LOWER(ORDER_STATUS) = LOWER(?)
         ORDER BY ORDER_TIME DESC

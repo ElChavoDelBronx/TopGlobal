@@ -14,6 +14,7 @@ public class WaiterController {
 
     public void setSessionData(SessionData sessionData) {
         this.sessionData = sessionData;
+        showTasks();
     }
 
     @FXML public void showHistory(){

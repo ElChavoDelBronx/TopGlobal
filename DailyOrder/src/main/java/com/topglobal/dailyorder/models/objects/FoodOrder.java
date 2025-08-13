@@ -11,6 +11,7 @@ public class FoodOrder {
     private LocalDate orderDate;
     private double totalCost;
     private String orderStatus;
+    private int orderFolio;
 
     // Nuevo: lista de platillos
     private List<MenuItem> items = new ArrayList<>();
@@ -44,4 +45,12 @@ public class FoodOrder {
 
     public List<MenuItem> getItems() { return items; }
     public void setItems(List<MenuItem> items) { this.items = items; }
+
+    public int getOrderFolio() {
+        return orderFolio;
+    }
+
+    public void setOrderFolio(int orderFolio) {
+        this.orderFolio = orderFolio;
+    }
 }
