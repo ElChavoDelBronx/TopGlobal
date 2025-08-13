@@ -34,7 +34,6 @@ public class FoodOrderDAO {
 
             String sql = """
             SELECT
-                o.ID_ORDER,
                 o.DAILY_FOLIO,
                 o.ORDER_TIME,
                 o.ORDER_STATUS,
@@ -50,7 +49,7 @@ public class FoodOrderDAO {
             JOIN ORDER_FOOD ofd ON o.ID_ORDER = ofd.FK_ID_ORDER
             JOIN FOOD f ON ofd.FK_ID_FOOD = f.ID_FOOD
             GROUP BY
-                o.ID_ORDER, o.DAILY_FOLIO, o.ORDER_TIME, o.ORDER_STATUS, o.ORDER_COST,
+                o.DAILY_FOLIO, o.ORDER_TIME, o.ORDER_STATUS, o.ORDER_COST,
                 e.NAME, e.FATHER_LASTNAME, dt.ID_TABLE, dt.AREA
             ORDER BY o.ORDER_TIME DESC
             
@@ -62,7 +61,6 @@ public class FoodOrderDAO {
 
                 while (rs.next()) {
                     FoodOrder order = new FoodOrder();
-                    order.setOrderId(rs.getInt("ID_ORDER"));
                     order.setDailyFolio(rs.getInt("DAILY_FOLIO"));
                     order.setOrderDate(rs.getDate("ORDER_TIME").toLocalDate());
                     order.setOrderStatus(rs.getString("ORDER_STATUS"));
